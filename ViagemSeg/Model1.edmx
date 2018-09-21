@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BancoViagemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" />
+          <Property Name="Telefone" Type="varchar" MaxLength="50" />
+          <Property Name="Cpf" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="DataNascimento" Type="date" Nullable="false" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Endereco">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Cidade" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Bairro" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Rua" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="120" />
+          <Property Name="ClienteIdEndereco" Type="int" />
+          <Property Name="Origem" Type="int" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" />
+          <Property Name="Local" Type="varchar" MaxLength="50" />
+          <Property Name="elefone" Type="varchar" MaxLength="50" />
+          <Property Name="Contato" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HotelViagem">
+          <Key>
+            <PropertyRef Name="ViagemId" />
+          </Key>
+          <Property Name="ViagemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ViagemIdViagem" Type="int" />
+          <Property Name="ViagemIdHotel" Type="int" />
+          <Property Name="ViagemDias" Type="datetime" />
+          <Property Name="ViagemValorUnitario" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Veiculo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="int" />
+          <Property Name="Lugares" Type="int" />
+          <Property Name="Placa" Type="varchar" MaxLength="50" />
+          <Property Name="Identificacao" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="VendaCliente">
+          <Key>
+            <PropertyRef Name="VendaId" />
+          </Key>
+          <Property Name="VendaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendaIdCliente" Type="int" Nullable="false" />
+          <Property Name="VendaIdViagem" Type="int" Nullable="false" />
+          <Property Name="VendaValorViagem" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VendaValorPago" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VendaDesconto" Type="int" />
+          <Property Name="FaixaEtaria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Assento" Type="int" />
+        </EntityType>
+        <EntityType Name="Viagem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" />
+          <Property Name="Local" Type="varchar" MaxLength="50" />
+          <Property Name="DataInicio" Type="date" />
+          <Property Name="DataFim" Type="date" />
+          <Property Name="Valor" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Veiculo" Type="int" />
+        </EntityType>
+        <Association Name="FK_Endereco_ToTable">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Endereco" Type="Self.Endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Endereco">
+              <PropertyRef Name="ClienteIdEndereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelViagem_ToTable">
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="0..1" />
+          <End Role="HotelViagem" Type="Self.HotelViagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viagem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HotelViagem">
+              <PropertyRef Name="ViagemIdViagem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelViagem_ToTable_1">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+          <End Role="HotelViagem" Type="Self.HotelViagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HotelViagem">
+              <PropertyRef Name="ViagemIdHotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendaCliente_ToTable">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VendaCliente">
+              <PropertyRef Name="VendaIdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendaCliente_ToTable_1">
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="1" />
+          <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viagem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VendaCliente">
+              <PropertyRef Name="VendaIdViagem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BancoViagemModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Endereco" EntityType="Self.Endereco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HotelViagem" EntityType="Self.HotelViagem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Veiculo" EntityType="Self.Veiculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VendaCliente" EntityType="Self.VendaCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Viagem" EntityType="Self.Viagem" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Endereco_ToTable" Association="Self.FK_Endereco_ToTable">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Endereco" EntitySet="Endereco" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelViagem_ToTable" Association="Self.FK_HotelViagem_ToTable">
+            <End Role="Viagem" EntitySet="Viagem" />
+            <End Role="HotelViagem" EntitySet="HotelViagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelViagem_ToTable_1" Association="Self.FK_HotelViagem_ToTable_1">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="HotelViagem" EntitySet="HotelViagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendaCliente_ToTable" Association="Self.FK_VendaCliente_ToTable">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="VendaCliente" EntitySet="VendaCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendaCliente_ToTable_1" Association="Self.FK_VendaCliente_ToTable_1">
+            <End Role="Viagem" EntitySet="Viagem" />
+            <End Role="VendaCliente" EntitySet="VendaCliente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BancoViagemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cpf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataNascimento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Endereco" Relationship="Self.FK_Endereco_ToTable" FromRole="Cliente" ToRole="Endereco" />
+          <NavigationProperty Name="VendaCliente" Relationship="Self.FK_VendaCliente_ToTable" FromRole="Cliente" ToRole="VendaCliente" />
+        </EntityType>
+        <EntityType Name="Endereco">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cidade" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bairro" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rua" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="ClienteIdEndereco" Type="Int32" />
+          <Property Name="Origem" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Endereco_ToTable" FromRole="Endereco" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Local" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="elefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HotelViagem" Relationship="Self.FK_HotelViagem_ToTable_1" FromRole="Hotel" ToRole="HotelViagem" />
+        </EntityType>
+        <EntityType Name="HotelViagem">
+          <Key>
+            <PropertyRef Name="ViagemId" />
+          </Key>
+          <Property Name="ViagemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ViagemIdViagem" Type="Int32" />
+          <Property Name="ViagemIdHotel" Type="Int32" />
+          <Property Name="ViagemDias" Type="DateTime" Precision="3" />
+          <Property Name="ViagemValorUnitario" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelViagem_ToTable_1" FromRole="HotelViagem" ToRole="Hotel" />
+          <NavigationProperty Name="Viagem" Relationship="Self.FK_HotelViagem_ToTable" FromRole="HotelViagem" ToRole="Viagem" />
+        </EntityType>
+        <EntityType Name="Veiculo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="Int32" />
+          <Property Name="Lugares" Type="Int32" />
+          <Property Name="Placa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Identificacao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VendaCliente">
+          <Key>
+            <PropertyRef Name="VendaId" />
+          </Key>
+          <Property Name="VendaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendaIdCliente" Type="Int32" Nullable="false" />
+          <Property Name="VendaIdViagem" Type="Int32" Nullable="false" />
+          <Property Name="VendaValorViagem" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VendaValorPago" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VendaDesconto" Type="Int32" />
+          <Property Name="FaixaEtaria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Assento" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_VendaCliente_ToTable" FromRole="VendaCliente" ToRole="Cliente" />
+          <NavigationProperty Name="Viagem" Relationship="Self.FK_VendaCliente_ToTable_1" FromRole="VendaCliente" ToRole="Viagem" />
+        </EntityType>
+        <EntityType Name="Viagem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Local" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataInicio" Type="DateTime" Precision="0" />
+          <Property Name="DataFim" Type="DateTime" Precision="0" />
+          <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Veiculo" Type="Int32" />
+          <NavigationProperty Name="HotelViagem" Relationship="Self.FK_HotelViagem_ToTable" FromRole="Viagem" ToRole="HotelViagem" />
+          <NavigationProperty Name="VendaCliente" Relationship="Self.FK_VendaCliente_ToTable_1" FromRole="Viagem" ToRole="VendaCliente" />
+        </EntityType>
+        <Association Name="FK_Endereco_ToTable">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Endereco" Type="Self.Endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Endereco">
+              <PropertyRef Name="ClienteIdEndereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendaCliente_ToTable">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VendaCliente">
+              <PropertyRef Name="VendaIdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelViagem_ToTable_1">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+          <End Role="HotelViagem" Type="Self.HotelViagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HotelViagem">
+              <PropertyRef Name="ViagemIdHotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelViagem_ToTable">
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="0..1" />
+          <End Role="HotelViagem" Type="Self.HotelViagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viagem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HotelViagem">
+              <PropertyRef Name="ViagemIdViagem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendaCliente_ToTable_1">
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="1" />
+          <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viagem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VendaCliente">
+              <PropertyRef Name="VendaIdViagem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Endereco" EntityType="Self.Endereco" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" />
+          <EntitySet Name="HotelViagem" EntityType="Self.HotelViagem" />
+          <EntitySet Name="Veiculo" EntityType="Self.Veiculo" />
+          <EntitySet Name="VendaCliente" EntityType="Self.VendaCliente" />
+          <EntitySet Name="Viagem" EntityType="Self.Viagem" />
+          <AssociationSet Name="FK_Endereco_ToTable" Association="Self.FK_Endereco_ToTable">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Endereco" EntitySet="Endereco" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendaCliente_ToTable" Association="Self.FK_VendaCliente_ToTable">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="VendaCliente" EntitySet="VendaCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelViagem_ToTable_1" Association="Self.FK_HotelViagem_ToTable_1">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="HotelViagem" EntitySet="HotelViagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelViagem_ToTable" Association="Self.FK_HotelViagem_ToTable">
+            <End Role="Viagem" EntitySet="Viagem" />
+            <End Role="HotelViagem" EntitySet="HotelViagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendaCliente_ToTable_1" Association="Self.FK_VendaCliente_ToTable_1">
+            <End Role="Viagem" EntitySet="Viagem" />
+            <End Role="VendaCliente" EntitySet="VendaCliente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BancoViagemModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="BancoViagemModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Endereco">
+            <EntityTypeMapping TypeName="BancoViagemModel.Endereco">
+              <MappingFragment StoreEntitySet="Endereco">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="Rua" ColumnName="Rua" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="ClienteIdEndereco" ColumnName="ClienteIdEndereco" />
+                <ScalarProperty Name="Origem" ColumnName="Origem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotel">
+            <EntityTypeMapping TypeName="BancoViagemModel.Hotel">
+              <MappingFragment StoreEntitySet="Hotel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Local" ColumnName="Local" />
+                <ScalarProperty Name="elefone" ColumnName="elefone" />
+                <ScalarProperty Name="Contato" ColumnName="Contato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelViagem">
+            <EntityTypeMapping TypeName="BancoViagemModel.HotelViagem">
+              <MappingFragment StoreEntitySet="HotelViagem">
+                <ScalarProperty Name="ViagemId" ColumnName="ViagemId" />
+                <ScalarProperty Name="ViagemIdViagem" ColumnName="ViagemIdViagem" />
+                <ScalarProperty Name="ViagemIdHotel" ColumnName="ViagemIdHotel" />
+                <ScalarProperty Name="ViagemDias" ColumnName="ViagemDias" />
+                <ScalarProperty Name="ViagemValorUnitario" ColumnName="ViagemValorUnitario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Veiculo">
+            <EntityTypeMapping TypeName="BancoViagemModel.Veiculo">
+              <MappingFragment StoreEntitySet="Veiculo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Lugares" ColumnName="Lugares" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Identificacao" ColumnName="Identificacao" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendaCliente">
+            <EntityTypeMapping TypeName="BancoViagemModel.VendaCliente">
+              <MappingFragment StoreEntitySet="VendaCliente">
+                <ScalarProperty Name="VendaId" ColumnName="VendaId" />
+                <ScalarProperty Name="VendaIdCliente" ColumnName="VendaIdCliente" />
+                <ScalarProperty Name="VendaIdViagem" ColumnName="VendaIdViagem" />
+                <ScalarProperty Name="VendaValorViagem" ColumnName="VendaValorViagem" />
+                <ScalarProperty Name="VendaValorPago" ColumnName="VendaValorPago" />
+                <ScalarProperty Name="VendaDesconto" ColumnName="VendaDesconto" />
+                <ScalarProperty Name="FaixaEtaria" ColumnName="FaixaEtaria" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Assento" ColumnName="Assento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Viagem">
+            <EntityTypeMapping TypeName="BancoViagemModel.Viagem">
+              <MappingFragment StoreEntitySet="Viagem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Local" ColumnName="Local" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Veiculo" ColumnName="Veiculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

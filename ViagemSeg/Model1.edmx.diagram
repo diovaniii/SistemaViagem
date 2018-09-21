@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2e82245d2c2240b8bc0009d64ac987cf" Name="Diagram1">
+        <EntityTypeShape EntityType="BancoViagemModel.Cliente" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BancoViagemModel.Endereco" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BancoViagemModel.Hotel" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BancoViagemModel.HotelViagem" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BancoViagemModel.Veiculo" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BancoViagemModel.VendaCliente" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BancoViagemModel.Viagem" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="BancoViagemModel.FK_Endereco_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="BancoViagemModel.FK_VendaCliente_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="BancoViagemModel.FK_HotelViagem_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="BancoViagemModel.FK_HotelViagem_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="BancoViagemModel.FK_VendaCliente_ToTable_1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

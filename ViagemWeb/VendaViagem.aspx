@@ -1,0 +1,321 @@
+﻿<%@ Page Title="Venda de Viagem" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VendaViagem.aspx.cs" Inherits="ViagemWeb.VendaViagem" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="row">
+        <fieldset>
+            <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+
+                    <panel runat="server">
+                <p />
+                
+                    <legend>Dados do Cliente</legend>
+                    
+                        <div class="col-md-3">
+                            <label>
+                                Viagem:
+                        <br>
+                                <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" Class="form-control js-example-basic-single" />
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>
+                                Cliente:
+                        <br>
+                                <asp:DropDownList ID="ddlCliente" runat="server" DataTextField="ClienteNome" DataValueField="ClienteId" Class="form-control js-example-basic-single" />
+                            </label>
+                        </div>
+            </panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <div class="col-md-3">
+                <label>
+                    Quantidade:
+                        <br>
+                    <input id="Quant" type='text' class="form-control" autocomplete="off" />
+                </label>
+            </div>
+
+
+            <div class="col-md-3">
+                <label>
+
+                    <br>
+                    <asp:Button runat="server" ID="salvarQuantidade" Text="Ok" class="btn" OnClick="salvarQuantidade_Click" />
+                </label>
+            </div>
+
+        </fieldset>
+        <asp:UpdatePanel runat="server" ID="uppPanel" UpdateMode="Conditional">
+            <ContentTemplate>
+                <asp:Label runat="server" ID="lblTeste" Visible="false" Text="" ClientIDMode="static"></asp:Label>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <div>
+            <fieldset>
+                <asp:UpdatePanel runat="server" ID="uppGridView" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <asp:GridView
+                            ID="grpVendaCliente"
+                            runat="server"
+                            AutoGenerateColumns="False"
+                            CssClass="table table-hover"
+                            GridLines="None"
+                            AllowPaging="True"
+                            DataKeyNames="VendaId"
+                            OnRowDataBound="grpVendaCliente_RowDataBound"
+                            PageSize="10">
+                            <Columns>
+                                <asp:TemplateField HeaderText="">
+                                    <ItemTemplate>
+                                        <%# Container.DataItemIndex + 1 %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Cliente">
+                                    <ItemTemplate>
+                                        <div class="col-md-9">
+                                            <asp:DropDownList ID="ddlCliente1" runat="server" Class="form-control js-example-basic-single"></asp:DropDownList>
+                                        </div>
+                                        <button class="btn" type="button" data-toggle="collapse" data-target="#Cadastro<%# Container.DataItemIndex + 1 %>" aria-expanded="false" aria-controls="collapseExample">
+                                            <i aria-hidden="true" class="glyphicon glyphicon-plus"></i>
+                                        </button>
+
+                                        <div class="collapse" id="Cadastro<%# Container.DataItemIndex + 1 %>">
+                                            <div class="card card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>
+                                                            Nome:
+                        <br>
+                                                            <asp:TextBox ID="txtNome" runat="server" Class="form-control"></asp:TextBox>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>
+                                                            Cpf:
+                        <br>
+                                                            <asp:TextBox ID="txtCpf" runat="server" Class="form-control"></asp:TextBox>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>
+                                                            Data de nascimento:
+                        <br>
+                                                            <asp:TextBox ID="txtDataNascimento" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:BoundField
+                                    DataField="FaixaEtaria"
+                                    HeaderText="Faixa Etaria"
+                                    SortExpression="FaixaEtaria" />
+                                <asp:BoundField
+                                    DataField="Viagem.Valor"
+                                    HeaderText="Valor"
+                                    SortExpression="Viagem.Valor" />
+                                <asp:TemplateField HeaderText="Valor Desconto R$">
+                                    <ItemTemplate>
+                                        <input id="ValorDesconto" value="" type='text' class="form-control" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Pagamento Total">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="ckbPago" runat="server" CssClass="pago"></asp:CheckBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Valor Pago">
+                                    <ItemTemplate>
+                                        <input id="ValorPago" type='text' class="form-control" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Assento">
+                                    <ItemTemplate>
+
+                                        <asp:textbox id="poltrona" runat="server" class="form-control poltrona" clientidmode="static"/>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <p>
+                                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Div<%# Container.DataItemIndex + 1 %>" aria-expanded="false" aria-controls="collapseExample">
+                                                Assento
+                                            </button>
+                                        </p>
+                                        <div class="collapse" id="Div<%# Container.DataItemIndex + 1 %>">
+                                            <div class="card card-body">
+                                                <div id="holder">
+                                                    <ul id="place" class="assento">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                            <PagerStyle HorizontalAlign="Left" />
+                            <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" />
+                        </asp:GridView>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </fieldset>
+        </div>
+
+    </div>
+
+    <input type="hidden" id="quantidadeAdulto" runat="server" clientidmode="static" />
+    <input type="hidden" id="quantidadeAdolecente" runat="server" clientidmode="static" />
+    <input type="hidden" id="quantidadeCrianca" runat="server" clientidmode="static" />
+    <input type="hidden" id="quantidadeBebe" runat="server" clientidmode="static" />
+
+
+    <input id="valorTotal" runat="server" clientidmode="static" />
+    <asp:Button ID="salvar" runat="server" OnClick="salvar_Click" />
+
+    <script type="text/javascript">
+
+
+        var settings = {
+            rows: 4,
+            cols: 15,
+            rowCssPrefix: 'row-',
+            colCssPrefix: 'col-',
+            seatWidth: 35,
+            seatHeight: 35,
+            seatCss: 'seat',
+            selectedSeatCss: 'selectedSeat',
+            selectingSeatCss: 'selectingSeat',
+            tempSelectedSeatCss: 'tempSelectedSeat'
+        };
+
+        var quantidadeMaxima = 0;
+        var quantidadeSelecionados = 0;
+        var init = function (reservedSeat) {
+            var str = [], seatNo, className;
+            for (i = 0; i < settings.rows; i++) {
+                for (j = 0; j < settings.cols; j++) {
+                    seatNo = (i + j * settings.rows + 1);
+                    className = settings.seatCss + ' ' + settings.rowCssPrefix + i.toString() + ' ' + settings.colCssPrefix + j.toString();
+                    if ($.isArray(reservedSeat) && $.inArray(seatNo, reservedSeat) != -1) {
+                        className += ' ' + settings.selectedSeatCss;
+                    }
+                    str.push('<li class="' + className + '"' +
+                        'style="top:' + (i * settings.seatHeight).toString() + 'px;left:' + (j * settings.seatWidth).toString() + 'px">' +
+                        '<a title="' + seatNo + '">' + seatNo + '</a>' +
+                        '</li>');
+                }
+            }
+            $('.assento').html(str.join(''));
+        };
+        //case I: Show from starting
+        //init();
+
+        //Case II: If already booked
+        var bookedSeats = [5, 10, 25];
+        var bookedSeatsSelected = [];
+        init(bookedSeats);
+
+
+
+        $('.' + settings.seatCss).click(function () {
+            if ($(this).hasClass(settings.selectedSeatCss)) {
+                alert('esse assento ja esta reservado.');
+            }
+            else if ($(this).hasClass(settings.tempSelectedSeatCss)) {
+                alert('Assento ja reservado por este cliente.');
+            }
+            else {
+                
+                //guarda valor da poltrona ja celecionada
+                const elementoPoltronaSelecionada = $('.poltrona', $(this).parent().parent().parent().parent().parent().parent());
+                var teste = elementoPoltronaSelecionada.val();
+                //remove ele mesmo apos selecionar outra poltrona
+                $(this).parent().children().filter('.' + settings.selectingSeatCss).removeClass(settings.selectingSeatCss);
+                //seleciona nos outros componentes o temporario
+                $('.assento .seat a[title="' + $(this).children('a').attr('title') + '"]').parent().addClass('tempSelectedSeat');
+                //remove do seu componente o temporario
+                $(this).removeClass('tempSelectedSeat');
+                //seleciona no componente a poltrona 
+                $(this).addClass(settings.selectingSeatCss);
+
+                const seatSelected = $(this).text();
+                var seatFound = bookedSeatsSelected.filter(e => e == seatSelected);
+                if (seatFound.length == 0) {
+                    var index = bookedSeatsSelected.indexOf(teste);
+                    if (index > -1) {
+                        bookedSeatsSelected.splice(index, teste);
+                        //apaga dos outros componentes os temporarios quando muda
+                        $('.assento .seat a[title="' + teste + '"]').parent().removeClass('tempSelectedSeat');
+                    }
+                    //apaga dos outros componentes os temporarios quando muda
+                    $('.assento .seat a[title="' + teste + '"]').parent().removeClass('tempSelectedSeat');
+                    bookedSeatsSelected.push(seatSelected);
+                } else {
+                    $(this).removeClass('selectingSeat');
+                    var index = bookedSeatsSelected.indexOf(teste);
+                    if (index > -1) {
+                        bookedSeatsSelected.splice(index, teste);
+                        //apaga dos outros componentes os temporarios quando muda
+                        $('.assento .seat a[title="' + teste + '"]').parent().removeClass('tempSelectedSeat');
+                    }
+                }
+                //envia valor da poltrona selecionada para a label 
+                elementoPoltronaSelecionada.val(seatSelected);
+            }
+        });
+
+        //function nomefuncao(id) {
+        //    document.getElementById('#assento' + id).innerHTML = 'teste';
+        //}
+
+        $('.pago').on('click', function () {
+            if ($(this).children('input:checked').length == 1) {
+                var valor = parseFloat($(this).parent().prev().prev().text(), 10).toFixed(2).replace(',', '.');
+                var desconto = $(this).parent().prev().children()[0].value.replace(',', '.');
+
+                var soma = parseFloat(valor, 10) - parseFloat(desconto, 10);
+
+                // Formata o resultado como moeda.
+                $(this).parent().next().children('input').val(soma);
+            }
+            else {
+                $(this).parent().next().children('input').val('')
+            }
+            
+        });
+
+
+
+
+        $('.checked').on('keyup', function () {
+            if (this.checked == true) {
+                var test = $(this).next()
+                var test2 = $(test).next('input');
+                test2.focus();
+            }
+        });
+
+        $('#ValorPago').on('keyup', function () {
+            function getListOfInput(grpVendaCliente, ValorPago) {
+                var children = grpVendaCliente.getElementsByTagName('INPUT');
+                for (var i = 0; i < children.length; i++) {
+                    var child = children[i];
+                    child.value = ValorPago
+                }
+
+                return valorTotal;
+            }
+        });
+
+    </script>
+
+</asp:Content>
