@@ -137,7 +137,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Assento">
                                     <ItemTemplate>
-                                        <asp:textbox id="poltrona" runat="server" class="form-control poltrona" clientidmode="static"/>
+                                        <asp:textbox id="poltrona" runat="server" style="width:45px" class="form-control poltrona" clientidmode="static"/>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField>

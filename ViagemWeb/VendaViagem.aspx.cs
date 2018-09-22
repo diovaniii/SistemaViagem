@@ -149,13 +149,30 @@ namespace ViagemWeb
 
                 VendaCliente vendaCliente = new VendaCliente();
                 //SALVA ID DO CLIENTE
-                DropDownList idCliente = (DropDownList)item.FindControl("ddlCliente1");
-                string selectvalueCliente = idCliente.SelectedValue ;
-                vendaCliente.VendaIdCliente = Convert.ToInt32(selectvalueCliente);
+                TextBox nome = (TextBox)item.FindControl("txtNome");
+                if (nome.Text == "")
+                {
+                    DropDownList idCliente = (DropDownList)item.FindControl("ddlCliente1");
+                    string selectvalueCliente = idCliente.SelectedValue;
+                    vendaCliente.VendaIdCliente = Convert.ToInt32(selectvalueCliente);
+                }
+                else
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.Nome = nome.Text;
+                    TextBox cpf = (TextBox)item.FindControl("txtCpf");
+                    cliente.Cpf = cpf.Text;
+                    TextBox data = (TextBox)item.FindControl("txtDataNascimento");
+                    cliente.DataNascimento = Convert.ToDateTime(data.Text);
+                    Endereco enderecoPessoal = new Endereco();
+                    Endereco enderecoComercial = new Endereco();
+                    SvcCliente.AlteraSalva(cliente, enderecoPessoal, enderecoComercial);
+
+                }
+                
 
                 vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
 
-                var y = Convert.ToInt32("5");
 
                 string faixaEtaria = item.Cells[2].Text;
                 vendaCliente.FaixaEtaria = faixaEtaria.ToString();
