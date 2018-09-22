@@ -74,7 +74,7 @@
                                 <asp:TemplateField HeaderText="Cliente">
                                     <ItemTemplate>
                                         <div class="col-md-9">
-                                            <asp:DropDownList ID="ddlCliente1" runat="server" Class="form-control js-example-basic-single"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlCliente1" runat="server" DataValueField="ClienteId" Class="form-control js-example-basic-single"></asp:DropDownList>
                                         </div>
                                         <button class="btn" type="button" data-toggle="collapse" data-target="#Cadastro<%# Container.DataItemIndex + 1 %>" aria-expanded="false" aria-controls="collapseExample">
                                             <i aria-hidden="true" class="glyphicon glyphicon-plus"></i>
@@ -122,7 +122,7 @@
                                     SortExpression="Viagem.Valor" />
                                 <asp:TemplateField HeaderText="Valor Desconto R$">
                                     <ItemTemplate>
-                                        <input id="ValorDesconto" value="" type='text' class="form-control" />
+                                        <asp:textbox runat="server" id="ValorDesconto" type='text' class="form-control" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Pagamento Total">
@@ -132,18 +132,14 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Valor Pago">
                                     <ItemTemplate>
-                                        <input id="ValorPago" type='text' class="form-control" />
+                                        <asp:textbox runat="server" id="ValorPago" type='text'  CssClass="form-control" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
                                 <asp:TemplateField HeaderText="Assento">
                                     <ItemTemplate>
-
                                         <asp:textbox id="poltrona" runat="server" class="form-control poltrona" clientidmode="static"/>
-
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
                                 <asp:TemplateField>
                                     <ItemTemplate>
                                         <p>
@@ -176,10 +172,16 @@
     <input type="hidden" id="quantidadeAdolecente" runat="server" clientidmode="static" />
     <input type="hidden" id="quantidadeCrianca" runat="server" clientidmode="static" />
     <input type="hidden" id="quantidadeBebe" runat="server" clientidmode="static" />
+    <input type="hidden" id="ListaAssento" runat="server" clientidmode="static" />
 
+    <input id="valorTotal" runat="server" class="form-control" clientidmode="static" />
+    <div class="col-md-3">
+                <label>
+                    <br>
+                    <asp:Button runat="server" ID="salvarVenda" Text="Finalizar Venda" class="btn" OnClick="salvarVenda_Click" />
+                </label>
+            </div>
 
-    <input id="valorTotal" runat="server" clientidmode="static" />
-    <asp:Button ID="salvar" runat="server" OnClick="salvar_Click" />
 
     <script type="text/javascript">
 
@@ -220,7 +222,8 @@
         //init();
 
         //Case II: If already booked
-        var bookedSeats = [5, 10, 25];
+        //var bookedSeats = [5, 10, 25];
+        var bookedSeats = document.getElementById("ListaAssento").value;
         var bookedSeatsSelected = [];
         init(bookedSeats);
 
@@ -234,9 +237,8 @@
                 alert('Assento ja reservado por este cliente.');
             }
             else {
-                
-                //guarda valor da poltrona ja celecionada
                 const elementoPoltronaSelecionada = $('.poltrona', $(this).parent().parent().parent().parent().parent().parent());
+                //guarda valor da poltrona ja celecionada
                 var teste = elementoPoltronaSelecionada.val();
                 //remove ele mesmo apos selecionar outra poltrona
                 $(this).parent().children().filter('.' + settings.selectingSeatCss).removeClass(settings.selectingSeatCss);
@@ -268,33 +270,44 @@
                         $('.assento .seat a[title="' + teste + '"]').parent().removeClass('tempSelectedSeat');
                     }
                 }
+                debugger;
                 //envia valor da poltrona selecionada para a label 
                 elementoPoltronaSelecionada.val(seatSelected);
+
             }
         });
 
-        //function nomefuncao(id) {
-        //    document.getElementById('#assento' + id).innerHTML = 'teste';
-        //}
 
+        var valorCalculado = 0;
         $('.pago').on('click', function () {
             if ($(this).children('input:checked').length == 1) {
                 var valor = parseFloat($(this).parent().prev().prev().text(), 10).toFixed(2).replace(',', '.');
                 var desconto = $(this).parent().prev().children()[0].value.replace(',', '.');
-
                 var soma = parseFloat(valor, 10) - parseFloat(desconto, 10);
-
-                // Formata o resultado como moeda.
-                $(this).parent().next().children('input').val(soma);
+                soma = parseFloat(soma).toFixed(2);
+                if (desconto == "") {
+                    $(this).parent().next().children('input').val(valor.replace('.', ','));
+                    valorCalculado += parseFloat(valor);
+                } else {
+                    // Formata o resultado como moeda.
+                    $(this).parent().next().children('input').val(soma.replace('.', ','));
+                    valorCalculado += parseFloat(soma);
+                }
             }
             else {
+                valorCalculado -= ($(this).parent().next().children('input').val()).replace(',', '.');
                 $(this).parent().next().children('input').val('')
+                $(this).parent().prev().children().val('')
             }
-            
+            document.getElementById("valorTotal").value = (valorCalculado.toFixed(2)).replace('.', ',');
         });
 
 
-
+        //var valorCalculado = 0;
+        //$(".valorPago").each(function () {
+        //    valorCalculado += parseInt($(this).text());
+        //});
+        //$("#valorTotal").text(valorCalculado);
 
         $('.checked').on('keyup', function () {
             if (this.checked == true) {
@@ -311,7 +324,6 @@
                     var child = children[i];
                     child.value = ValorPago
                 }
-
                 return valorTotal;
             }
         });

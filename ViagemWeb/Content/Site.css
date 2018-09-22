@@ -160,13 +160,13 @@ panel {
 /*end gridview */
 
 
-#holder {
+/*#holder {
     height: 200px;
     width: 550px;
     background-color: #F5F5F5;
     border: 1px solid #A4A4A4;
     margin-left: 10px;
-}
+}*/
 
 #holder {
     height: 200px;
@@ -174,6 +174,7 @@ panel {
     background-color: #F5F5F5;
     border: 1px solid #A4A4A4;
     margin-left: 10px;
+    
 }
 
 #place {

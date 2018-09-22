@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using ViagemSeg;
 using ViagemSeg.Svc;
@@ -21,6 +20,7 @@ namespace ViagemWeb
             {
                 carregaNome();
                 CarregarListaViagem();
+                CarregarListaAssento();
             }
 
         }
@@ -107,6 +107,17 @@ namespace ViagemWeb
             UpdatePanel.Update();
         }
 
+        private void CarregarListaAssento()
+        {
+            List<Viagem> viagems = SvcVendaCliente.ListarViagem();
+            Viagem viagem = viagems.Where(a => a.Id == Convert.ToInt32(ddlViagem.SelectedValue)).FirstOrDefault();
+
+            List<VendaCliente> vendaClientes = new List<VendaCliente>();
+            vendaClientes = SvcVendaCliente.PesquisaViagem(viagem.Id);
+            VendaCliente[] t = vendaClientes.ToArray();
+            ListaAssento.Value = t.ToString();
+        }
+
         protected void grpVendaCliente_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -124,20 +135,50 @@ namespace ViagemWeb
             Response.Redirect("CadastroCliente.aspx");
         }
 
-        protected void salvar_Click(object sender, EventArgs e)
+        protected void salvarVenda_Click(object sender, EventArgs e)
         {
-            uppGridView.Update();
-            List<VendaViagem> lista = new List<VendaViagem>();
+            List<VendaCliente> listaVendaCliente = new List<VendaCliente>();
             foreach (GridViewRow item in grpVendaCliente.Rows)
             {
-                TextBox teste4 = (TextBox)item.FindControl("poltrona");
-                var poltrona = Convert.ToInt32(teste4.Text);
 
-                var teste = item.Cells[7];
-                // //var teste2 = item.TemplateControl.
+                VendaCliente vendaCliente = new VendaCliente();
+                //SALVA ID DO CLIENTE
+                DropDownList idCliente = (DropDownList)item.FindControl("ddlCliente1");
+                string selectvalueCliente = idCliente.SelectedValue ;
+                vendaCliente.VendaIdCliente = Convert.ToInt32(selectvalueCliente);
+
+                vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
+
+                var y = Convert.ToInt32("5");
+
+                string faixaEtaria = item.Cells[2].Text;
+                vendaCliente.FaixaEtaria = faixaEtaria.ToString();
+
+                string valor = item.Cells[3].Text;
+                vendaCliente.VendaValorViagem = Convert.ToDecimal(valor);
+
+                TextBox desconto = (TextBox)item.FindControl("ValorDesconto");
+                string valorDesconto = desconto.Text;
+                if(valorDesconto != "")
+                vendaCliente.VendaDesconto = Convert.ToDecimal(valorDesconto);
+
+                TextBox pago = (TextBox)item.FindControl("ValorPago");
+                string valorPago = pago.Text;
+                vendaCliente.VendaValorPago = Convert.ToDecimal(valorPago);
+
+
+                TextBox teste4 = (TextBox)item.FindControl("poltrona");
+                vendaCliente.Assento = Convert.ToInt32(teste4.Text);
+
+                //var assento = item.Cells[7].Text;
+                //vendaCliente.Assento = Convert.ToInt32(assento);
+
+                vendaCliente.Status = 0;
+                SvcVendaCliente.AlteraSalva(vendaCliente);
+                listaVendaCliente.Add(vendaCliente);
             }
 
-            
+
         }
     }
 }

@@ -34,19 +34,4 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86D59D83-6EBE-4B83-AB47-688004CDA383}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://vsts:8080/tfssat/satcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ViagemSeg\\ViagemSeg.csproj
-		SccProjectName1 = ViagemSeg
-		SccLocalPath1 = ViagemSeg
-		SccProjectUniqueName2 = ViagemTest\\ViagemTest.csproj
-		SccProjectName2 = ViagemTest
-		SccLocalPath2 = ViagemTest
-		SccProjectUniqueName3 = ViagemWeb\\ViagemWeb.csproj
-		SccProjectName3 = ViagemWeb
-		SccLocalPath3 = ViagemWeb
-	EndGlobalSection
 EndGlobal

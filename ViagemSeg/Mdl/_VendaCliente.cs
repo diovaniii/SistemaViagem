@@ -6,6 +6,5 @@ namespace ViagemSeg
     public partial class VendaCliente
     {
         public int Teste { get; set; }
-        
     }
 }

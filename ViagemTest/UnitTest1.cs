@@ -11,22 +11,23 @@ namespace ViagemTest
         [TestMethod]
         public void TestMethod1()
         {
-            var data = "06/03/1989";
-            Cliente cliente = new Cliente();
-            cliente.Cpf = "9999999999";
-            cliente.DataNascimento = Convert.ToDateTime(data).Date;
-            cliente.Email = "elesbao";
-            cliente.Nome = "dio";
-            cliente.Telefone = "77777777";
-            cliente.Status = 0;
-
-            SvcCliente.AlteraSalva(cliente, null, null);
+            
+            var data = "06/03/1989 00:00:00";
+            new SvcCliente().Salvar(new Cliente
+            {
+                ClienteCpf = "9999999999",
+                ClienteDataNascimento = Convert.ToDateTime(data).Date,
+                ClienteEndereco = "elesbao",
+                ClienteNome = "dio",
+                ClienteTelefone = "77777777",
+                ClienteStatus = 0
+            });
         }
 
         [TestMethod]
         public void TestMethod2()
         {
-            var t = SvcCliente.ListarTodosClientes();
+            var t = new SvcCliente().ListarTodosClientes();
         }
     }
 }

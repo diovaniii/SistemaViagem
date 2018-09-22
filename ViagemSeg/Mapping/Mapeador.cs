@@ -72,10 +72,10 @@ namespace ViagemSeg.Mapping
             foreach (var item in lista.ToList())
             {
                 var VendaCliente = new DtoVendaCliente();
-                VendaCliente.VendaId = item.VendaId;
-                VendaCliente.VendaIdCliente = item.VendaIdCliente;
-                VendaCliente.VendaIdViagem = item.VendaIdViagem;
-
+                // VendaCliente.VendaId = item.VendaId;
+                //VendaCliente.VendaIdCliente = item.VendaIdCliente;
+                // VendaCliente.VendaIdViagem = item.VendaIdViagem;
+                VendaCliente.Assento = item.Assento;
 
                 Vc.Add(VendaCliente);
             }
