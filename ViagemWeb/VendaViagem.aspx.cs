@@ -166,8 +166,8 @@ namespace ViagemWeb
                     cliente.DataNascimento = Convert.ToDateTime(data.Text);
                     Endereco enderecoPessoal = new Endereco();
                     Endereco enderecoComercial = new Endereco();
-                    SvcCliente.AlteraSalva(cliente, enderecoPessoal, enderecoComercial);
-
+                    cliente = SvcCliente.AlteraSalva(cliente, enderecoPessoal, enderecoComercial);
+                    vendaCliente.VendaIdCliente = cliente.Id;
                 }
                 
 
