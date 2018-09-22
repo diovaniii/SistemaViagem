@@ -223,7 +223,7 @@
 
         //Case II: If already booked
         //var bookedSeats = [5, 10, 25];
-        var bookedSeats = document.getElementById("ListaAssento").value;
+        var bookedSeats = JSON.parse("[" + document.getElementById("ListaAssento").value + "]");
         var bookedSeatsSelected = [];
         init(bookedSeats);
 

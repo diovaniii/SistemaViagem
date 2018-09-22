@@ -114,8 +114,14 @@ namespace ViagemWeb
 
             List<VendaCliente> vendaClientes = new List<VendaCliente>();
             vendaClientes = SvcVendaCliente.PesquisaViagem(viagem.Id);
-            VendaCliente[] t = vendaClientes.ToArray();
-            ListaAssento.Value = t.ToString();
+            int[] assento = new int[0];
+            foreach (var item in vendaClientes)
+            {
+                int lugar = item.Assento;
+                assento = assento.Concat(new int[] { lugar }).ToArray();
+
+            }
+            ListaAssento.Value = string.Join(", ", assento);
         }
 
         protected void grpVendaCliente_RowDataBound(object sender, GridViewRowEventArgs e)
