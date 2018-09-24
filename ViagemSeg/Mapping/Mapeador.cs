@@ -71,13 +71,17 @@ namespace ViagemSeg.Mapping
             var Vc = new List<DtoVendaCliente>();
             foreach (var item in lista.ToList())
             {
-                var VendaCliente = new DtoVendaCliente();
-                // VendaCliente.VendaId = item.VendaId;
-                //VendaCliente.VendaIdCliente = item.VendaIdCliente;
-                // VendaCliente.VendaIdViagem = item.VendaIdViagem;
-                VendaCliente.Assento = item.Assento;
-
-                Vc.Add(VendaCliente);
+                var vendaCliente = new DtoVendaCliente();
+                vendaCliente.VendaId = item.VendaId;
+                vendaCliente.VendaIdCliente = item.VendaIdCliente;
+                vendaCliente.VendaIdViagem = item.VendaIdViagem;
+                vendaCliente.VendaValorViagem = item.VendaValorViagem;
+                vendaCliente.VendaValorPago = item.VendaValorPago;
+                vendaCliente.VendaDesconto = item.VendaDesconto;
+                vendaCliente.FaixaEtaria = item.FaixaEtaria;
+                vendaCliente.Status = item.Status;
+                vendaCliente.Assento = item.Assento;
+                Vc.Add(vendaCliente);
             }
             return Vc.ToList();
         }

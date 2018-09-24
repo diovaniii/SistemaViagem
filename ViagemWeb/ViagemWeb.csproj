@@ -175,6 +175,7 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="ListaCliente.aspx" />
     <Content Include="ListaVeiculo.aspx" />
+    <Content Include="ListaVendaViagem.aspx" />
     <Content Include="ListaViagem.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -379,6 +380,13 @@
     </Compile>
     <Compile Include="ListaVeiculo.aspx.designer.cs">
       <DependentUpon>ListaVeiculo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaVendaViagem.aspx.cs">
+      <DependentUpon>ListaVendaViagem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaVendaViagem.aspx.designer.cs">
+      <DependentUpon>ListaVendaViagem.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListaViagem.aspx.cs">
       <DependentUpon>ListaViagem.aspx</DependentUpon>

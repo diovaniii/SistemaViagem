@@ -13,7 +13,7 @@ namespace ViagemSeg.Dto
         public int VendaIdViagem { get; set; }
         public decimal VendaValorViagem { get; set; }
         public decimal VendaValorPago { get; set; }
-        public int VendaDesconto { get; set; }
+        public decimal VendaDesconto { get; set; }
         public string FaixaEtaria { get; set; }
         public int Assento { get; set; }
         public int Status { get; set; }

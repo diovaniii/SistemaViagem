@@ -15,13 +15,13 @@ namespace ViagemSeg
     public partial class VendaCliente
     {
         public int VendaId { get; set; }
-        public Nullable<int> VendaIdCliente { get; set; }
-        public Nullable<int> VendaIdViagem { get; set; }
-        public Nullable<decimal> VendaValorViagem { get; set; }
-        public Nullable<decimal> VendaValorPago { get; set; }
-        public Nullable<decimal> VendaDesconto { get; set; }
+        public int VendaIdCliente { get; set; }
+        public int VendaIdViagem { get; set; }
+        public decimal VendaValorViagem { get; set; }
+        public decimal VendaValorPago { get; set; }
+        public decimal VendaDesconto { get; set; }
         public string FaixaEtaria { get; set; }
-        public Nullable<int> Status { get; set; }
+        public int Status { get; set; }
         public int Assento { get; set; }
     
         public virtual Cliente Cliente { get; set; }

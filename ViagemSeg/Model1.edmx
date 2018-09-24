@@ -66,13 +66,13 @@
             <PropertyRef Name="VendaId" />
           </Key>
           <Property Name="VendaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VendaIdCliente" Type="int" />
-          <Property Name="VendaIdViagem" Type="int" />
-          <Property Name="VendaValorViagem" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VendaIdCliente" Type="int" Nullable="false" />
+          <Property Name="VendaIdViagem" Type="int" Nullable="false" />
+          <Property Name="VendaValorViagem" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="VendaValorPago" Type="decimal" Precision="18" Scale="2" />
           <Property Name="VendaDesconto" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="FaixaEtaria" Type="varchar" MaxLength="50" />
-          <Property Name="Status" Type="int" />
+          <Property Name="FaixaEtaria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="Assento" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Viagem">
@@ -127,7 +127,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VendaCliente_ToTable">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
           <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cliente">
@@ -139,7 +139,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VendaCliente_ToTable_1">
-          <End Role="Viagem" Type="Self.Viagem" Multiplicity="0..1" />
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="1" />
           <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Viagem">
@@ -251,13 +251,13 @@
             <PropertyRef Name="VendaId" />
           </Key>
           <Property Name="VendaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VendaIdCliente" Type="Int32" />
-          <Property Name="VendaIdViagem" Type="Int32" />
-          <Property Name="VendaValorViagem" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VendaIdCliente" Type="Int32" Nullable="false" />
+          <Property Name="VendaIdViagem" Type="Int32" Nullable="false" />
+          <Property Name="VendaValorViagem" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="VendaValorPago" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="VendaDesconto" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="FaixaEtaria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="Int32" />
+          <Property Name="FaixaEtaria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="Assento" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_VendaCliente_ToTable" FromRole="VendaCliente" ToRole="Cliente" />
           <NavigationProperty Name="Viagem" Relationship="Self.FK_VendaCliente_ToTable_1" FromRole="VendaCliente" ToRole="Viagem" />
@@ -292,7 +292,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VendaCliente_ToTable">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
           <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cliente">
@@ -328,7 +328,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VendaCliente_ToTable_1">
-          <End Role="Viagem" Type="Self.Viagem" Multiplicity="0..1" />
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="1" />
           <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Viagem">

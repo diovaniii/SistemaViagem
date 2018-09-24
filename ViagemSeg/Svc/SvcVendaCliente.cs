@@ -76,5 +76,17 @@ namespace ViagemSeg.Svc
                 return viagens.ToList();
             }
         }
+
+        public static List<DtoVendaCliente> Pesquisa(VendaCliente pVendaCliente)
+        {
+            using (var db = new BancoViagemEntities())
+            {
+                var VendaCliente = db.VendaCliente.Where(a => a.Status == 0)
+                    .Where(a => a.VendaIdCliente == pVendaCliente.VendaIdCliente)
+                    .Where(a => a.VendaIdViagem == pVendaCliente.VendaIdViagem);
+
+                return Mapeador.ListaVenda(VendaCliente.ToList());
+            }
+        }
     }
 }
