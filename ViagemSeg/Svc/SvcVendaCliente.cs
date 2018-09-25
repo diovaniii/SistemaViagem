@@ -82,9 +82,8 @@ namespace ViagemSeg.Svc
             using (var db = new BancoViagemEntities())
             {
                 var VendaCliente = db.VendaCliente.Where(a => a.Status == 0)
-                    .Where(a => a.VendaIdCliente == pVendaCliente.VendaIdCliente)
-                    .Where(a => a.VendaIdViagem == pVendaCliente.VendaIdViagem);
-
+                                         .Where(a => pVendaCliente.VendaIdCliente.Equals(0) ? true : a.VendaIdCliente.ToString().Contains(pVendaCliente.VendaIdCliente.ToString()))
+                                         .Where(a => pVendaCliente.VendaIdViagem.Equals(0) ? true : a.VendaIdViagem.ToString().Contains(pVendaCliente.VendaIdViagem.ToString()));
                 return Mapeador.ListaVenda(VendaCliente.ToList());
             }
         }

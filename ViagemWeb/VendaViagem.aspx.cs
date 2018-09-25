@@ -168,6 +168,9 @@ namespace ViagemWeb
                     Endereco enderecoComercial = new Endereco();
                     cliente = SvcCliente.AlteraSalva(cliente, enderecoPessoal, enderecoComercial);
                     vendaCliente.VendaIdCliente = cliente.Id;
+                    cliente.Status = 0;
+                    cliente.Email = "semEmail@semEmail.com";
+                    cliente.Telefone = "00000000000";
                 }
                 
 

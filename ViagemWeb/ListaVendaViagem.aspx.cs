@@ -28,6 +28,7 @@ namespace ViagemWeb
         {
             ddlNome.DataSource = SvcCliente.ListarTodosClientes();
             ddlNome.DataBind();
+            ddlNome.Items.Insert(0, new ListItem("--Select--", "0"));
             uppPainelVenda.Update();
         }
 
@@ -35,6 +36,7 @@ namespace ViagemWeb
         {
             ddlViagem.DataSource = SvcViagem.ListarTodasViagens();
             ddlViagem.DataBind();
+            ddlViagem.Items.Insert(0, new ListItem("--Select--", "0"));
             uppPainelVenda.Update();
         }
 
@@ -73,6 +75,17 @@ namespace ViagemWeb
         protected void grpListaDeVenda_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
+        }
+
+        protected void grpListaDeVenda_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int VendaIdCliente = Convert.ToInt32( e.Row.Cells[1].Text);
+                Cliente cliente = new Cliente();
+                cliente = SvcCliente.BuscarCliente(VendaIdCliente);
+                e.Row.Cells[1].Text = cliente.Nome;
+            }
         }
     }
 }

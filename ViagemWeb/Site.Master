@@ -65,7 +65,7 @@
                                 <li><a runat="server" href="~/ListaCliente">Cliente</a></li>
                                 <li><a runat="server" href="~/ListaViagem">Viagem</a></li>
                                 <li><a runat="server" href="~/ListaVeiculo">Veiculo</a></li>
-                                <li><a runat="server" href="~/ListaVendaViagem">Veiculo</a></li>
+                                <li><a runat="server" href="~/ListaVendaViagem">Venda Viagem</a></li>
                                 <%--<li><a href="#">teste</a></li>
                                 <li><a href="#">teste</a></li>
                                 <li role="separator" class="divider"></li>

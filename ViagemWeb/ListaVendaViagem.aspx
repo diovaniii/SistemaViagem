@@ -14,14 +14,14 @@
                             <label>
                                 Viagem:
                         <br>
-                                <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" Class="form-control js-example-basic-single" />
+                                <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" Class="form-control js-example-basic-single" />
                             </label>
                         </div>
                         <div class="col-md-3">
                             <label>
                                 Nome:
                         <br>
-                                <asp:DropDownList ID="ddlNome" runat="server" DataTextField="ClienteNome" Class="form-control js-example-basic-single" />
+                                <asp:DropDownList ID="ddlNome" runat="server" DataTextField="ClienteNome" DataValueField="ClienteId" Class="form-control js-example-basic-single" />
                             </label>
                         </div>
                         <div class="col-md-3">
@@ -63,6 +63,7 @@
                             AllowPaging="True"
                             DataKeyNames="VendaId"
                             PageSize="10"
+                            OnRowDataBound="grpListaDeVenda_RowDataBound"
                             OnPageIndexChanging="grpListaDeVenda_PageIndexChanging">
                             <Columns>
                                 <asp:TemplateField HeaderText="">
