@@ -203,8 +203,11 @@ namespace ViagemWeb
                 SvcVendaCliente.AlteraSalva(vendaCliente);
                 listaVendaCliente.Add(vendaCliente);
             }
+        }
 
-
+        protected void ddlViagem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CarregarListaAssento();
         }
     }
 }

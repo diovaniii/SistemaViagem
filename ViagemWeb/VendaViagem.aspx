@@ -15,7 +15,7 @@
                             <label>
                                 Viagem:
                         <br>
-                                <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" Class="form-control js-example-basic-single" />
+                                <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" OnSelectedIndexChanged="ddlViagem_SelectedIndexChanged" Class="form-control js-example-basic-single" />
                             </label>
                         </div>
                         <div class="col-md-3">
