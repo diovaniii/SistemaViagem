@@ -202,6 +202,7 @@ namespace ViagemWeb
                 vendaCliente.Status = 0;
                 SvcVendaCliente.AlteraSalva(vendaCliente);
                 listaVendaCliente.Add(vendaCliente);
+                Response.Redirect("ListaVendaViagem.aspx");
             }
         }
 
