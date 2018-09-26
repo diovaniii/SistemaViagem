@@ -13,6 +13,8 @@ namespace ViagemWeb
 {
     public partial class ListaVendaViagem : System.Web.UI.Page
     {
+        decimal soma = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -64,6 +66,12 @@ namespace ViagemWeb
 
             grpListaDeVenda.DataSource = vendaEncontrada;
             grpListaDeVenda.DataBind();
+            decimal ValorTotal = 0;
+            foreach (var item in vendaEncontrada)
+            {
+                ValorTotal += item.VendaValorPago;
+            }
+            valorTotal.Text = ValorTotal.ToString();
             uppGridView.Update();
         }
 
@@ -74,9 +82,12 @@ namespace ViagemWeb
 
         protected void grpListaDeVenda_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            CarregaListaViagem();
+            grpListaDeVenda.PageIndex = e.NewPageIndex;
+            grpListaDeVenda.DataBind();
         }
 
+        
         protected void grpListaDeVenda_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -85,7 +96,9 @@ namespace ViagemWeb
                 Cliente cliente = new Cliente();
                 cliente = SvcCliente.BuscarCliente(VendaIdCliente);
                 e.Row.Cells[1].Text = cliente.Nome;
+                //soma += Convert.ToDecimal(e.Row.Cells[4].Text);
             }
+            //valorTotal.Text = Convert.ToString(soma);
         }
     }
 }

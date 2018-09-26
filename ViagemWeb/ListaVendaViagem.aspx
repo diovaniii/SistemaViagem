@@ -37,7 +37,7 @@
             </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>
-     <asp:UpdatePanel ID="uppGridView" runat="server" UpdateMode="Conditional">
+    <asp:UpdatePanel ID="uppGridView" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div>
                 <p />
@@ -107,8 +107,14 @@
                     </div>
                 </div>
             </div>
-
+            <asp:TextBox id="valorTotal" runat="server" class="form-control"  />
         </ContentTemplate>
     </asp:UpdatePanel>
+    
+
+    <script type="text/javascript">
+
+
+    </script>
 
 </asp:Content>
