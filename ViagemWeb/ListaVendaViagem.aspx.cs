@@ -151,12 +151,12 @@ namespace ViagemWeb
             layoutRectangle,
             PdfSharp.Drawing.XStringFormats.Center);
 
-                graphics.DrawString(
-               "Page " + ValorTotal.ToString(),
-            font,
-            brush,
-            layoutRectangle,
-            PdfSharp.Drawing.XStringFormats.BottomCenter);
+            //    graphics.DrawString(
+            //   "Page " + ValorTotal.ToString(),
+            //font,
+            //brush,
+            //layoutRectangle,
+            //PdfSharp.Drawing.XStringFormats.);
             }
 
             document.Save("Vendas.pdf");
