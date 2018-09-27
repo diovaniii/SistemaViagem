@@ -108,6 +108,14 @@
                 </div>
             </div>
             <asp:TextBox id="valorTotal" runat="server" class="form-control"  />
+            <div class="col-md-3">
+                            <asp:LinkButton runat="server" ID="GerarPDF"
+                                CssClass="btn-buscar btn btn-default"
+                                OnClick="GerarPDF_Click">
+                                <i class="glyphicon glyphicon-print sat-icon-with-text" style="margin-right: 3px;"></i>
+                                Gerar PDF
+                            </asp:LinkButton>
+                        </div>
         </ContentTemplate>
     </asp:UpdatePanel>
     

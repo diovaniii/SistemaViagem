@@ -166,11 +166,12 @@ namespace ViagemWeb
                     cliente.DataNascimento = Convert.ToDateTime(data.Text);
                     Endereco enderecoPessoal = new Endereco();
                     Endereco enderecoComercial = new Endereco();
-                    cliente = SvcCliente.AlteraSalva(cliente, enderecoPessoal, enderecoComercial);
-                    vendaCliente.VendaIdCliente = cliente.Id;
                     cliente.Status = 0;
                     cliente.Email = "semEmail@semEmail.com";
                     cliente.Telefone = "00000000000";
+                    cliente = SvcCliente.AlteraSalva(cliente, enderecoPessoal, enderecoComercial);
+                    vendaCliente.VendaIdCliente = cliente.Id;
+                    
                 }
                 
 
@@ -202,8 +203,9 @@ namespace ViagemWeb
                 vendaCliente.Status = 0;
                 SvcVendaCliente.AlteraSalva(vendaCliente);
                 listaVendaCliente.Add(vendaCliente);
-                Response.Redirect("ListaVendaViagem.aspx");
+                
             }
+            Response.Redirect("ListaVendaViagem.aspx");
         }
 
         protected void ddlViagem_SelectedIndexChanged(object sender, EventArgs e)
