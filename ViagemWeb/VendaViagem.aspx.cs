@@ -210,13 +210,75 @@ namespace ViagemWeb
                 SvcVendaCliente.AlteraSalva(vendaCliente);
                 listaVendaCliente.Add(vendaCliente);
                 
+                
             }
+            voucherPDF(listaVendaCliente);
             Response.Redirect("ListaVendaViagem.aspx");
         }
 
         protected void ddlViagem_SelectedIndexChanged(object sender, EventArgs e)
         {
             CarregarListaAssento();
+        }
+
+        protected void voucherPDF(List<VendaCliente> pVendaCliente)
+        {
+            
+
+            var document = new PdfSharp.Pdf.PdfDocument();
+            var page = document.AddPage();
+            var graphics = PdfSharp.Drawing.XGraphics.FromPdfPage(page);
+            var textFormatter = new PdfSharp.Drawing.Layout.XTextFormatter(graphics);
+            var font = new PdfSharp.Drawing.XFont("Calibri", 12);
+            var fontColuna = new PdfSharp.Drawing.XFont("Calibri", 14);
+
+
+            int y = 55;
+            textFormatter.Alignment = PdfSharp.Drawing.Layout.XParagraphAlignment.Left;
+            textFormatter.DrawString("Voucher ", font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(30, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Destino: " + ddlViagem.SelectedItem.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(200, y, page.Width - 60, page.Height - 60));
+
+            y = y + 40;
+            textFormatter.DrawString("Cliente", fontColuna, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(30, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Faixa Etaria", fontColuna, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(200, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Assento", fontColuna, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(300, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Valor Pago", fontColuna, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(370, y, page.Width - 60, page.Height - 60));
+            y = y + 5;
+            decimal ValorTotal = 0;
+            foreach (var item in pVendaCliente)
+            {
+                ValorTotal += item.VendaValorPago;
+                y = y + 30;
+                textFormatter.DrawString(SvcCliente.BuscarCliente(item.VendaIdCliente).Nome, font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(30, y, page.Width - 60, page.Height - 60));
+                textFormatter.DrawString(item.FaixaEtaria, font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(200, y, page.Width - 60, page.Height - 60));
+                textFormatter.DrawString(item.Assento.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(300, y, page.Width - 60, page.Height - 60));
+                textFormatter.DrawString(item.VendaValorPago.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(370, y, page.Width - 60, page.Height - 60));
+            }
+            textFormatter.DrawString("Valor Total: " + ValorTotal.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(100, 50 + y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Autorizado por: ____________________________________ ", font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(100, 100 + y, page.Width - 60, page.Height - 60));
+
+            PdfSharp.Drawing.XRect layoutRectangle = new PdfSharp.Drawing.XRect(0/*X*/, page.Height - font.Height/*Y*/, page.Width/*Width*/, font.Height/*Height*/);
+            PdfSharp.Drawing.XBrush brush = PdfSharp.Drawing.XBrushes.Black;
+            string noPages = document.Pages.Count.ToString();
+            for (int i = 0; i < document.Pages.Count; ++i)
+            {
+                graphics.DrawString(
+               "Page " + (i + 1).ToString() + " of " + noPages,
+            font,
+            brush,
+            layoutRectangle,
+            PdfSharp.Drawing.XStringFormats.Center);
+
+                graphics.DrawString(
+               "Data: " + DateTime.Now,
+            font,
+            brush,
+            layoutRectangle,
+            PdfSharp.Drawing.XStringFormats.TopLeft);
+            }
+
+            document.Save("Vendas.pdf");
+            System.Diagnostics.Process.Start("chrome.exe", "Vendas.pdf");
         }
     }
 }
