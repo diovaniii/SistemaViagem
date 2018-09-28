@@ -128,10 +128,15 @@ namespace ViagemWeb
             textFormatter.DrawString("Valor Pago", fontColuna, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(370, y, page.Width - 60, page.Height - 60));
             y = y + 5;
             decimal ValorTotal = 0;
+            PdfSharp.Drawing.XRect layoutRectangle = new PdfSharp.Drawing.XRect(0/*X*/, page.Height - font.Height/*Y*/, page.Width/*Width*/, font.Height/*Height*/);
+            PdfSharp.Drawing.XBrush brush = PdfSharp.Drawing.XBrushes.Black;
+            string noPages;
+            int i = 0;
             foreach (var item in vendaEncontrada)
             {
                 if (y >= 760)
                 {
+                    
                     // Create an empty page
                     page = document.AddPage();
                     graphics = PdfSharp.Drawing.XGraphics.FromPdfPage(page);
@@ -147,10 +152,8 @@ namespace ViagemWeb
             }
             textFormatter.DrawString("Valor Total: " + ValorTotal.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(100, 50 + y, page.Width - 60, page.Height - 60));
 
-            PdfSharp.Drawing.XRect layoutRectangle = new PdfSharp.Drawing.XRect(0/*X*/, page.Height - font.Height/*Y*/, page.Width/*Width*/, font.Height/*Height*/);
-            PdfSharp.Drawing.XBrush brush = PdfSharp.Drawing.XBrushes.Black;
-            string noPages = document.Pages.Count.ToString();
-            for (int i = 0; i < document.Pages.Count; ++i)
+            noPages = document.Pages.Count.ToString();
+            for (i = 0; i < document.Pages.Count; ++i)
             {
                 graphics.DrawString(
                "Page " + (i + 1).ToString() + " of " + noPages,
@@ -166,6 +169,8 @@ namespace ViagemWeb
             layoutRectangle,
             PdfSharp.Drawing.XStringFormats.TopLeft);
             }
+
+
 
             document.Save("Vendas.pdf");
             System.Diagnostics.Process.Start("chrome.exe", "Vendas.pdf");
