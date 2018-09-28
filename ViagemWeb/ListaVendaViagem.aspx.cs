@@ -130,6 +130,14 @@ namespace ViagemWeb
             decimal ValorTotal = 0;
             foreach (var item in vendaEncontrada)
             {
+                if (y >= 760)
+                {
+                    // Create an empty page
+                    page = document.AddPage();
+                    graphics = PdfSharp.Drawing.XGraphics.FromPdfPage(page);
+                    textFormatter = new PdfSharp.Drawing.Layout.XTextFormatter(graphics);
+                    y = 45;
+                }
                 ValorTotal += item.VendaValorPago;
                 y = y + 30;
                 textFormatter.DrawString(SvcCliente.BuscarCliente(item.VendaIdCliente).Nome, font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(30, y, page.Width - 60, page.Height - 60));
