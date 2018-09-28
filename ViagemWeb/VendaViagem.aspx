@@ -173,7 +173,7 @@
     <input type="hidden" id="quantidadeCrianca" runat="server" clientidmode="static" />
     <input type="hidden" id="quantidadeBebe" runat="server" clientidmode="static" />
     <input type="hidden" id="ListaAssento" runat="server" clientidmode="static" />
-
+    <input type="hidden" id="QuantidadeAssento" runat="server" clientidmode="static" />
     <input id="valorTotal" runat="server" class="form-control" clientidmode="static" />
     <div class="col-md-3">
                 <label>
@@ -188,7 +188,7 @@
 
         var settings = {
             rows: 4,
-            cols: 15,
+            cols: parseInt(document.getElementById("QuantidadeAssento").value),
             rowCssPrefix: 'row-',
             colCssPrefix: 'col-',
             seatWidth: 35,

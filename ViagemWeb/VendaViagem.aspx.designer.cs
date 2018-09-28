@@ -130,6 +130,15 @@ namespace ViagemWeb {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden ListaAssento;
         
         /// <summary>
+        /// QuantidadeAssento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden QuantidadeAssento;
+        
+        /// <summary>
         /// valorTotal control.
         /// </summary>
         /// <remarks>

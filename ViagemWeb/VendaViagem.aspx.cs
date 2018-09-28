@@ -122,6 +122,12 @@ namespace ViagemWeb
 
             }
             ListaAssento.Value = string.Join(", ", assento);
+            Veiculo QuantAssento = new Veiculo();
+            QuantAssento = SvcVeiculo.BuscarVeiculo(Convert.ToInt32( viagem.Veiculo));
+            int t = QuantAssento.Lugares.Value;
+            int i = 4;
+            var total =  t / i ;
+            QuantidadeAssento.Value = total.ToString();
         }
 
         protected void grpVendaCliente_RowDataBound(object sender, GridViewRowEventArgs e)
