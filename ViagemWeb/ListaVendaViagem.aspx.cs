@@ -8,7 +8,9 @@ using ViagemSeg;
 using ViagemSeg.Comuns;
 using ViagemSeg.Svc;
 using ViagemSeg.Dto;
-
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
 
 namespace ViagemWeb
 {
@@ -88,12 +90,12 @@ namespace ViagemWeb
             grpListaDeVenda.DataBind();
         }
 
-        
+
         protected void grpListaDeVenda_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                int VendaIdCliente = Convert.ToInt32( e.Row.Cells[1].Text);
+                int VendaIdCliente = Convert.ToInt32(e.Row.Cells[1].Text);
                 Cliente cliente = new Cliente();
                 cliente = SvcCliente.BuscarCliente(VendaIdCliente);
                 e.Row.Cells[1].Text = cliente.Nome;
@@ -136,10 +138,9 @@ namespace ViagemWeb
             {
                 if (y >= 760)
                 {
-                    
-                    // Create an empty page
+
                     page = document.AddPage();
-                    graphics = PdfSharp.Drawing.XGraphics.FromPdfPage(page);
+                    graphics = XGraphics.FromPdfPage(page);
                     textFormatter = new PdfSharp.Drawing.Layout.XTextFormatter(graphics);
                     y = 45;
                 }
@@ -151,28 +152,30 @@ namespace ViagemWeb
                 textFormatter.DrawString(item.VendaValorPago.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(370, y, page.Width - 60, page.Height - 60));
             }
             textFormatter.DrawString("Valor Total: " + ValorTotal.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(100, 50 + y, page.Width - 60, page.Height - 60));
+            document.Save("Vendas.pdf");
 
-            noPages = document.Pages.Count.ToString();
-            for (i = 0; i < document.Pages.Count; ++i)
+            PdfDocument pdfDocument = PdfReader.Open("Vendas.pdf", PdfDocumentOpenMode.Modify);
+            //t
+            noPages = pdfDocument.Pages.Count.ToString();
+            for (i = 0; i < pdfDocument.Pages.Count; ++i)
             {
-                graphics.DrawString(
-               "Page " + (i + 1).ToString() + " of " + noPages,
-            font,
-            brush,
-            layoutRectangle,
-            PdfSharp.Drawing.XStringFormats.Center);
+                PdfPage page1 = pdfDocument.Pages[i];
 
-                graphics.DrawString(
-               "Data: " + DateTime.Now,
-            font,
-            brush,
-            layoutRectangle,
-            PdfSharp.Drawing.XStringFormats.TopLeft);
+                using (XGraphics gfx = XGraphics.FromPdfPage(page1))
+                {
+                    gfx.DrawString(
+                        "Page " + (i + 1).ToString() + " of " + noPages,
+                        font,
+                        brush,
+                        layoutRectangle,
+                        XStringFormats.Center);
+                }
+                
             }
 
 
 
-            document.Save("Vendas.pdf");
+            pdfDocument.Save("Vendas.pdf");
             System.Diagnostics.Process.Start("chrome.exe", "Vendas.pdf");
         }
     }
