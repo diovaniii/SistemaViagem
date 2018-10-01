@@ -220,7 +220,6 @@
                 for (j = 0; j < settings.cols; j++) {
                     seatNo = (i + j * settings.rows + 1);
                     className = settings.seatCss + ' ' + settings.rowCssPrefix + i.toString() + ' ' + settings.colCssPrefix + j.toString();
-                    debugger;
                     if ($.isArray(reservedSeat) && $.inArray(seatNo, reservedSeat) != -1) {
                         className += ' ' + settings.selectedSeatCss;
                     }

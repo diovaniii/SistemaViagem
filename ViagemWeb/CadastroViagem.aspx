@@ -41,6 +41,7 @@
                         <br>
                                 <select id="txtEstado" runat="server" class="form-control" font-bold="false">
                                     <option value=""></option>
+                                    <option value="IN">INTERNACIONAL</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
                                     <option value="AP">Amapá</option>
