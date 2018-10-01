@@ -211,6 +211,10 @@ panel {
         background: url('/images/selected_seat_img.gif') no-repeat scroll 0 0 transparent;
     }
 
+    #place .brancoSeat {
+        background: url('/images/branco_selected_seat_img') no-repeat scroll 0 0 transparent;
+    }
+
     #place .tempSelectedSeat {
         background: url('/images/temp_selected_seat_img.gif') no-repeat scroll 0 0 transparent;
     }

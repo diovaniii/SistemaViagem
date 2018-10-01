@@ -184,6 +184,7 @@
     <input type="hidden" id="quantidadeCrianca" runat="server" clientidmode="static" />
     <input type="hidden" id="quantidadeBebe" runat="server" clientidmode="static" />
     <input type="hidden" id="ListaAssento" runat="server" clientidmode="static" />
+    <input type="hidden" id="Diferenca" runat="server" clientidmode="static" />
     <input type="hidden" id="QuantidadeAssento" runat="server" clientidmode="static" />
     <input id="valorTotal" runat="server" class="form-control" clientidmode="static" />
     <div class="col-md-3">
@@ -207,24 +208,28 @@
             seatCss: 'seat',
             selectedSeatCss: 'selectedSeat',
             selectingSeatCss: 'selectingSeat',
+            brancoSeatCss: 'brancoSeat',
             tempSelectedSeatCss: 'tempSelectedSeat'
         };
 
         var quantidadeMaxima = 0;
         var quantidadeSelecionados = 0;
-        var init = function (reservedSeat) {
+        var init = function (reservedSeat, branco) {
             var str = [], seatNo, className;
             for (i = 0; i < settings.rows; i++) {
                 for (j = 0; j < settings.cols; j++) {
                     seatNo = (i + j * settings.rows + 1);
                     className = settings.seatCss + ' ' + settings.rowCssPrefix + i.toString() + ' ' + settings.colCssPrefix + j.toString();
+                    debugger;
                     if ($.isArray(reservedSeat) && $.inArray(seatNo, reservedSeat) != -1) {
                         className += ' ' + settings.selectedSeatCss;
                     }
-                    str.push('<li class="' + className + '"' +
+                    if ($.inArray(seatNo, branco) == -1) {
+                       str.push('<li class="' + className + '"' +
                         'style="top:' + (i * settings.seatHeight).toString() + 'px;left:' + (j * settings.seatWidth).toString() + 'px">' +
                         '<a title="' + seatNo + '">' + seatNo + '</a>' +
                         '</li>');
+                    }
                 }
             }
             $('.assento').html(str.join(''));
@@ -235,8 +240,9 @@
         //Case II: If already booked
         //var bookedSeats = [5, 10, 25];
         var bookedSeats = JSON.parse("[" + document.getElementById("ListaAssento").value + "]");
+        var branco = JSON.parse("[" + document.getElementById("Diferenca").value + "]");
         var bookedSeatsSelected = [];
-        init(bookedSeats);
+        init(bookedSeats, branco);
 
 
 
@@ -259,7 +265,7 @@
                 $(this).removeClass('tempSelectedSeat');
                 //seleciona no componente a poltrona 
                 $(this).addClass(settings.selectingSeatCss);
-
+                
                 const seatSelected = $(this).text();
                 var seatFound = bookedSeatsSelected.filter(e => e == seatSelected);
                 if (seatFound.length == 0) {

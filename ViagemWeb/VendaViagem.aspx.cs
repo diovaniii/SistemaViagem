@@ -85,6 +85,7 @@ namespace ViagemWeb
             
             grpVendaCliente.DataSource = listaVendaClientes;
             grpVendaCliente.DataBind();
+            CarregarListaAssento();
             uppGridView.Update();
 
             quantidadeAdulto.Value = "0";
@@ -119,15 +120,40 @@ namespace ViagemWeb
             {
                 int lugar = item.Assento;
                 assento = assento.Concat(new int[] { lugar }).ToArray();
-
             }
             ListaAssento.Value = string.Join(", ", assento);
             Veiculo QuantAssento = new Veiculo();
             QuantAssento = SvcVeiculo.BuscarVeiculo(Convert.ToInt32( viagem.Veiculo));
             int t = QuantAssento.Lugares.Value;
-            int i = 4;
-            var total =  t / i ;
-            QuantidadeAssento.Value = total.ToString();
+            int f = 4;
+            var valor = 0;
+            var total = 0;
+            int[] limpa = new int[0];
+            if (t % 4 == 0)
+            {
+                valor = t / f;
+            }else if((t + 1) % 4 == 0)
+            {
+                valor = (t + 1)/ f;
+                total = (t + 1);
+            }
+            else if ((t + 2) % 4 == 0)
+            {
+                valor = (t + 2) / f;
+                total = (t + 2);
+            }
+            else if ((t + 3) % 4 == 0)
+            {
+                valor = (t + 3) / f;
+                total = (t + 3);
+            }
+
+            for (int i = t + 1; i <= total; i++)
+            {
+                limpa = limpa.Concat(new int[] { i }).ToArray();
+            }
+            Diferenca.Value = string.Join(", ", limpa);
+            QuantidadeAssento.Value = valor.ToString();
         }
 
         protected void grpVendaCliente_RowDataBound(object sender, GridViewRowEventArgs e)
