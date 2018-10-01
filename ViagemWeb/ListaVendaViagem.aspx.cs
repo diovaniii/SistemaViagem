@@ -22,6 +22,13 @@ namespace ViagemWeb
         {
             if (!IsPostBack)
             {
+                var vendaEncontrada = SvcVendaCliente.ListarVendaCliente();
+                decimal ValorTotal = 0;
+                foreach (var item in vendaEncontrada)
+                {
+                    ValorTotal += item.VendaValorPago;
+                }
+                valorTotal.Text = ValorTotal.ToString();
                 carregaNome();
                 carregaViagem();
                 CarregaListaViagem();
@@ -58,6 +65,21 @@ namespace ViagemWeb
             lblQuantidade.Text = "Numero de registros: " + rowCount.ToString();
         }
 
+        protected void CarregarValorTotal()
+        {
+            VendaCliente vendaCliente = new VendaCliente();
+            vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
+            vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
+
+            var vendaEncontrada = SvcVendaCliente.Pesquisa(vendaCliente);
+            decimal ValorTotal = 0;
+            foreach (var item in vendaEncontrada)
+            {
+                ValorTotal += item.VendaValorPago;
+            }
+            valorTotal.Text = ValorTotal.ToString();
+        }
+
         protected void btnBuscarVenda_Click(object sender, EventArgs e)
         {
             VendaCliente vendaCliente = new VendaCliente();
@@ -69,12 +91,7 @@ namespace ViagemWeb
 
             grpListaDeVenda.DataSource = vendaEncontrada;
             grpListaDeVenda.DataBind();
-            decimal ValorTotal = 0;
-            foreach (var item in vendaEncontrada)
-            {
-                ValorTotal += item.VendaValorPago;
-            }
-            valorTotal.Text = ValorTotal.ToString();
+            CarregarValorTotal();
             uppGridView.Update();
         }
 
@@ -83,11 +100,32 @@ namespace ViagemWeb
             Response.Redirect("VendaViagem.aspx");
         }
 
+        protected void CarregaListaTransicao()
+        {
+            VendaCliente vendaCliente = new VendaCliente();
+            vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
+            vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
+
+            grpListaDeVenda.DataSource = SvcVendaCliente.Pesquisa(vendaCliente);
+            grpListaDeVenda.DataBind();
+            CarregarValorTotal();
+            uppGridView.Update();
+        }
+
         protected void grpListaDeVenda_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            CarregaListaViagem();
+
+            CarregaListaTransicao();
             grpListaDeVenda.PageIndex = e.NewPageIndex;
             grpListaDeVenda.DataBind();
+        }
+
+        protected void Excluir(object sender, CommandEventArgs e)
+        {
+            var valor = Convert.ToInt32(e.CommandArgument);
+            SvcVendaCliente.Excluir(valor);
+            CarregarValorTotal();
+            CarregaListaTransicao();
         }
 
 
@@ -110,35 +148,32 @@ namespace ViagemWeb
 
             var vendaEncontrada = SvcVendaCliente.Pesquisa(vendaCliente);
 
-            var document = new PdfSharp.Pdf.PdfDocument();
+            var document = new PdfDocument();
             var page = document.AddPage();
-            var graphics = PdfSharp.Drawing.XGraphics.FromPdfPage(page);
+            var graphics = XGraphics.FromPdfPage(page);
             var textFormatter = new PdfSharp.Drawing.Layout.XTextFormatter(graphics);
-            var font = new PdfSharp.Drawing.XFont("Calibri", 12);
-            var fontColuna = new PdfSharp.Drawing.XFont("Calibri", 14);
-
-
+            var font = new XFont("Calibri", 12);
+            var fontColuna = new XFont("Calibri", 14);
 
             int y = 55;
             textFormatter.Alignment = PdfSharp.Drawing.Layout.XParagraphAlignment.Left;
-            textFormatter.DrawString("Destino: " + ddlViagem.SelectedItem.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(30, y, page.Width - 60, page.Height - 60));
-            textFormatter.DrawString("Cliente: " + ddlNome.SelectedItem.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(200, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Destino: " + ddlViagem.SelectedItem.ToString(), font, XBrushes.Black, new XRect(30, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Cliente: " + ddlNome.SelectedItem.ToString(), font, XBrushes.Black, new XRect(200, y, page.Width - 60, page.Height - 60));
             y = y + 40;
-            textFormatter.DrawString("Cliente", fontColuna, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(30, y, page.Width - 60, page.Height - 60));
-            textFormatter.DrawString("Faixa Etaria", fontColuna, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(200, y, page.Width - 60, page.Height - 60));
-            textFormatter.DrawString("Assento", fontColuna, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(300, y, page.Width - 60, page.Height - 60));
-            textFormatter.DrawString("Valor Pago", fontColuna, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(370, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Cliente", fontColuna, XBrushes.Black, new XRect(30, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Faixa Etaria", fontColuna, XBrushes.Black, new XRect(200, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Assento", fontColuna, XBrushes.Black, new XRect(300, y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Valor Pago", fontColuna, XBrushes.Black, new XRect(370, y, page.Width - 60, page.Height - 60));
             y = y + 5;
             decimal ValorTotal = 0;
-            PdfSharp.Drawing.XRect layoutRectangle = new PdfSharp.Drawing.XRect(0/*X*/, page.Height - font.Height/*Y*/, page.Width/*Width*/, font.Height/*Height*/);
-            PdfSharp.Drawing.XBrush brush = PdfSharp.Drawing.XBrushes.Black;
+            XRect layoutRectangle = new XRect(0/*X*/, page.Height - font.Height/*Y*/, page.Width/*Width*/, font.Height/*Height*/);
+            XBrush brush = XBrushes.Black;
             string noPages;
             int i = 0;
             foreach (var item in vendaEncontrada)
             {
                 if (y >= 760)
                 {
-
                     page = document.AddPage();
                     graphics = XGraphics.FromPdfPage(page);
                     textFormatter = new PdfSharp.Drawing.Layout.XTextFormatter(graphics);
@@ -146,21 +181,19 @@ namespace ViagemWeb
                 }
                 ValorTotal += item.VendaValorPago;
                 y = y + 30;
-                textFormatter.DrawString(SvcCliente.BuscarCliente(item.VendaIdCliente).Nome, font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(30, y, page.Width - 60, page.Height - 60));
-                textFormatter.DrawString(item.FaixaEtaria, font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(200, y, page.Width - 60, page.Height - 60));
-                textFormatter.DrawString(item.Assento.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(300, y, page.Width - 60, page.Height - 60));
-                textFormatter.DrawString(item.VendaValorPago.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(370, y, page.Width - 60, page.Height - 60));
+                textFormatter.DrawString(SvcCliente.BuscarCliente(item.VendaIdCliente).Nome, font, XBrushes.Black, new XRect(30, y, page.Width - 60, page.Height - 60));
+                textFormatter.DrawString(item.FaixaEtaria, font, XBrushes.Black, new XRect(200, y, page.Width - 60, page.Height - 60));
+                textFormatter.DrawString(item.Assento.ToString(), font, XBrushes.Black, new XRect(300, y, page.Width - 60, page.Height - 60));
+                textFormatter.DrawString(item.VendaValorPago.ToString(), font, XBrushes.Black, new XRect(370, y, page.Width - 60, page.Height - 60));
             }
-            textFormatter.DrawString("Valor Total: " + ValorTotal.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(100, 50 + y, page.Width - 60, page.Height - 60));
+            textFormatter.DrawString("Valor Total: " + ValorTotal.ToString(), font, XBrushes.Black, new XRect(100, 50 + y, page.Width - 60, page.Height - 60));
             document.Save("Vendas.pdf");
 
             PdfDocument pdfDocument = PdfReader.Open("Vendas.pdf", PdfDocumentOpenMode.Modify);
-            //t
             noPages = pdfDocument.Pages.Count.ToString();
             for (i = 0; i < pdfDocument.Pages.Count; ++i)
             {
                 PdfPage page1 = pdfDocument.Pages[i];
-
                 using (XGraphics gfx = XGraphics.FromPdfPage(page1))
                 {
                     gfx.DrawString(
@@ -169,12 +202,15 @@ namespace ViagemWeb
                         brush,
                         layoutRectangle,
                         XStringFormats.Center);
+
+                    gfx.DrawString(
+                        "Data: " + DateTime.Now,
+                        font,
+                        brush,
+                        layoutRectangle,
+                        XStringFormats.TopLeft);
                 }
-                
             }
-
-
-
             pdfDocument.Save("Vendas.pdf");
             System.Diagnostics.Process.Start("chrome.exe", "Vendas.pdf");
         }

@@ -87,5 +87,22 @@ namespace ViagemSeg.Svc
                 return Mapeador.ListaVenda(VendaCliente.ToList());
             }
         }
+
+        public static int Excluir(int id)
+        {
+            VendaCliente vendaCliente = new VendaCliente();
+            using (var db = new BancoViagemEntities())
+            {
+                var y = db.VendaCliente.Find(id);
+                y.Status = 1;
+                vendaCliente = y;
+            }
+            using (var db = new BancoViagemEntities())
+            {
+                db.Entry(vendaCliente).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return id;
+        }
     }
 }

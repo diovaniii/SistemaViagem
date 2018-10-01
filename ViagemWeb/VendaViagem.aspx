@@ -122,22 +122,33 @@
                                     SortExpression="Viagem.Valor" />
                                 <asp:TemplateField HeaderText="Valor Desconto R$">
                                     <ItemTemplate>
-                                        <asp:textbox runat="server" id="ValorDesconto" type='text' class="form-control" />
+                                        <asp:TextBox runat="server" ID="ValorDesconto" type='text' class="form-control" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Pagamento Total">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="ckbPago" runat="server" CssClass="pago"></asp:CheckBox>
+
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Valor Pago">
                                     <ItemTemplate>
-                                        <asp:textbox runat="server" id="ValorPago" type='text'  CssClass="form-control" />
+                                        <asp:TextBox runat="server" ID="ValorPago" type='text' CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server"
+                                            ValidationGroup="validador"
+                                            ForeColor="Red"
+                                            ControlToValidate="ValorPago"
+                                            ErrorMessage="Campo obrigatório" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Assento">
                                     <ItemTemplate>
-                                        <asp:textbox id="poltrona" runat="server" style="width:45px" class="form-control poltrona" clientidmode="static"/>
+                                        <asp:TextBox ID="poltrona" runat="server" Style="width: 45px" class="form-control poltrona" ClientIDMode="static" />
+                                        <asp:RequiredFieldValidator runat="server"
+                                            ValidationGroup="validador"
+                                            ForeColor="Red"
+                                            ControlToValidate="poltrona"
+                                            ErrorMessage="Campo obrigatório" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField>
@@ -176,11 +187,11 @@
     <input type="hidden" id="QuantidadeAssento" runat="server" clientidmode="static" />
     <input id="valorTotal" runat="server" class="form-control" clientidmode="static" />
     <div class="col-md-3">
-                <label>
-                    <br>
-                    <asp:Button runat="server" ID="salvarVenda" Text="Finalizar Venda" class="btn" OnClick="salvarVenda_Click" />
-                </label>
-            </div>
+        <label>
+            <br>
+            <asp:Button runat="server" ID="salvarVenda" Text="Finalizar Venda" class="btn" OnClick="salvarVenda_Click" ValidationGroup="validador" />
+        </label>
+    </div>
 
 
     <script type="text/javascript">

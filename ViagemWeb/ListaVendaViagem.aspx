@@ -87,16 +87,16 @@
                                     DataField="VendaValorPago"
                                     HeaderText="Valor pago"
                                     SortExpression="VendaValorPago" />
-                                <%--<asp:TemplateField>
+                                <asp:TemplateField>
                                     <ItemTemplate>
                                         <asp:LinkButton ID="LinkExluir" runat="server" CssClass="btn btn-Lista" OnCommand="Excluir" CommandArgument='<%# Eval("VendaId")%>' ToolTip="Excluir">
                                 <i aria-hidden="true" class="glyphicon glyphicon-trash"></i>
                                         </asp:LinkButton>
-                                        <asp:LinkButton ID="LinkEditar" runat="server" CssClass="btn btn-Lista" OnCommand="Editar" CommandArgument='<%# Eval("VendaId")%>' ToolTip="Editar">
+                                        <%--<asp:LinkButton ID="LinkEditar" runat="server" CssClass="btn btn-Lista" OnCommand="Editar" CommandArgument='<%# Eval("VendaId")%>' ToolTip="Editar">
                                 <i aria-hidden="true" class="glyphicon glyphicon-edit"></i>
-                                        </asp:LinkButton>
+                                        </asp:LinkButton>--%>
                                     </ItemTemplate>
-                                </asp:TemplateField>--%>
+                                </asp:TemplateField>
                             </Columns>
                             <PagerStyle HorizontalAlign="Left" />
                             <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" />

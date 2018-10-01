@@ -196,21 +196,31 @@ namespace ViagemWeb
                 vendaCliente.VendaDesconto = Convert.ToDecimal(valorDesconto);
 
                 TextBox pago = (TextBox)item.FindControl("ValorPago");
-                string valorPago = pago.Text;
-                vendaCliente.VendaValorPago = Convert.ToDecimal(valorPago);
+                if (pago.Text != "")
+                {
+                    vendaCliente.VendaValorPago = Convert.ToDecimal(pago.Text);
+                }
+                else
+                {
+                    return;
+                }
 
-
-                TextBox teste4 = (TextBox)item.FindControl("poltrona");
-                vendaCliente.Assento = Convert.ToInt32(teste4.Text);
-
-                //var assento = item.Cells[7].Text;
-                //vendaCliente.Assento = Convert.ToInt32(assento);
-
+                TextBox poltrona = (TextBox)item.FindControl("poltrona");
+                if(poltrona.Text != "")
+                {
+                    vendaCliente.Assento = Convert.ToInt32(poltrona.Text);
+                }
+                else
+                {
+                    return;
+                }
                 vendaCliente.Status = 0;
-                SvcVendaCliente.AlteraSalva(vendaCliente);
                 listaVendaCliente.Add(vendaCliente);
-                
-                
+ 
+            }
+            foreach (var item in listaVendaCliente)
+            {
+                SvcVendaCliente.AlteraSalva(item);
             }
             voucherPDF(listaVendaCliente);
             Response.Redirect("ListaVendaViagem.aspx");
