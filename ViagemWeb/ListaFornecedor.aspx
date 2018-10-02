@@ -25,7 +25,7 @@
                             CssClass="table table-hover"
                             GridLines="None"
                             AllowPaging="True"
-                            DataKeyNames="FornecedoresId"
+                            DataKeyNames="FornecedorId"
                             PageSize="10">
                             <Columns>
                                 <asp:TemplateField HeaderText="">
@@ -43,10 +43,10 @@
                                     SortExpression="VeiculoLugares" />
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkExluir" runat="server" CssClass="btn btn-Lista" OnCommand="Excluir" CommandArgument='<%# Eval("FornecedoresId")%>' ToolTip="Excluir">
+                                        <asp:LinkButton ID="LinkExluir" runat="server" CssClass="btn btn-Lista" OnCommand="Excluir" CommandArgument='<%# Eval("FornecedorId")%>' ToolTip="Excluir">
                                 <i aria-hidden="true" class="glyphicon glyphicon-trash"></i>
                                         </asp:LinkButton>
-                                        <asp:LinkButton ID="LinkEditar" runat="server" CssClass="btn btn-Lista" OnCommand="Editar" CommandArgument='<%# Eval("FornecedoresId")%>' ToolTip="Editar">
+                                        <asp:LinkButton ID="LinkEditar" runat="server" CssClass="btn btn-Lista" OnCommand="Editar" CommandArgument='<%# Eval("FornecedorId")%>' ToolTip="Editar">
                                 <i aria-hidden="true" class="glyphicon glyphicon-edit"></i>
                                         </asp:LinkButton>
                                     </ItemTemplate>

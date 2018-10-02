@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PrestacaoServico.aspx.cs" Inherits="ViagemWeb.Servico" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PrestacaoServico.aspx.cs" Inherits="ViagemWeb.PrestacaoServico" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
@@ -11,7 +11,7 @@
                             <label>
                                 Nome:
                         <br>
-                                <asp:DropDownList ID="ddlFornecedor" runat="server" DataTextField="FornecedorNome" Class="form-control js-example-basic-single" />
+                                <asp:DropDownList ID="ddlFornecedor" runat="server" DataTextField="FornecedorNome" DataValueField="FornecedorId" Class="form-control js-example-basic-single" />
                             </label>
                         </div>
                 <div class="col-md-3">

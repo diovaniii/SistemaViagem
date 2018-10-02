@@ -42,7 +42,7 @@ namespace ViagemWeb
             {
                 _Servico.IdFornecedor = Convert.ToInt32( ddlFornecedor.SelectedValue);
                 _Servico.Servico1 = txtServico.Text;
-                _Servico.Valor = Convert.ToInt32(txtValor.Text);
+                _Servico.Valor = Convert.ToDecimal(txtValor.Text);
                 _Servico.Status = 0;
 
 
