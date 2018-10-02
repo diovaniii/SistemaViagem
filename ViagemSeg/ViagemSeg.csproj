@@ -142,7 +142,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Enums\Enuns.cs" />
-    <Compile Include="Fornecedores.cs">
+    <Compile Include="Fornecedor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Fretamento.cs">
@@ -189,6 +189,9 @@
     <Compile Include="Svc\SvcVeiculo.cs" />
     <Compile Include="Svc\SvcVendaCliente.cs" />
     <Compile Include="Svc\SvcViagem.cs" />
+    <Compile Include="Table.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Veiculo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

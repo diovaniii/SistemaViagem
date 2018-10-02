@@ -103,7 +103,7 @@ namespace ViagemSeg.Mapping
             return Fe.ToList();
         }
 
-        public static List<DtoFornecedor> ListaFornecedor(List<Fornecedores> lista)
+        public static List<DtoFornecedor> ListaFornecedor(List<Fornecedor> lista)
         {
             var Fo = new List<DtoFornecedor>();
             foreach (var item in lista.ToList())
@@ -126,7 +126,7 @@ namespace ViagemSeg.Mapping
                 var servico = new DtoServico();
                 servico.ServicoId = item.Id;
                 servico.ServicoIdFornecedor = Convert.ToInt32( item.IdFornecedor);
-                servico.Servico = item.Servico1;
+                servico.Servico = item.Descricao;
                 servico.ServicoValor = Convert.ToDecimal( item.Valor);
                 Se.Add(servico);
           

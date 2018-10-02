@@ -15,11 +15,11 @@ namespace ViagemSeg
     public partial class Servico
     {
         public int Id { get; set; }
-        public Nullable<int> IdFornecedor { get; set; }
-        public string Servico1 { get; set; }
-        public Nullable<decimal> Valor { get; set; }
-        public Nullable<int> Status { get; set; }
+        public int IdFornecedor { get; set; }
+        public string Descricao { get; set; }
+        public decimal Valor { get; set; }
+        public int Status { get; set; }
     
-        public virtual Fornecedores Fornecedores { get; set; }
+        public virtual Fornecedor Fornecedor { get; set; }
     }
 }

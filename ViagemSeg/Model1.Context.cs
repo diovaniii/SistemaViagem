@@ -27,11 +27,12 @@ namespace ViagemSeg
     
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Endereco> Endereco { get; set; }
-        public virtual DbSet<Fornecedores> Fornecedores { get; set; }
+        public virtual DbSet<Fornecedor> Fornecedor { get; set; }
         public virtual DbSet<Fretamento> Fretamento { get; set; }
         public virtual DbSet<Hotel> Hotel { get; set; }
         public virtual DbSet<HotelViagem> HotelViagem { get; set; }
         public virtual DbSet<Servico> Servico { get; set; }
+        public virtual DbSet<Table> Table { get; set; }
         public virtual DbSet<Veiculo> Veiculo { get; set; }
         public virtual DbSet<VendaCliente> VendaCliente { get; set; }
         public virtual DbSet<Viagem> Viagem { get; set; }

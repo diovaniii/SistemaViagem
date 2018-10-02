@@ -17,12 +17,12 @@ namespace ViagemSeg.Svc
         {
             using (var db = new BancoViagemEntities())
             {
-                var result = Mapeador.ListaFornecedor(db.Fornecedores.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaFornecedor(db.Fornecedor.ToList().FindAll(a => a.Status == 0));
                 return result;
             }
         }
 
-        public static Fornecedores AlteraSalvaFornecedor(Fornecedores fornecedor)
+        public static Fornecedor AlteraSalvaFornecedor(Fornecedor fornecedor)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())
             {
@@ -58,10 +58,10 @@ namespace ViagemSeg.Svc
 
         public static int Excluir(int id)
         {
-            Fornecedores fornecedor = new Fornecedores();
+            Fornecedor fornecedor = new Fornecedor();
             using (var db = new BancoViagemEntities())
             {
-                var y = db.Fornecedores.Find(id);
+                var y = db.Fornecedor.Find(id);
                 y.Status = 1;
                 fornecedor = y;
             }
@@ -73,10 +73,10 @@ namespace ViagemSeg.Svc
             return id;
         }
 
-        public static Fornecedores BuscarFornecedores(int pIdFornecedores)
+        public static Fornecedor BuscarFornecedores(int pIdFornecedor)
         {
             BancoViagemEntities db = new BancoViagemEntities();
-            var fornecedor = db.Fornecedores.ToList().Find(a => a.Id == pIdFornecedores);
+            var fornecedor = db.Fornecedor.ToList().Find(a => a.Id == pIdFornecedor);
             return fornecedor;
         }
     }

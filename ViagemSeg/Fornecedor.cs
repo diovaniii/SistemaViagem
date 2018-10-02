@@ -12,14 +12,21 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class Fretamento
+    public partial class Fornecedor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Fornecedor()
+        {
+            this.Servico1 = new HashSet<Servico>();
+        }
+    
         public int Id { get; set; }
         public string Nome { get; set; }
-        public decimal Km { get; set; }
-        public decimal Valor { get; set; }
-        public string Descricao { get; set; }
-        public string Cliente { get; set; }
+        public string Servico { get; set; }
+        public string Telefone { get; set; }
         public int Status { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Servico> Servico1 { get; set; }
     }
 }

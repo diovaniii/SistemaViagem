@@ -12,10 +12,10 @@ namespace ViagemWeb
 {
     public partial class CadastroFornecedor : System.Web.UI.Page
     {
-        private Fornecedores _Fornecedor
+        private Fornecedor _Fornecedor
         {
-            get { return (Fornecedores)ViewState[typeof(Fornecedores).FullName]; }
-            set { ViewState[typeof(Fornecedores).FullName] = value; }
+            get { return (Fornecedor)ViewState[typeof(Fornecedor).FullName]; }
+            set { ViewState[typeof(Fornecedor).FullName] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace ViagemWeb
             else
             {
 
-                _Fornecedor = new Fornecedores();
+                _Fornecedor = new Fornecedor();
             }
         }
 
