@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="CadastroFornecedor.aspx" />
     <Content Include="CadastroVeiculo.aspx" />
     <Content Include="CadastroViagem.aspx" />
     <Content Include="Contact.aspx" />
@@ -180,6 +181,9 @@
     <Content Include="CadastroCliente.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="ListaCliente.aspx" />
+    <Content Include="ListaFornecedor.aspx" />
+    <Content Include="ListaFretamento.aspx" />
+    <Content Include="ListaServico.aspx" />
     <Content Include="ListaVeiculo.aspx" />
     <Content Include="ListaVendaViagem.aspx" />
     <Content Include="ListaViagem.aspx" />
@@ -311,7 +315,9 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="PrestacaoServico.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="VendaFretamento.aspx" />
     <Content Include="VendaViagem.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -328,6 +334,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CadastroFornecedor.aspx.cs">
+      <DependentUpon>CadastroFornecedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CadastroFornecedor.aspx.designer.cs">
+      <DependentUpon>CadastroFornecedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CadastroVeiculo.aspx.cs">
       <DependentUpon>CadastroVeiculo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -380,6 +393,27 @@
     <Compile Include="ListaCliente.aspx.designer.cs">
       <DependentUpon>ListaCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListaFornecedor.aspx.cs">
+      <DependentUpon>ListaFornecedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaFornecedor.aspx.designer.cs">
+      <DependentUpon>ListaFornecedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaFretamento.aspx.cs">
+      <DependentUpon>ListaFretamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaFretamento.aspx.designer.cs">
+      <DependentUpon>ListaFretamento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaServico.aspx.cs">
+      <DependentUpon>ListaServico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaServico.aspx.designer.cs">
+      <DependentUpon>ListaServico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListaVeiculo.aspx.cs">
       <DependentUpon>ListaVeiculo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -402,6 +436,13 @@
       <DependentUpon>ListaViagem.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PrestacaoServico.aspx.cs">
+      <DependentUpon>PrestacaoServico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrestacaoServico.aspx.designer.cs">
+      <DependentUpon>PrestacaoServico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -415,6 +456,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VendaFretamento.aspx.cs">
+      <DependentUpon>VendaFretamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VendaFretamento.aspx.designer.cs">
+      <DependentUpon>VendaFretamento.aspx</DependentUpon>
     </Compile>
     <Compile Include="VendaViagem.aspx.cs">
       <DependentUpon>VendaViagem.aspx</DependentUpon>

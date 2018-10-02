@@ -18,6 +18,8 @@ namespace ViagemWeb
     {
         decimal soma = 0;
 
+        //public decimal Soma { get => soma; set => soma = value; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

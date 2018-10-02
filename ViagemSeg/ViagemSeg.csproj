@@ -132,6 +132,9 @@
     <Compile Include="Comuns\Comun.cs" />
     <Compile Include="Comuns\Message.cs" />
     <Compile Include="Dto\DtoCliente.cs" />
+    <Compile Include="Dto\DtoFornecedor.cs" />
+    <Compile Include="Dto\DtoFretamento.cs" />
+    <Compile Include="Dto\DtoServico.cs" />
     <Compile Include="Dto\DtoVeiculo.cs" />
     <Compile Include="Dto\DtoVendaCliente.cs" />
     <Compile Include="Dto\DtoViagem.cs" />
@@ -139,6 +142,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Enums\Enuns.cs" />
+    <Compile Include="Fornecedores.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fretamento.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Hotel.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -148,6 +157,9 @@
     <Compile Include="Mapping\Mapeador.cs" />
     <Compile Include="Mdl\_Endereco.cs" />
     <Compile Include="Mdl\_Cliente.cs" />
+    <Compile Include="Mdl\_Fornecedor.cs" />
+    <Compile Include="Mdl\_Fretamento.cs" />
+    <Compile Include="Mdl\_Servico.cs" />
     <Compile Include="Mdl\_Veiculo.cs" />
     <Compile Include="Mdl\_VendaCliente.cs" />
     <Compile Include="Mdl\_Viagem.cs" />
@@ -167,7 +179,13 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servico.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Svc\SvcCliente.cs" />
+    <Compile Include="Svc\SvcFornecedor.cs" />
+    <Compile Include="Svc\SvcFretamento.cs" />
+    <Compile Include="Svc\SvcServico.cs" />
     <Compile Include="Svc\SvcVeiculo.cs" />
     <Compile Include="Svc\SvcVendaCliente.cs" />
     <Compile Include="Svc\SvcViagem.cs" />

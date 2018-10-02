@@ -66,6 +66,9 @@
                                 <li><a runat="server" href="~/ListaViagem">Viagem</a></li>
                                 <li><a runat="server" href="~/ListaVeiculo">Veiculo</a></li>
                                 <li><a runat="server" href="~/ListaVendaViagem">Venda Viagem</a></li>
+                                <li><a runat="server" href="~/ListaFornecedor">Fornecedor</a></li>
+                                <li><a runat="server" href="~/ListaFretamento">Fretamento</a></li>
+                                <li><a runat="server" href="~/ListaServico">Serviço</a></li>
                                 <%--<li><a href="#">teste</a></li>
                                 <li><a href="#">teste</a></li>
                                 <li role="separator" class="divider"></li>
@@ -80,6 +83,8 @@
                                 <li><a runat="server" href="~/CadastroCliente">Cliente</a></li>
                                 <li><a runat="server" href="~/CadastroViagem">Viagem</a></li>
                                 <li><a runat="server" href="~/CadastroVeiculo">Veiculo</a></li>
+                                <li><a runat="server" href="~/CadastroFornecedor">Fornecedor</a></li>
+                                <li><a runat="server" href="~/PrestacaoServico">Serviço</a></li>
                                 <%--<li><a href="#">teste</a></li>
                                 <li><a href="#">teste</a></li>
                                 <li role="separator" class="divider"></li>
@@ -92,6 +97,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Venda <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a runat="server" href="~/VendaViagem">Venda Viagem</a></li>
+                                <li><a runat="server" href="~/VendaFretamento">Fretamento</a></li>
                                 <%--<li><a href="#">teste</a></li>
                                 <li><a href="#">teste</a></li>
                                 <li role="separator" class="divider"></li>

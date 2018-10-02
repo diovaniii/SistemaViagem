@@ -86,5 +86,53 @@ namespace ViagemSeg.Mapping
             return Vc.ToList();
         }
 
+        public static List<DtoFretamento> ListaFretamento(List<Fretamento> lista)
+        {
+            var Fe = new List<DtoFretamento>();
+            foreach (var item in lista.ToList())
+            {
+                var fretamento = new DtoFretamento();
+                fretamento.FretamentoId = item.Id;
+                fretamento.FretamentoNome = item.Nome;
+                fretamento.FretamentoKm = Convert.ToInt32(item.Km);
+                fretamento.FretamentoValor = Convert.ToDecimal(item.Valor);
+                fretamento.FretamentoDescricao = item.Descricao;
+                fretamento.FretamentoCliente = item.Cliente;
+                Fe.Add(fretamento);
+            }
+            return Fe.ToList();
+        }
+
+        public static List<DtoFornecedor> ListaFornecedor(List<Fornecedores> lista)
+        {
+            var Fo = new List<DtoFornecedor>();
+            foreach (var item in lista.ToList())
+            {
+                var fornecedor = new DtoFornecedor();
+                fornecedor.FornecedorId = item.Id;
+                fornecedor.FornecedorNome = item.Nome;
+                fornecedor.FornecedorServico = item.Servico;
+                fornecedor.FornecedorTelefone = item.Telefone;
+                Fo.Add(fornecedor);
+            }
+            return Fo.ToList();
+        }
+
+        public static List<DtoServico> ListaServico(List<Servico> lista)
+        {
+            var Se = new List<DtoServico>();
+            foreach (var item in lista.ToList())
+            {
+                var servico = new DtoServico();
+                servico.ServicoId = item.Id;
+                servico.ServicoIdFornecedor = Convert.ToInt32( item.IdFornecedor);
+                servico.Servico = item.Servico1;
+                servico.ServicoValor = Convert.ToDecimal( item.Valor);
+                Se.Add(servico);
+          
+            }
+            return Se.ToList();
+        }
+
     }
 }

@@ -30,6 +30,28 @@
           <Property Name="ClienteIdEndereco" Type="int" />
           <Property Name="Origem" Type="int" />
         </EntityType>
+        <EntityType Name="Fornecedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" />
+          <Property Name="Servico" Type="varchar" MaxLength="50" />
+          <Property Name="Telefone" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Fretamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" />
+          <Property Name="Km" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Valor" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Descricao" Type="text" Nullable="false" />
+          <Property Name="Cliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
         <EntityType Name="Hotel">
           <Key>
             <PropertyRef Name="Id" />
@@ -50,6 +72,16 @@
           <Property Name="ViagemDias" Type="datetime" />
           <Property Name="ViagemValorUnitario" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdFornecedor" Type="int" />
+          <Property Name="Servico" Type="text" />
+          <Property Name="Valor" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
         <EntityType Name="Veiculo">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,13 +98,13 @@
             <PropertyRef Name="VendaId" />
           </Key>
           <Property Name="VendaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VendaIdCliente" Type="int" Nullable="false" />
-          <Property Name="VendaIdViagem" Type="int" Nullable="false" />
-          <Property Name="VendaValorViagem" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="VendaIdCliente" Type="int" />
+          <Property Name="VendaIdViagem" Type="int" />
+          <Property Name="VendaValorViagem" Type="decimal" Precision="18" Scale="2" />
           <Property Name="VendaValorPago" Type="decimal" Precision="18" Scale="2" />
           <Property Name="VendaDesconto" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="FaixaEtaria" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="FaixaEtaria" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
           <Property Name="Assento" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Viagem">
@@ -126,8 +158,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Servico_ToTable">
+          <End Role="Fornecedores" Type="Self.Fornecedores" Multiplicity="0..1" />
+          <End Role="Servico" Type="Self.Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornecedores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="IdFornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_VendaCliente_ToTable">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cliente">
@@ -139,7 +183,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VendaCliente_ToTable_1">
-          <End Role="Viagem" Type="Self.Viagem" Multiplicity="1" />
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="0..1" />
           <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Viagem">
@@ -153,8 +197,11 @@
         <EntityContainer Name="BancoViagemModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Endereco" EntityType="Self.Endereco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fornecedores" EntityType="Self.Fornecedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fretamento" EntityType="Self.Fretamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HotelViagem" EntityType="Self.HotelViagem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Veiculo" EntityType="Self.Veiculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendaCliente" EntityType="Self.VendaCliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Viagem" EntityType="Self.Viagem" Schema="dbo" store:Type="Tables" />
@@ -169,6 +216,10 @@
           <AssociationSet Name="FK_HotelViagem_ToTable_1" Association="Self.FK_HotelViagem_ToTable_1">
             <End Role="Hotel" EntitySet="Hotel" />
             <End Role="HotelViagem" EntitySet="HotelViagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servico_ToTable" Association="Self.FK_Servico_ToTable">
+            <End Role="Fornecedores" EntitySet="Fornecedores" />
+            <End Role="Servico" EntitySet="Servico" />
           </AssociationSet>
           <AssociationSet Name="FK_VendaCliente_ToTable" Association="Self.FK_VendaCliente_ToTable">
             <End Role="Cliente" EntitySet="Cliente" />
@@ -212,6 +263,29 @@
           <Property Name="Origem" Type="Int32" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_Endereco_ToTable" FromRole="Endereco" ToRole="Cliente" />
         </EntityType>
+        <EntityType Name="Fornecedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Servico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Servico1" Relationship="Self.FK_Servico_ToTable" FromRole="Fornecedores" ToRole="Servico" />
+        </EntityType>
+        <EntityType Name="Fretamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Km" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
         <EntityType Name="Hotel">
           <Key>
             <PropertyRef Name="Id" />
@@ -235,6 +309,17 @@
           <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelViagem_ToTable_1" FromRole="HotelViagem" ToRole="Hotel" />
           <NavigationProperty Name="Viagem" Relationship="Self.FK_HotelViagem_ToTable" FromRole="HotelViagem" ToRole="Viagem" />
         </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdFornecedor" Type="Int32" />
+          <Property Name="Servico1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Fornecedores" Relationship="Self.FK_Servico_ToTable" FromRole="Servico" ToRole="Fornecedores" />
+        </EntityType>
         <EntityType Name="Veiculo">
           <Key>
             <PropertyRef Name="Id" />
@@ -251,13 +336,13 @@
             <PropertyRef Name="VendaId" />
           </Key>
           <Property Name="VendaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VendaIdCliente" Type="Int32" Nullable="false" />
-          <Property Name="VendaIdViagem" Type="Int32" Nullable="false" />
-          <Property Name="VendaValorViagem" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="VendaIdCliente" Type="Int32" />
+          <Property Name="VendaIdViagem" Type="Int32" />
+          <Property Name="VendaValorViagem" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="VendaValorPago" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="VendaDesconto" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="FaixaEtaria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="FaixaEtaria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
           <Property Name="Assento" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_VendaCliente_ToTable" FromRole="VendaCliente" ToRole="Cliente" />
           <NavigationProperty Name="Viagem" Relationship="Self.FK_VendaCliente_ToTable_1" FromRole="VendaCliente" ToRole="Viagem" />
@@ -292,7 +377,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VendaCliente_ToTable">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cliente">
@@ -300,6 +385,18 @@
             </Principal>
             <Dependent Role="VendaCliente">
               <PropertyRef Name="VendaIdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servico_ToTable">
+          <End Role="Fornecedores" Type="Self.Fornecedores" Multiplicity="0..1" />
+          <End Role="Servico" Type="Self.Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornecedores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="IdFornecedor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -328,7 +425,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VendaCliente_ToTable_1">
-          <End Role="Viagem" Type="Self.Viagem" Multiplicity="1" />
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="0..1" />
           <End Role="VendaCliente" Type="Self.VendaCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Viagem">
@@ -342,8 +439,11 @@
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Endereco" EntityType="Self.Endereco" />
+          <EntitySet Name="Fornecedores" EntityType="Self.Fornecedores" />
+          <EntitySet Name="Fretamento" EntityType="Self.Fretamento" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" />
           <EntitySet Name="HotelViagem" EntityType="Self.HotelViagem" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" />
           <EntitySet Name="Veiculo" EntityType="Self.Veiculo" />
           <EntitySet Name="VendaCliente" EntityType="Self.VendaCliente" />
           <EntitySet Name="Viagem" EntityType="Self.Viagem" />
@@ -354,6 +454,10 @@
           <AssociationSet Name="FK_VendaCliente_ToTable" Association="Self.FK_VendaCliente_ToTable">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="VendaCliente" EntitySet="VendaCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servico_ToTable" Association="Self.FK_Servico_ToTable">
+            <End Role="Fornecedores" EntitySet="Fornecedores" />
+            <End Role="Servico" EntitySet="Servico" />
           </AssociationSet>
           <AssociationSet Name="FK_HotelViagem_ToTable_1" Association="Self.FK_HotelViagem_ToTable_1">
             <End Role="Hotel" EntitySet="Hotel" />
@@ -401,6 +505,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Fornecedores">
+            <EntityTypeMapping TypeName="BancoViagemModel.Fornecedores">
+              <MappingFragment StoreEntitySet="Fornecedores">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Servico" ColumnName="Servico" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fretamento">
+            <EntityTypeMapping TypeName="BancoViagemModel.Fretamento">
+              <MappingFragment StoreEntitySet="Fretamento">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Km" ColumnName="Km" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Hotel">
             <EntityTypeMapping TypeName="BancoViagemModel.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
@@ -420,6 +548,17 @@
                 <ScalarProperty Name="ViagemIdHotel" ColumnName="ViagemIdHotel" />
                 <ScalarProperty Name="ViagemDias" ColumnName="ViagemDias" />
                 <ScalarProperty Name="ViagemValorUnitario" ColumnName="ViagemValorUnitario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servico">
+            <EntityTypeMapping TypeName="BancoViagemModel.Servico">
+              <MappingFragment StoreEntitySet="Servico">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdFornecedor" ColumnName="IdFornecedor" />
+                <ScalarProperty Name="Servico1" ColumnName="Servico" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
