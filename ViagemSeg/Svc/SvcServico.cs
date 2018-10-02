@@ -28,7 +28,7 @@ namespace ViagemSeg.Svc
             {
                 try
                 {
-                    var existeServico = db.servico.Find(servico.Id);
+                    var existeServico = db.PestacaoServico.Find(servico.Id);
 
                     using (var db = new BancoViagemEntities())
                     {
