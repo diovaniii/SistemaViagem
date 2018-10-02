@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-3">
                     <label>
-                        Cpf:
+                        Descrição:
                         <br>
                         <asp:TextBox ID="txtDescricao" runat="server" Class="form-control" Rows="5" TextMode="MultiLine" ></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server"

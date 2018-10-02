@@ -35,12 +35,12 @@
                                 </asp:TemplateField>
                                 <asp:BoundField
                                     DataField="FornecedorNome"
-                                    HeaderText="Tipo"
-                                    SortExpression="VeiculoTipo" />
+                                    HeaderText="Nome"
+                                    SortExpression="FornecedorNome" />
                                 <asp:BoundField
                                     DataField="FornecedorServico"
-                                    HeaderText="Lugares"
-                                    SortExpression="VeiculoLugares" />
+                                    HeaderText="Descricao"
+                                    SortExpression="FornecedorServico" />
                                 <asp:TemplateField>
                                     <ItemTemplate>
                                         <asp:LinkButton ID="LinkExluir" runat="server" CssClass="btn btn-Lista" OnCommand="Excluir" CommandArgument='<%# Eval("FornecedorId")%>' ToolTip="Excluir">

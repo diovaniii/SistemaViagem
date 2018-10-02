@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-md-3">
                     <label>
-                        Cpf:
+                        Descricao:
                         <br>
                         <asp:TextBox ID="txtDescricao" runat="server" Class="form-control" Rows="5" TextMode="MultiLine" ></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server"
@@ -57,7 +57,7 @@
                     <label>
                         Cliente:
                         <br>
-                        <asp:TextBox ID="txtCliente" runat="server" Class="form-control" Rows="5" TextMode="MultiLine" ></asp:TextBox>
+                        <asp:TextBox ID="txtCliente" runat="server" Class="form-control" ></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server"
                             ValidationGroup="validador"
                             ForeColor="Red"
