@@ -17,18 +17,18 @@ namespace ViagemSeg.Svc
         {
             using (var db = new BancoViagemEntities())
             {
-                var result = Mapeador.ListaServico(db.Servico.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaServico(db.PestacaoServico.ToList().FindAll(a => a.Status == 0));
                 return result;
             }
         }
 
-        public static Servico AlteraSalvaServico(Servico servico)
+        public static PestacaoServico AlteraSalvaServico(PestacaoServico servico)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var existeServico = db.Viagem.Find(servico.Id);
+                    var existeServico = db.servico.Find(servico.Id);
 
                     using (var db = new BancoViagemEntities())
                     {
@@ -58,10 +58,10 @@ namespace ViagemSeg.Svc
 
         public static int Excluir(int id)
         {
-            Servico servico = new Servico();
+            PestacaoServico servico = new PestacaoServico();
             using (var db = new BancoViagemEntities())
             {
-                var y = db.Servico.Find(id);
+                var y = db.PestacaoServico.Find(id);
                 y.Status = 1;
                 servico = y;
             }
@@ -73,10 +73,10 @@ namespace ViagemSeg.Svc
             return id;
         }
 
-        public static Servico BuscarServico(int pIdServico)
+        public static PestacaoServico BuscarServico(int pIdServico)
         {
             BancoViagemEntities db = new BancoViagemEntities();
-            var servico = db.Servico.ToList().Find(a => a.Id == pIdServico);
+            var servico = db.PestacaoServico.ToList().Find(a => a.Id == pIdServico);
             return servico;
         }
     }

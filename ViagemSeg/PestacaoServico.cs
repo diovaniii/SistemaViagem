@@ -12,7 +12,7 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class Servico
+    public partial class PestacaoServico
     {
         public int Id { get; set; }
         public int IdFornecedor { get; set; }

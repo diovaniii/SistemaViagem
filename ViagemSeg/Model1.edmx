@@ -10,12 +10,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="varchar" MaxLength="50" />
-          <Property Name="Telefone" Type="varchar" MaxLength="50" />
-          <Property Name="Cpf" Type="varchar" MaxLength="50" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cpf" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DataNascimento" Type="date" Nullable="false" />
-          <Property Name="Status" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Endereco">
           <Key>
@@ -72,7 +72,7 @@
           <Property Name="ViagemDias" Type="datetime" />
           <Property Name="ViagemValorUnitario" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
-        <EntityType Name="Servico">
+        <EntityType Name="PestacaoServico">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -111,8 +111,8 @@
           <Property Name="VendaIdCliente" Type="int" Nullable="false" />
           <Property Name="VendaIdViagem" Type="int" Nullable="false" />
           <Property Name="VendaValorViagem" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="VendaValorPago" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="VendaDesconto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VendaValorPago" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="VendaDesconto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FaixaEtaria" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="Assento" Type="int" Nullable="false" />
@@ -168,14 +168,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_ToTable">
+        <Association Name="FK_PestacaoServico_ToTable">
           <End Role="Fornecedor" Type="Self.Fornecedor" Multiplicity="1" />
-          <End Role="Servico" Type="Self.Servico" Multiplicity="*" />
+          <End Role="PestacaoServico" Type="Self.PestacaoServico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Fornecedor">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Servico">
+            <Dependent Role="PestacaoServico">
               <PropertyRef Name="IdFornecedor" />
             </Dependent>
           </ReferentialConstraint>
@@ -211,7 +211,7 @@
           <EntitySet Name="Fretamento" EntityType="Self.Fretamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HotelViagem" EntityType="Self.HotelViagem" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Servico" EntityType="Self.Servico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PestacaoServico" EntityType="Self.PestacaoServico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Veiculo" EntityType="Self.Veiculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendaCliente" EntityType="Self.VendaCliente" Schema="dbo" store:Type="Tables" />
@@ -228,9 +228,9 @@
             <End Role="Hotel" EntitySet="Hotel" />
             <End Role="HotelViagem" EntitySet="HotelViagem" />
           </AssociationSet>
-          <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
+          <AssociationSet Name="FK_PestacaoServico_ToTable" Association="Self.FK_PestacaoServico_ToTable">
             <End Role="Fornecedor" EntitySet="Fornecedor" />
-            <End Role="Servico" EntitySet="Servico" />
+            <End Role="PestacaoServico" EntitySet="PestacaoServico" />
           </AssociationSet>
           <AssociationSet Name="FK_VendaCliente_ToTable" Association="Self.FK_VendaCliente_ToTable">
             <End Role="Cliente" EntitySet="Cliente" />
@@ -251,12 +251,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Cpf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cpf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DataNascimento" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Status" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Endereco" Relationship="Self.FK_Endereco_ToTable" FromRole="Cliente" ToRole="Endereco" />
           <NavigationProperty Name="VendaCliente" Relationship="Self.FK_VendaCliente_ToTable" FromRole="Cliente" ToRole="VendaCliente" />
         </EntityType>
@@ -283,7 +283,7 @@
           <Property Name="Servico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Servico1" Relationship="Self.FK_Table_ToTable" FromRole="Fornecedor" ToRole="Servico" />
+          <NavigationProperty Name="PestacaoServico" Relationship="Self.FK_PestacaoServico_ToTable" FromRole="Fornecedor" ToRole="PestacaoServico" />
         </EntityType>
         <EntityType Name="Fretamento">
           <Key>
@@ -320,7 +320,7 @@
           <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelViagem_ToTable_1" FromRole="HotelViagem" ToRole="Hotel" />
           <NavigationProperty Name="Viagem" Relationship="Self.FK_HotelViagem_ToTable" FromRole="HotelViagem" ToRole="Viagem" />
         </EntityType>
-        <EntityType Name="Servico">
+        <EntityType Name="PestacaoServico">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -329,7 +329,7 @@
           <Property Name="Descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Fornecedor" Relationship="Self.FK_Table_ToTable" FromRole="Servico" ToRole="Fornecedor" />
+          <NavigationProperty Name="Fornecedor" Relationship="Self.FK_PestacaoServico_ToTable" FromRole="PestacaoServico" ToRole="Fornecedor" />
         </EntityType>
         <EntityType Name="Table">
           <Key>
@@ -360,8 +360,8 @@
           <Property Name="VendaIdCliente" Type="Int32" Nullable="false" />
           <Property Name="VendaIdViagem" Type="Int32" Nullable="false" />
           <Property Name="VendaValorViagem" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="VendaValorPago" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="VendaDesconto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VendaValorPago" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="VendaDesconto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FaixaEtaria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="Assento" Type="Int32" Nullable="false" />
@@ -409,14 +409,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_ToTable">
+        <Association Name="FK_PestacaoServico_ToTable">
           <End Role="Fornecedor" Type="Self.Fornecedor" Multiplicity="1" />
-          <End Role="Servico" Type="Self.Servico" Multiplicity="*" />
+          <End Role="PestacaoServico" Type="Self.PestacaoServico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Fornecedor">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Servico">
+            <Dependent Role="PestacaoServico">
               <PropertyRef Name="IdFornecedor" />
             </Dependent>
           </ReferentialConstraint>
@@ -464,7 +464,7 @@
           <EntitySet Name="Fretamento" EntityType="Self.Fretamento" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" />
           <EntitySet Name="HotelViagem" EntityType="Self.HotelViagem" />
-          <EntitySet Name="Servico" EntityType="Self.Servico" />
+          <EntitySet Name="PestacaoServico" EntityType="Self.PestacaoServico" />
           <EntitySet Name="Table" EntityType="Self.Table" />
           <EntitySet Name="Veiculo" EntityType="Self.Veiculo" />
           <EntitySet Name="VendaCliente" EntityType="Self.VendaCliente" />
@@ -477,9 +477,9 @@
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="VendaCliente" EntitySet="VendaCliente" />
           </AssociationSet>
-          <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
+          <AssociationSet Name="FK_PestacaoServico_ToTable" Association="Self.FK_PestacaoServico_ToTable">
             <End Role="Fornecedor" EntitySet="Fornecedor" />
-            <End Role="Servico" EntitySet="Servico" />
+            <End Role="PestacaoServico" EntitySet="PestacaoServico" />
           </AssociationSet>
           <AssociationSet Name="FK_HotelViagem_ToTable_1" Association="Self.FK_HotelViagem_ToTable_1">
             <End Role="Hotel" EntitySet="Hotel" />
@@ -573,9 +573,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Servico">
-            <EntityTypeMapping TypeName="BancoViagemModel.Servico">
-              <MappingFragment StoreEntitySet="Servico">
+          <EntitySetMapping Name="PestacaoServico">
+            <EntityTypeMapping TypeName="BancoViagemModel.PestacaoServico">
+              <MappingFragment StoreEntitySet="PestacaoServico">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdFornecedor" ColumnName="IdFornecedor" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />

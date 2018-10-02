@@ -28,7 +28,7 @@ namespace ViagemSeg.Svc
             {
                 try
                 {
-                    var existeFornecedor = db.Viagem.Find(fornecedor.Id);
+                    var existeFornecedor = db.Fornecedor.Find(fornecedor.Id);
 
                     using (var db = new BancoViagemEntities())
                     {

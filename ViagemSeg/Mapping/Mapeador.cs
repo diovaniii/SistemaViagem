@@ -118,7 +118,7 @@ namespace ViagemSeg.Mapping
             return Fo.ToList();
         }
 
-        public static List<DtoServico> ListaServico(List<Servico> lista)
+        public static List<DtoServico> ListaServico(List<PestacaoServico> lista)
         {
             var Se = new List<DtoServico>();
             foreach (var item in lista.ToList())

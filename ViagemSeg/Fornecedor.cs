@@ -17,7 +17,7 @@ namespace ViagemSeg
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Fornecedor()
         {
-            this.Servico1 = new HashSet<Servico>();
+            this.PestacaoServico = new HashSet<PestacaoServico>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace ViagemSeg
         public int Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Servico> Servico1 { get; set; }
+        public virtual ICollection<PestacaoServico> PestacaoServico { get; set; }
     }
 }

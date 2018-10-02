@@ -28,7 +28,7 @@ namespace ViagemSeg.Svc
             {
                 try
                 {
-                    var existeFretamento = db.Viagem.Find(fretamento.Id);
+                    var existeFretamento = db.fretamento.Find(fretamento.Id);
 
                     using (var db = new BancoViagemEntities())
                     {
