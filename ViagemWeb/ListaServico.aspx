@@ -38,9 +38,9 @@
                                     HeaderText="Fornecedor"
                                     SortExpression="ServicoIdFornecedor" />
                                 <asp:BoundField
-                                    DataField="Descricao"
+                                    DataField="Servico"
                                     HeaderText="Descricao"
-                                    SortExpression="Descricao" />
+                                    SortExpression="Servico" />
                                 <asp:BoundField
                                     DataField="ServicoValor"
                                     HeaderText="Valor"

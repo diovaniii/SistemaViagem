@@ -39,7 +39,7 @@ namespace ViagemWeb
             {
                 _Fretamento.Nome = txtNome.Text;
                 _Fretamento.Km = Convert.ToDecimal(txtKm.Text);
-                _Fretamento.Valor = Convert.ToInt32(txtValor.Text);
+                _Fretamento.Valor = Convert.ToDecimal(txtValor.Text);
                 _Fretamento.Descricao = txtDescricao.Text;
                 _Fretamento.Cliente = txtCliente.Text;
                 _Fretamento.Status = 0;
