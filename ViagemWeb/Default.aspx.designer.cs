@@ -13,6 +13,15 @@ namespace ViagemWeb {
     public partial class _Default {
         
         /// <summary>
+        /// Porcentagem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ViagemWeb.Form.Porcentagem Porcentagem;
+        
+        /// <summary>
         /// grpListaDeClientes control.
         /// </summary>
         /// <remarks>

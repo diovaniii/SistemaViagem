@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ViagemWeb._Default" %>
+<%@ Register Src="~/Form/Porcentagem.ascx" TagPrefix="sis" TagName="Porcentagem" %>
+
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
+    <div>
+        <sis:Porcentagem runat="server" ID="Porcentagem"/>
+    </div>
     <div>
         <p />
         <div class="panel panel-default">

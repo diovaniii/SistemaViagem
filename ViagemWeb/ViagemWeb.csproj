@@ -165,6 +165,7 @@
     <Content Include="DeletaCliente.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Form\Porcentagem.ascx" />
     <Content Include="Form\Quantidade.aspx" />
     <Content Include="Form\WebUserControl1.ascx" />
     <Content Include="Global.asax" />
@@ -376,6 +377,13 @@
     </Compile>
     <Compile Include="DeletaCliente.aspx.designer.cs">
       <DependentUpon>DeletaCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Porcentagem.ascx.cs">
+      <DependentUpon>Porcentagem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\Porcentagem.ascx.designer.cs">
+      <DependentUpon>Porcentagem.ascx</DependentUpon>
     </Compile>
     <Compile Include="Form\Quantidade.aspx.cs">
       <DependentUpon>Quantidade.aspx</DependentUpon>

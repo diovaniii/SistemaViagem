@@ -1,4 +1,166 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WebUserControl1.ascx.cs" Inherits="ViagemWeb.Form.WebUserControl1" %>
+
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+
+/*body {
+    font-family: 'Varela Round', sans-serif;
+    color: #35a7ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}*/
+.bus {
+    float: right;
+}
+figure {
+    width: 25%;
+    margin: 0;
+}
+
+.road {
+    fill: #cfdbd5;
+}
+
+.shadow {
+    fill: #303133;
+    opacity: 0.63;
+}
+
+.cloudWrapper {
+    fill: #c9d9f2;
+}
+
+.mainBody {
+    fill: #ff0000;
+}
+
+.wheelCap, .window {
+    fill: #38618c;
+}
+
+.shine {
+    fill: #799dff;
+}
+
+.windowPane {
+    fill: none;
+}
+
+.cls-10, .windowPane, .door {
+    stroke: #b2c8f9;
+    stroke-width: 10px;
+}
+
+.cls-12, .cls-7, .door {
+    stroke-miterlimit: 10;
+}
+
+.lightGrey {
+    fill: #b2c8f9;
+}
+
+.cls-10 {
+    fill: #ffe74c;
+    stroke-linejoin: round;
+}
+
+.cls-11 {
+    fill: #2a2d34;
+}
+
+.cls-12 {
+    stroke: #a6bce2;
+    stroke-linecap: round;
+    stroke-width: 5px;
+}
+
+.cls-13 {
+    fill: #edf2f9;
+    opacity: 0.4;
+}
+
+.wind, .clouds {
+    transform: translateX(100em);
+}
+
+.wheelWrapper {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        /* 		transform-origin: center; */
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.wind {
+    animation: 7s moveClouds infinite;
+    -webkit-animation-name: moveClouds;
+    -webkit-animation-duration: 7s;
+}
+
+.BusBod {
+    animation: 2s bumpBus infinite;
+    -webkit-animation-name: bumpBus;
+    -webkit-animation-duration: 2s;
+}
+
+.clouds {
+    fill: #c9d9f2;
+    animation: moveClouds 5s linear infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-name: moveClouds;
+    -webkit-animation-duration: 7s;
+}
+
+@keyframes moveClouds {
+    100% {
+        transform: translateX(-350em);
+    }
+}
+
+@keyframes bumpBus {
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes wobble {
+    0% {
+        transform: rotate(20deg);
+    }
+
+    50% {
+        transform: rotate(-20deg);
+    }
+
+    100% {
+    }
+}
+</style>
+
 <figure>
 <svg class="svgWrapper" viewBox="0 0 1590.34 692">
 	<title>bus</title>
@@ -79,4 +241,4 @@
 </svg>
 </figure>
 
-<h1>Love the journey</h1>
+<h3>Eliane viagens e turismo</h3>

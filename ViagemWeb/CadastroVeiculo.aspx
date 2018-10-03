@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="Cadastro de Veiculo" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CadastroVeiculo.aspx.cs" Inherits="ViagemWeb.CadastroVeiculo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    
     <asp:Panel runat="server">
         <p />
         <fieldset>
@@ -54,9 +56,13 @@
                             ErrorMessage="Campo obrigatório" />
                     </label>
                 </div>
+                
             </div>
         </fieldset>
     </asp:Panel>
+
+        
+
      <asp:Button runat="server" Text="Salvar" Class=" btn btn-cadastro" OnClick="btnSalvar_Click" ValidationGroup="validador" />
     <asp:Button ID="limpar" runat="server" Text="Limpar" Class=" btn btn-cadastro" Font-Bold="true" OnClick="limpar_Click" />
 </asp:Content>
