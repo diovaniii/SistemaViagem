@@ -39,5 +39,11 @@ namespace ViagemWeb
             SvcViagem.Excluir(valor);
             CarregarListaViagem();
         }
+        protected void Stats(object sender, CommandEventArgs e)
+        {
+            var valor = Convert.ToInt32(e.CommandArgument);
+            var script = string.Format("window.open('StatsViagem.aspx?ViagemId={0}')", valor);
+            ScriptManager.RegisterStartupScript(this, GetType(), Guid.NewGuid().ToString(), script, true);
+        }
     }
 }
