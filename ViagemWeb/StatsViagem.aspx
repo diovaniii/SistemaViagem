@@ -140,6 +140,8 @@
                         </div>
                     </div>
 
+                                 </label>
+
                 </fieldset>
     <fieldset style="float:right; height:30%; width:30%;" >
         <legend>Porcentagem</legend>
