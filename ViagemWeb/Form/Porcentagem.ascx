@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Porcentagem.ascx.cs" Inherits="ViagemWeb.Form.Porcentagem" %>
 <style type="text/css">
     .wrapper {
-        position: absolute;
+        /*position: absolute;*/
         width: 150px;
         height: 150px;
         margin: auto;
@@ -15,13 +15,15 @@
 
     .container1 {
         flex: 1;
-        padding: 0 20px;
+        padding: 0 0px;
+        background-color:black;
+        border-radius:100px;
     }
 </style>
 
 
 <div class="wrapper">
-    <div class="container1 chart" data-size="200" data-value="70" data-arrow="up">
+    <div class="container1 chart" data-size="150" data-value="70" data-arrow="up">
     </div>
 </div>
 

@@ -1,12 +1,9 @@
 ﻿<%@ Page Title="Lista de Viagem" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaViagem.aspx.cs" Inherits="ViagemWeb.ListaViagem" %>
-<%@ Register Src="~/Form/Porcentagem.ascx" TagPrefix="sis" TagName="Porcentagem" %>
+
 <asp:Content ID="BodyViagem" ContentPlaceHolderID="MainContent" runat="server">
     
      <asp:UpdatePanel ID="uppGridViewViagem" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div>
-        <sis:Porcentagem runat="server" ID="Porcentagem1" />
-    </div>
             <div>
                 <p />
                 <div class="panel panel-default">
@@ -56,9 +53,9 @@
                                     SortExpression="ViagemValor" />
                                 <asp:TemplateField>
                                     <ItemTemplate>
-
-        <sis:Porcentagem runat="server" ID="Porcentagem" />
-
+                                        <asp:LinkButton ID="LinkStats" runat="server" CssClass="btn btn-Lista" OnCommand="Stats" CommandArgument='<%# Eval("ViagemId")%>' ToolTip="Stats">
+                                <i aria-hidden="true" class="glyphicon glyphicon-stats"></i>
+                                        </asp:LinkButton>
                                         <asp:LinkButton ID="LinkExluir" runat="server" CssClass="btn btn-Lista" OnCommand="Excluir" CommandArgument='<%# Eval("ViagemId")%>' ToolTip="Excluir">
                                 <i aria-hidden="true" class="glyphicon glyphicon-trash"></i>
                                         </asp:LinkButton>
