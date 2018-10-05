@@ -23,7 +23,7 @@
         .circularprogress .overlay {  
             position: absolute;  
             width: 130px;  
-            height: 110px;  
+            height: 130px;  
             color: white;  
             background-color: #CF5760;  
             border-radius: 50%;  
@@ -34,7 +34,7 @@
             font-size: 35px;  
             padding-top: 20px;  
         }  
-</style>  
+</style>   
 
 
 <div id="circularProgess" class="circularprogress background" runat="server">  
