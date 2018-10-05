@@ -2,12 +2,12 @@
 
 <%@ Register Src="~/Form/Porcentagem.ascx" TagPrefix="sis" TagName="Porcentagem" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <contenttemplate>
-            <div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="panel panel-centralizar">
-                             <fieldset style="float:left; height:70%; width:70%;">
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="panel panel-centralizar">
+                <fieldset style="float: left; height: 70%; width: 70%;">
                     <legend>Dados do Cliente</legend>
                     <div class="row">
                         <div class="col-md-4">
@@ -15,11 +15,6 @@
                                 Viagem:
                         <br>
                                 <asp:TextBox ID="txtViagem" runat="server" Class="form-control"></asp:TextBox>
-                                <asp:RequiredFieldValidator runat="server"
-                                    ValidationGroup="validador"
-                                    ForeColor="Red"
-                                    ControlToValidate="txtViagem"
-                                    ErrorMessage="Campo obrigatório" />
                             </label>
                         </div>
                         <div class="col-md-4">
@@ -27,11 +22,6 @@
                                 Local:
                         <br>
                                 <asp:TextBox ID="txtLocal" runat="server" Class="form-control" MaxLength="15"></asp:TextBox>
-                                <asp:RequiredFieldValidator runat="server"
-                                    ValidationGroup="validador"
-                                    ForeColor="Red"
-                                    ControlToValidate="txtLocal"
-                                    ErrorMessage="Campo obrigatório" />
                             </label>
                         </div>
 
@@ -70,39 +60,24 @@
                                     <option value="SE">Sergipe</option>
                                     <option value="TO">Tocantins</option>
                                 </select>
-                                </label>
-                                <asp:RequiredFieldValidator runat="server"
-                                    ValidationGroup="validador"
-                                    ForeColor="Red"
-                                    ControlToValidate="txtEstado"
-                                    ErrorMessage="Campo obrigatório" />
+                            </label>
                         </div>
-                        </div>
-                        <div class="row">
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
                             <label>
                                 Valor:
                         <br>
                                 <asp:TextBox ID="txtValor" runat="server" Class="form-control"></asp:TextBox>
-                                <asp:RequiredFieldValidator runat="server"
-                                    ValidationGroup="validador"
-                                    ForeColor="Red"
-                                    ControlToValidate="txtValor"
-                                    ErrorMessage="Campo obrigatório" />
                             </label>
                         </div>
-                    
-                    
+
+
                         <div class="col-md-4">
                             <label>
                                 Data Inicio:
                                 <br>
                                 <asp:TextBox ID="txtDataInicio" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
-                                <asp:RequiredFieldValidator runat="server"
-                                    ValidationGroup="validador"
-                                    ForeColor="Red"
-                                    ControlToValidate="txtDataInicio"
-                                    ErrorMessage="Campo obrigatório" />
                             </label>
                         </div>
 
@@ -111,55 +86,56 @@
                                 Data Fim:
                                 <br>
                                 <asp:TextBox ID="txtDataFim" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
-                                <asp:RequiredFieldValidator runat="server"
-                                    ValidationGroup="validador"
-                                    ForeColor="Red"
-                                    ControlToValidate="txtDataFim"
-                                    ErrorMessage="Campo obrigatório" />
                             </label>
                         </div>
-</div>
-                                 <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>
+                                Veiculo:
+                        <br>
+                                <asp:DropDownList ID="ddlVeiculo" runat="server" DataTextField="VeiculoIdentificacao" DataValueField="VeiculoId" Class="form-control" />
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label>
+                                Assentos:
+                        <br>
+                                <asp:TextBox ID="txtAssento" runat="server" Class="form-control"></asp:TextBox>
+                            </label>
+                        </div>
+                    
                         <div class="col-md-6">
                             <label>
                                 Descrição:
                         <br>
                                 <asp:TextBox ID="txtDescricao" runat="server" Class="form-control descricao " Rows="8" TextMode="MultiLine"></asp:TextBox>
-                                <asp:RequiredFieldValidator runat="server"
-                                    ValidationGroup="validador"
-                                    ForeColor="Red"
-                                    ControlToValidate="txtDescricao"
-                                    ErrorMessage="Campo obrigatório" />
                             </label>
                         </div>
-                        <div class="col-md-4">
-                            <label>
-                                Veiculo:
-                        <br>
-                                <asp:DropDownList ID="ddlVeiculo" runat="server" DataTextField="VeiculoIdentificacao" DataValueField="VeiculoId" Class="form-control js-example-basic-single" />
-                            </label>
-                        </div>
-                    </div>
-
+                       </div> 
+                    
+                    
 
 
                 </fieldset>
-    <fieldset style="float:right; height:30%; width:30%;" >
-        <legend>Porcentagem</legend>
-         <div class="row">
-        <sis:Porcentagem runat="server" ID="Porcentagem"/>
-             </div>
-         <div class="row">
-        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-        <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-             </div>
-    </fieldset>
-                            </div>
-                        </div>
+                <fieldset style="float: right; height: 30%; width: 30%;">
+                    <legend>Porcentagem</legend>
+                    <div class="row">
+                        <sis:Porcentagem runat="server" ID="Porcentagem" />
                     </div>
-</div>
-        </contenttemplate>
+                    <div class="row">
+                        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                        <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+                        <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+                    </div>
+                </fieldset>
+                </div>
+        </div>
+    </div>
+                
+            
+
+
 
 
 

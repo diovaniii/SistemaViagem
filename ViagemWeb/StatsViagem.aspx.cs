@@ -53,7 +53,8 @@ namespace ViagemWeb
             var total = (100 / r) * y;
             Porcentagem.CalculateActiveUsersAngle(total);
 
-
+            string assentos = Convert.ToString(assento.Lugares.Value);
+            txtAssento.Text = assentos;
             //int quantidadePassagem;
 
 
@@ -97,6 +98,7 @@ namespace ViagemWeb
             txtEstado.Disabled = true;
             txtDescricao.ReadOnly = true;
             ddlVeiculo.Enabled = false;
+            txtAssento.ReadOnly = true;
         }
 
 
