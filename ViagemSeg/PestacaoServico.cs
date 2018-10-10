@@ -12,7 +12,7 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class PestacaoServico
+    public partial class pestacaoservico
     {
         public int Id { get; set; }
         public int IdFornecedor { get; set; }
@@ -20,6 +20,6 @@ namespace ViagemSeg
         public decimal Valor { get; set; }
         public int Status { get; set; }
     
-        public virtual Fornecedor Fornecedor { get; set; }
+        public virtual fornecedor fornecedor { get; set; }
     }
 }

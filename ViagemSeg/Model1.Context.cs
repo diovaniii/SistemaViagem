@@ -13,10 +13,10 @@ namespace ViagemSeg
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BancoViagemEntities : DbContext
+    public partial class bancoviagemEntities : DbContext
     {
-        public BancoViagemEntities()
-            : base("name=BancoViagemEntities")
+        public bancoviagemEntities()
+            : base("name=bancoviagemEntities")
         {
         }
     
@@ -25,16 +25,15 @@ namespace ViagemSeg
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cliente> Cliente { get; set; }
-        public virtual DbSet<Endereco> Endereco { get; set; }
-        public virtual DbSet<Fornecedor> Fornecedor { get; set; }
-        public virtual DbSet<Fretamento> Fretamento { get; set; }
-        public virtual DbSet<Hotel> Hotel { get; set; }
-        public virtual DbSet<HotelViagem> HotelViagem { get; set; }
-        public virtual DbSet<PestacaoServico> PestacaoServico { get; set; }
-        public virtual DbSet<Table> Table { get; set; }
-        public virtual DbSet<Veiculo> Veiculo { get; set; }
-        public virtual DbSet<VendaCliente> VendaCliente { get; set; }
-        public virtual DbSet<Viagem> Viagem { get; set; }
+        public virtual DbSet<cliente> cliente { get; set; }
+        public virtual DbSet<endereco> endereco { get; set; }
+        public virtual DbSet<fornecedor> fornecedor { get; set; }
+        public virtual DbSet<fretamento> fretamento { get; set; }
+        public virtual DbSet<hotel> hotel { get; set; }
+        public virtual DbSet<hotelviagem> hotelviagem { get; set; }
+        public virtual DbSet<pestacaoservico> pestacaoservico { get; set; }
+        public virtual DbSet<veiculo> veiculo { get; set; }
+        public virtual DbSet<vendacliente> vendacliente { get; set; }
+        public virtual DbSet<viagem> viagem { get; set; }
     }
 }

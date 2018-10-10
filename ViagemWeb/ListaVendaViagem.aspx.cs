@@ -69,7 +69,7 @@ namespace ViagemWeb
 
         protected void CarregarValorTotal()
         {
-            VendaCliente vendaCliente = new VendaCliente();
+            vendacliente vendaCliente = new vendacliente();
             vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
             vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
 
@@ -84,7 +84,7 @@ namespace ViagemWeb
 
         protected void btnBuscarVenda_Click(object sender, EventArgs e)
         {
-            VendaCliente vendaCliente = new VendaCliente();
+            vendacliente vendaCliente = new vendacliente();
             vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
             vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
 
@@ -104,7 +104,7 @@ namespace ViagemWeb
 
         protected void CarregaListaTransicao()
         {
-            VendaCliente vendaCliente = new VendaCliente();
+            vendacliente vendaCliente = new vendacliente();
             vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
             vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
 
@@ -136,7 +136,7 @@ namespace ViagemWeb
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 int VendaIdCliente = Convert.ToInt32(e.Row.Cells[1].Text);
-                Cliente cliente = new Cliente();
+                cliente cliente = new cliente();
                 cliente = SvcCliente.BuscarCliente(VendaIdCliente);
                 e.Row.Cells[1].Text = cliente.Nome;
             }
@@ -144,7 +144,7 @@ namespace ViagemWeb
 
         protected void GerarPDF_Click(object sender, EventArgs e)
         {
-            VendaCliente vendaCliente = new VendaCliente();
+            vendacliente vendaCliente = new vendacliente();
             vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
             vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
 

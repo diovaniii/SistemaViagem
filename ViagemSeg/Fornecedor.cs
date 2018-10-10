@@ -12,12 +12,12 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class Fornecedor
+    public partial class fornecedor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Fornecedor()
+        public fornecedor()
         {
-            this.PestacaoServico = new HashSet<PestacaoServico>();
+            this.pestacaoservico = new HashSet<pestacaoservico>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace ViagemSeg
         public int Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PestacaoServico> PestacaoServico { get; set; }
+        public virtual ICollection<pestacaoservico> pestacaoservico { get; set; }
     }
 }

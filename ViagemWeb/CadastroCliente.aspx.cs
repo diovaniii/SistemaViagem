@@ -13,10 +13,10 @@ namespace ViagemWeb
 {
     public partial class CadastroCliente : System.Web.UI.Page
     {
-        private Cliente _cliente
+        private cliente _cliente
         {
-            get { return (Cliente)ViewState[typeof(Cliente).FullName]; }
-            set { ViewState[typeof(Cliente).FullName] = value; }
+            get { return (cliente)ViewState[typeof(cliente).FullName]; }
+            set { ViewState[typeof(cliente).FullName] = value; }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,7 +30,7 @@ namespace ViagemWeb
                 }
                 else
                 {
-                    _cliente = new Cliente();
+                    _cliente = new cliente();
                 }
             }
             else
@@ -61,7 +61,7 @@ namespace ViagemWeb
             txtEmail.Text = _cliente.Email;
             limpar.Visible = false;
 
-            var enderecoPessoal = _cliente.Endereco.Where(x => x.Origem == 0).FirstOrDefault();
+            var enderecoPessoal = _cliente.endereco.Where(x => x.Origem == 0).FirstOrDefault();
             if (enderecoPessoal != null)
             {
                 txtEstado.Value = enderecoPessoal.Estado;
@@ -71,7 +71,7 @@ namespace ViagemWeb
                 txtNumero.Text = enderecoPessoal.Numero;
             }
 
-            var enderecoComercial = _cliente.Endereco.Where(x => x.Origem == 1).FirstOrDefault();
+            var enderecoComercial = _cliente.endereco.Where(x => x.Origem == 1).FirstOrDefault();
             if (enderecoComercial == null)
                 return;
             txtEstadoC.Value = enderecoComercial.Estado;
@@ -92,7 +92,7 @@ namespace ViagemWeb
                 _cliente.Email = txtEmail.Text;
                 _cliente.Status = 0;
 
-                Endereco enderecoPessoal = new Endereco();
+                endereco enderecoPessoal = new endereco();
                 enderecoPessoal.Estado = txtEstado.Value;
                 enderecoPessoal.Cidade = txtCidade.Text;
                 enderecoPessoal.Bairro = txtBairro.Text;
@@ -103,7 +103,7 @@ namespace ViagemWeb
                     enderecoPessoal.Origem = 0;
                 }
 
-                Endereco enderecoComercial = new Endereco();
+                endereco enderecoComercial = new endereco();
                 enderecoComercial.Estado = txtEstadoC.Value;
                 enderecoComercial.Cidade = txtCidadeC.Text;
                 enderecoComercial.Bairro = txtBairroC.Text;
@@ -128,7 +128,7 @@ namespace ViagemWeb
                 _cliente.DataNascimento = Convert.ToDateTime(txtDataNascimento.Text);
                 _cliente.Status = 0;
 
-                Endereco enderecoPessoal = new Endereco();
+                endereco enderecoPessoal = new endereco();
                 enderecoPessoal.ClienteIdEndereco = _cliente.Id;
                 enderecoPessoal.Estado = txtEstado.Value;
                 enderecoPessoal.Cidade = txtCidade.Text;
@@ -140,7 +140,7 @@ namespace ViagemWeb
                     enderecoPessoal.Origem = 0;
                 }
 
-                Endereco enderecoComercial = new Endereco();
+                endereco enderecoComercial = new endereco();
                 enderecoComercial.ClienteIdEndereco = _cliente.Id;
                 enderecoComercial.Estado = txtEstadoC.Value;
                 enderecoComercial.Cidade = txtCidadeC.Text;

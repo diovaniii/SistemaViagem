@@ -3,7 +3,7 @@
 namespace ViagemSeg
 {
     [Serializable]
-    public partial class Endereco
+    public partial class endereco
     {
         public bool IsEmpty
         {

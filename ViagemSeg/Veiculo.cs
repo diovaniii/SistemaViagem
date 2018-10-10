@@ -12,7 +12,7 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class Veiculo
+    public partial class veiculo
     {
         public int Id { get; set; }
         public Nullable<int> Tipo { get; set; }

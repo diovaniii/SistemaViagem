@@ -13,10 +13,10 @@ namespace ViagemWeb
 {
     public partial class PrestacaoServico : System.Web.UI.Page
     {
-        private PestacaoServico _Servico
+        private pestacaoservico _Servico
         {
-            get { return (PestacaoServico)ViewState[typeof(PestacaoServico).FullName]; }
-            set { ViewState[typeof(PestacaoServico).FullName] = value; }
+            get { return (pestacaoservico)ViewState[typeof(pestacaoservico).FullName]; }
+            set { ViewState[typeof(pestacaoservico).FullName] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace ViagemWeb
             else
             {
 
-                _Servico = new PestacaoServico();
+                _Servico = new pestacaoservico();
             }
         }
 

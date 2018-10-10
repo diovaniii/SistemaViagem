@@ -11,26 +11,26 @@ namespace ViagemSeg.Svc
 {
     public static class SvcVeiculo
     {
-        private static BancoViagemEntities db = new BancoViagemEntities();
+        private static bancoviagemEntities db = new bancoviagemEntities();
 
         public static List<DtoVeiculo> ListarTodosVeiculos()
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var result = Mapeador.ListaVeiculos(db.Veiculo.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaVeiculos(db.veiculo.ToList().FindAll(a => a.Status == 0));
                 return result;
             }
         }
 
-        public static Veiculo AlteraSalvaVeiculo(Veiculo veiculo)
+        public static veiculo AlteraSalvaVeiculo(veiculo veiculo)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var existeVeiculo = db.Viagem.Find(veiculo.Id);
+                    var existeVeiculo = db.viagem.Find(veiculo.Id);
 
-                    using (var db = new BancoViagemEntities())
+                    using (var db = new bancoviagemEntities())
                     {
 
                         if (existeVeiculo == null)
@@ -58,14 +58,14 @@ namespace ViagemSeg.Svc
 
         public static int Excluir(int id)
         {
-            Veiculo veiculo = new Veiculo();
-            using (var db = new BancoViagemEntities())
+            veiculo veiculo = new veiculo();
+            using (var db = new bancoviagemEntities())
             {
-                var y = db.Veiculo.Find(id);
+                var y = db.veiculo.Find(id);
                 y.Status = 1;
                 veiculo = y;
             }
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
                 db.Entry(veiculo).State = EntityState.Modified;
                 db.SaveChanges();
@@ -73,10 +73,10 @@ namespace ViagemSeg.Svc
             return id;
         }
 
-        public static Veiculo BuscarVeiculo(int pIdVeiculo)
+        public static veiculo BuscarVeiculo(int pIdVeiculo)
         {
-            BancoViagemEntities db = new BancoViagemEntities();
-            var veiculo = db.Veiculo.ToList().Find(a => a.Id == pIdVeiculo);
+            bancoviagemEntities db = new bancoviagemEntities();
+            var veiculo = db.veiculo.ToList().Find(a => a.Id == pIdVeiculo);
             return veiculo;
         }
 

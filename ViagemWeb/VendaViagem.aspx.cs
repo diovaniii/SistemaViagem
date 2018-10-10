@@ -43,41 +43,41 @@ namespace ViagemWeb
             lblTeste.Visible = true;
             uppPanel.Update();
 
-            List<Viagem> viagems = SvcVendaCliente.ListarViagem();
-            Viagem viagem = viagems.Where(a => a.Id == Convert.ToInt32(ddlViagem.SelectedValue)).FirstOrDefault();
-            List<VendaCliente> listaVendaClientes = new List<VendaCliente>();
-            Cliente cliente = new Cliente();
+            List<viagem> viagems = SvcVendaCliente.ListarViagem();
+            viagem viagem = viagems.Where(a => a.Id == Convert.ToInt32(ddlViagem.SelectedValue)).FirstOrDefault();
+            List<vendacliente> listaVendaClientes = new List<vendacliente>();
+            cliente cliente = new cliente();
             
             for (int i = 0; i < Convert.ToInt32(quantidadeAdulto.Value); i++)
             {
-                VendaCliente vendaCliente = new VendaCliente();
+                vendacliente vendaCliente = new vendacliente();
                 cliente.Nome = ddlCliente.SelectedItem.Text;
-                vendaCliente.Viagem = viagem;
-                vendaCliente.Cliente = cliente;
+                vendaCliente.viagem = viagem;
+                vendaCliente.cliente = cliente;
                 vendaCliente.FaixaEtaria = "Adulto";
                 listaVendaClientes.Add(vendaCliente);
             }
             for (int i = 0; i < Convert.ToInt32(quantidadeAdolecente.Value); i++)
             {
-                VendaCliente vendaCliente = new VendaCliente();
+                vendacliente vendaCliente = new vendacliente();
                 cliente.Nome = ddlCliente.SelectedItem.Text;
-                vendaCliente.Cliente = cliente;
+                vendaCliente.cliente = cliente;
                 vendaCliente.FaixaEtaria = "Adolecente";
                 listaVendaClientes.Add(vendaCliente);
             }
             for (int i = 0; i < Convert.ToInt32(quantidadeCrianca.Value); i++)
             {
-                VendaCliente vendaCliente = new VendaCliente();
+                vendacliente vendaCliente = new vendacliente();
                 cliente.Nome = ddlCliente.SelectedItem.Text;
-                vendaCliente.Cliente = cliente;
+                vendaCliente.cliente = cliente;
                 vendaCliente.FaixaEtaria = "Crianca";
                 listaVendaClientes.Add(vendaCliente);
             }
             for (int i = 0; i < Convert.ToInt32(quantidadeBebe.Value); i++)
             {
-                VendaCliente vendaCliente = new VendaCliente();
+                vendacliente vendaCliente = new vendacliente();
                 cliente.Nome = ddlCliente.SelectedItem.Text;
-                vendaCliente.Cliente = cliente;
+                vendaCliente.cliente = cliente;
                 vendaCliente.FaixaEtaria = "Bebe";
                 listaVendaClientes.Add(vendaCliente);
             }
@@ -110,10 +110,10 @@ namespace ViagemWeb
 
         private void CarregarListaAssento()
         {
-            List<Viagem> viagems = SvcVendaCliente.ListarViagem();
-            Viagem viagem = viagems.Where(a => a.Id == Convert.ToInt32(ddlViagem.SelectedValue)).FirstOrDefault();
+            List<viagem> viagems = SvcVendaCliente.ListarViagem();
+            viagem viagem = viagems.Where(a => a.Id == Convert.ToInt32(ddlViagem.SelectedValue)).FirstOrDefault();
 
-            List<VendaCliente> vendaClientes = new List<VendaCliente>();
+            List<vendacliente> vendaClientes = new List<vendacliente>();
             vendaClientes = SvcVendaCliente.PesquisaViagem(viagem.Id);
             int[] assento = new int[0];
             foreach (var item in vendaClientes)
@@ -122,7 +122,7 @@ namespace ViagemWeb
                 assento = assento.Concat(new int[] { lugar }).ToArray();
             }
             ListaAssento.Value = string.Join(", ", assento);
-            Veiculo QuantAssento = new Veiculo();
+            veiculo QuantAssento = new veiculo();
             QuantAssento = SvcVeiculo.BuscarVeiculo(Convert.ToInt32( viagem.Veiculo));
             int t = QuantAssento.Lugares.Value;
             int f = 4;
@@ -175,11 +175,11 @@ namespace ViagemWeb
 
         protected void salvarVenda_Click(object sender, EventArgs e)
         {
-            List<VendaCliente> listaVendaCliente = new List<VendaCliente>();
+            List<vendacliente> listaVendaCliente = new List<vendacliente>();
             foreach (GridViewRow item in grpVendaCliente.Rows)
             {
 
-                VendaCliente vendaCliente = new VendaCliente();
+                vendacliente vendaCliente = new vendacliente();
                 //SALVA ID DO CLIENTE
                 TextBox nome = (TextBox)item.FindControl("txtNome");
                 if (nome.Text == "")
@@ -190,14 +190,14 @@ namespace ViagemWeb
                 }
                 else
                 {
-                    Cliente cliente = new Cliente();
+                    cliente cliente = new cliente();
                     cliente.Nome = nome.Text;
                     TextBox cpf = (TextBox)item.FindControl("txtCpf");
                     cliente.Cpf = cpf.Text;
                     TextBox data = (TextBox)item.FindControl("txtDataNascimento");
                     cliente.DataNascimento = Convert.ToDateTime(data.Text);
-                    Endereco enderecoPessoal = new Endereco();
-                    Endereco enderecoComercial = new Endereco();
+                    endereco enderecoPessoal = new endereco();
+                    endereco enderecoComercial = new endereco();
                     cliente.Status = 0;
                     cliente.Email = "semEmail@semEmail.com";
                     cliente.Telefone = "00000000000";
@@ -257,7 +257,7 @@ namespace ViagemWeb
             CarregarListaAssento();
         }
 
-        protected void voucherPDF(List<VendaCliente> pVendaCliente)
+        protected void voucherPDF(List<vendacliente> pVendaCliente)
         {
             
 

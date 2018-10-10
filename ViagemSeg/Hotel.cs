@@ -12,12 +12,12 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class Hotel
+    public partial class hotel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Hotel()
+        public hotel()
         {
-            this.HotelViagem = new HashSet<HotelViagem>();
+            this.hotelviagem = new HashSet<hotelviagem>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace ViagemSeg
         public string Contato { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HotelViagem> HotelViagem { get; set; }
+        public virtual ICollection<hotelviagem> hotelviagem { get; set; }
     }
 }

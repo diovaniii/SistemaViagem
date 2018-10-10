@@ -12,7 +12,7 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class VendaCliente
+    public partial class vendacliente
     {
         public int VendaId { get; set; }
         public int VendaIdCliente { get; set; }
@@ -24,7 +24,7 @@ namespace ViagemSeg
         public int Status { get; set; }
         public int Assento { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
-        public virtual Viagem Viagem { get; set; }
+        public virtual cliente cliente { get; set; }
+        public virtual viagem viagem { get; set; }
     }
 }

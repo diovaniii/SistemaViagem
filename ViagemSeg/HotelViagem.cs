@@ -12,7 +12,7 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class HotelViagem
+    public partial class hotelviagem
     {
         public int ViagemId { get; set; }
         public Nullable<int> ViagemIdViagem { get; set; }
@@ -20,7 +20,7 @@ namespace ViagemSeg
         public Nullable<System.DateTime> ViagemDias { get; set; }
         public Nullable<decimal> ViagemValorUnitario { get; set; }
     
-        public virtual Hotel Hotel { get; set; }
-        public virtual Viagem Viagem { get; set; }
+        public virtual hotel hotel { get; set; }
+        public virtual viagem viagem { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace ViagemSeg.Mapping
     public static class Mapeador
     {
 
-        public static List<DtoCliente> ListaDeCliente(List<Cliente> lista)
+        public static List<DtoCliente> ListaDeCliente(List<cliente> lista)
         {
             var ly = new List<DtoCliente>();
             foreach (var item in lista.ToList())
@@ -30,7 +30,7 @@ namespace ViagemSeg.Mapping
             return ly.ToList();
         }
 
-        public static List<DtoViagem> ListaViagens(List<Viagem> lista)
+        public static List<DtoViagem> ListaViagens(List<viagem> lista)
         {
             var Lv = new List<DtoViagem>();
             foreach (var item in lista.ToList())
@@ -50,7 +50,7 @@ namespace ViagemSeg.Mapping
             return Lv.ToList();
         }
 
-        public static List<DtoVeiculo> ListaVeiculos(List<Veiculo> lista)
+        public static List<DtoVeiculo> ListaVeiculos(List<veiculo> lista)
         {
             var Ve = new List<DtoVeiculo>();
             foreach(var item in lista.ToList())
@@ -66,7 +66,7 @@ namespace ViagemSeg.Mapping
             return Ve.ToList();
         }
 
-        public static List<DtoVendaCliente> ListaVenda(List<VendaCliente> lista)
+        public static List<DtoVendaCliente> ListaVenda(List<vendacliente> lista)
         {
             var Vc = new List<DtoVendaCliente>();
             foreach (var item in lista.ToList())
@@ -86,7 +86,7 @@ namespace ViagemSeg.Mapping
             return Vc.ToList();
         }
 
-        public static List<DtoFretamento> ListaFretamento(List<Fretamento> lista)
+        public static List<DtoFretamento> ListaFretamento(List<fretamento> lista)
         {
             var Fe = new List<DtoFretamento>();
             foreach (var item in lista.ToList())
@@ -103,7 +103,7 @@ namespace ViagemSeg.Mapping
             return Fe.ToList();
         }
 
-        public static List<DtoFornecedor> ListaFornecedor(List<Fornecedor> lista)
+        public static List<DtoFornecedor> ListaFornecedor(List<fornecedor> lista)
         {
             var Fo = new List<DtoFornecedor>();
             foreach (var item in lista.ToList())
@@ -118,7 +118,7 @@ namespace ViagemSeg.Mapping
             return Fo.ToList();
         }
 
-        public static List<DtoServico> ListaServico(List<PestacaoServico> lista)
+        public static List<DtoServico> ListaServico(List<pestacaoservico> lista)
         {
             var Se = new List<DtoServico>();
             foreach (var item in lista.ToList())

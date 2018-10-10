@@ -4,24 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b0872be7ae94429f89009c95f4f0272f" Name="Diagram1">
-        <EntityTypeShape EntityType="BancoViagemModel.Cliente" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.Endereco" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.Fornecedor" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.Fretamento" Width="1.5" PointX="8.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.Hotel" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.HotelViagem" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.PestacaoServico" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.Table" Width="1.5" PointX="8.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.Veiculo" Width="1.5" PointX="8.75" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.VendaCliente" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BancoViagemModel.Viagem" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <AssociationConnector Association="BancoViagemModel.FK_Endereco_ToTable" ManuallyRouted="false" />
-        <AssociationConnector Association="BancoViagemModel.FK_VendaCliente_ToTable" ManuallyRouted="false" />
-        <AssociationConnector Association="BancoViagemModel.FK_PestacaoServico_ToTable" ManuallyRouted="false" />
-        <AssociationConnector Association="BancoViagemModel.FK_HotelViagem_ToTable_1" ManuallyRouted="false" />
-        <AssociationConnector Association="BancoViagemModel.FK_HotelViagem_ToTable" ManuallyRouted="false" />
-        <AssociationConnector Association="BancoViagemModel.FK_VendaCliente_ToTable_1" ManuallyRouted="false" />
+      <Diagram DiagramId="5321d0c4aef648689bc5749306cfe172" Name="Diagram1">
+        <EntityTypeShape EntityType="bancoviagemModel.cliente" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.endereco" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.fornecedor" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.fretamento" Width="1.5" PointX="8.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.hotel" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.hotelviagem" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.pestacaoservico" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.veiculo" Width="1.5" PointX="8.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.vendacliente" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.viagem" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="bancoviagemModel.fk_endereco_cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_vendacliente_cliente1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_pestacaoservico_fornecedor1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_hotelviagem_hotel1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_hotelviagem_viagem1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_vendacliente_viagem1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

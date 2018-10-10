@@ -12,13 +12,13 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class Cliente
+    public partial class cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cliente()
+        public cliente()
         {
-            this.Endereco = new HashSet<Endereco>();
-            this.VendaCliente = new HashSet<VendaCliente>();
+            this.endereco = new HashSet<endereco>();
+            this.vendacliente = new HashSet<vendacliente>();
         }
     
         public int Id { get; set; }
@@ -30,8 +30,8 @@ namespace ViagemSeg
         public int Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Endereco> Endereco { get; set; }
+        public virtual ICollection<endereco> endereco { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VendaCliente> VendaCliente { get; set; }
+        public virtual ICollection<vendacliente> vendacliente { get; set; }
     }
 }

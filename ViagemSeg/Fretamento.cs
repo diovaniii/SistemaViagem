@@ -12,7 +12,7 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class Fretamento
+    public partial class fretamento
     {
         public int Id { get; set; }
         public string Nome { get; set; }

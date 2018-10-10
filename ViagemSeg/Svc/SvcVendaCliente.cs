@@ -11,36 +11,36 @@ namespace ViagemSeg.Svc
 {
     public static class SvcVendaCliente
     {
-        private static BancoViagemEntities db = new BancoViagemEntities();
+        private static bancoviagemEntities db = new bancoviagemEntities();
 
         public static List<DtoVendaCliente> ListarVendaCliente()
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var result = Mapeador.ListaVenda(db.VendaCliente.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaVenda(db.vendacliente.ToList().FindAll(a => a.Status == 0));
                 return result;
             }
         }
 
-        public static List<Viagem> ListarViagem()
+        public static List<viagem> ListarViagem()
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var result = db.Viagem.ToList().FindAll(a => a.Status == 0);
+                var result = db.viagem.ToList().FindAll(a => a.Status == 0);
                 return result;
             }
         }
 
-        public static VendaCliente AlteraSalva(VendaCliente vendaCliente)
+        public static vendacliente AlteraSalva(vendacliente vendaCliente)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var existeVendaCliente = db.VendaCliente.Find(vendaCliente.VendaId);
+                    var existeVendaCliente = db.vendacliente.Find(vendaCliente.VendaId);
 
 
-                    using (var db = new BancoViagemEntities())
+                    using (var db = new bancoviagemEntities())
                     {
 
                         if (existeVendaCliente == null)
@@ -66,22 +66,22 @@ namespace ViagemSeg.Svc
             return vendaCliente;
         }
 
-        public static List<VendaCliente> PesquisaViagem(int idViagem)
+        public static List<vendacliente> PesquisaViagem(int idViagem)
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var viagens = db.VendaCliente.Where(a => a.Status == 0)
+                var viagens = db.vendacliente.Where(a => a.Status == 0)
                                          .Where(a => a.VendaIdViagem == idViagem);
 
                 return viagens.ToList();
             }
         }
 
-        public static List<DtoVendaCliente> Pesquisa(VendaCliente pVendaCliente)
+        public static List<DtoVendaCliente> Pesquisa(vendacliente pVendaCliente)
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var VendaCliente = db.VendaCliente.Where(a => a.Status == 0)
+                var VendaCliente = db.vendacliente.Where(a => a.Status == 0)
                                          .Where(a => pVendaCliente.VendaIdCliente.Equals(0) ? true : a.VendaIdCliente.ToString().Contains(pVendaCliente.VendaIdCliente.ToString()))
                                          .Where(a => pVendaCliente.VendaIdViagem.Equals(0) ? true : a.VendaIdViagem.ToString().Contains(pVendaCliente.VendaIdViagem.ToString()));
                 return Mapeador.ListaVenda(VendaCliente.ToList());
@@ -90,14 +90,14 @@ namespace ViagemSeg.Svc
 
         public static int Excluir(int id)
         {
-            VendaCliente vendaCliente = new VendaCliente();
-            using (var db = new BancoViagemEntities())
+            vendacliente vendaCliente = new vendacliente();
+            using (var db = new bancoviagemEntities())
             {
-                var y = db.VendaCliente.Find(id);
+                var y = db.vendacliente.Find(id);
                 y.Status = 1;
                 vendaCliente = y;
             }
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
                 db.Entry(vendaCliente).State = EntityState.Modified;
                 db.SaveChanges();

@@ -64,7 +64,7 @@ namespace ViagemWeb
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente();
+            cliente cliente = new cliente();
             cliente.Nome = ddlNome.Text;
             cliente.Cpf = Comun.ApenasNumeros(txtCpf.Text);
             cliente.DataNascimento = Convert.ToDateTime( txtDataNascimento.Text.Equals(string.Empty) ? DateTime.MinValue.ToString(): txtDataNascimento.Text) ;

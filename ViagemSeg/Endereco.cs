@@ -12,7 +12,7 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class Endereco
+    public partial class endereco
     {
         public int Id { get; set; }
         public string Estado { get; set; }
@@ -23,6 +23,6 @@ namespace ViagemSeg
         public Nullable<int> ClienteIdEndereco { get; set; }
         public Nullable<int> Origem { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
+        public virtual cliente cliente { get; set; }
     }
 }

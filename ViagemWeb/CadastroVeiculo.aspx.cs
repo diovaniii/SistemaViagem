@@ -14,10 +14,10 @@ namespace ViagemWeb
 {
     public partial class CadastroVeiculo : System.Web.UI.Page
     {
-        private Veiculo _veiculo
+        private veiculo _veiculo
         {
-            get { return (Veiculo)ViewState[typeof(Veiculo).FullName]; }
-            set { ViewState[typeof(Veiculo).FullName] = value; }
+            get { return (veiculo)ViewState[typeof(veiculo).FullName]; }
+            set { ViewState[typeof(veiculo).FullName] = value; }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +34,7 @@ namespace ViagemWeb
                 else
                 {
                     
-                    _veiculo = new Veiculo();
+                    _veiculo = new veiculo();
                 }
             }
             else

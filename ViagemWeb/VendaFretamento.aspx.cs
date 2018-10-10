@@ -11,10 +11,10 @@ namespace ViagemWeb
 {
     public partial class VendaFretamento : System.Web.UI.Page
     {
-        private Fretamento _Fretamento
+        private fretamento _Fretamento
         {
-            get { return (Fretamento)ViewState[typeof(Fretamento).FullName]; }
-            set { ViewState[typeof(Fretamento).FullName] = value; }
+            get { return (fretamento)ViewState[typeof(fretamento).FullName]; }
+            set { ViewState[typeof(fretamento).FullName] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace ViagemWeb
             else
             {
 
-                _Fretamento = new Fretamento();
+                _Fretamento = new fretamento();
             }
         }
 

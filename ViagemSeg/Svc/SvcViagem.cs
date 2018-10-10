@@ -11,27 +11,27 @@ namespace ViagemSeg.Svc
 {
     public static class SvcViagem
     {
-        private static BancoViagemEntities db = new BancoViagemEntities();
+        private static bancoviagemEntities db = new bancoviagemEntities();
 
         public static List<DtoViagem> ListarTodasViagens()
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var result = Mapeador.ListaViagens(db.Viagem.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaViagens(db.viagem.ToList().FindAll(a => a.Status == 0));
                 return result;
             }
         }
 
 
-        public static Viagem AlteraSalva(Viagem viagem)
+        public static viagem AlteraSalva(viagem viagem)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var existeViagem = db.Viagem.Find(viagem.Id);
+                    var existeViagem = db.viagem.Find(viagem.Id);
 
-                    using (var db = new BancoViagemEntities())
+                    using (var db = new bancoviagemEntities())
                     {
 
                         if (existeViagem == null)
@@ -60,14 +60,14 @@ namespace ViagemSeg.Svc
         //EXCLUI O CLIENTE FAZENDO APENAS A ALTERAÇÃO DO STATUS
         public static int Excluir(int id)
         {
-            Viagem viagem = new Viagem();
-            using (var db = new BancoViagemEntities())
+            viagem viagem = new viagem();
+            using (var db = new bancoviagemEntities())
             {
-                var y = db.Viagem.Find(id);
+                var y = db.viagem.Find(id);
                 y.Status = 1;
                 viagem = y;
             }
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
                 db.Entry(viagem).State = EntityState.Modified;
                 db.SaveChanges();
@@ -75,10 +75,10 @@ namespace ViagemSeg.Svc
             return id;
         }
 
-        public static Viagem BuscarViagem(int pIdViagem)
+        public static viagem BuscarViagem(int pIdViagem)
         {
-            BancoViagemEntities db = new BancoViagemEntities();
-            var viagem = db.Viagem.ToList().Find(a => a.Id == pIdViagem);
+            bancoviagemEntities db = new bancoviagemEntities();
+            var viagem = db.viagem.ToList().Find(a => a.Id == pIdViagem);
             return viagem;
         }
     }

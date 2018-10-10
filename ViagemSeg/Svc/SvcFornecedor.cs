@@ -11,26 +11,26 @@ namespace ViagemSeg.Svc
 {
     public static class SvcFornecedor
     {
-        private static BancoViagemEntities db = new BancoViagemEntities();
+        private static bancoviagemEntities db = new bancoviagemEntities();
 
         public static List<DtoFornecedor> ListarFornecedor()
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var result = Mapeador.ListaFornecedor(db.Fornecedor.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaFornecedor(db.fornecedor.ToList().FindAll(a => a.Status == 0));
                 return result;
             }
         }
 
-        public static Fornecedor AlteraSalvaFornecedor(Fornecedor fornecedor)
+        public static fornecedor AlteraSalvaFornecedor(fornecedor fornecedor)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var existeFornecedor = db.Fornecedor.Find(fornecedor.Id);
+                    var existeFornecedor = db.fornecedor.Find(fornecedor.Id);
 
-                    using (var db = new BancoViagemEntities())
+                    using (var db = new bancoviagemEntities())
                     {
 
                         if (existeFornecedor == null)
@@ -58,14 +58,14 @@ namespace ViagemSeg.Svc
 
         public static int Excluir(int id)
         {
-            Fornecedor fornecedor = new Fornecedor();
-            using (var db = new BancoViagemEntities())
+            fornecedor fornecedor = new fornecedor();
+            using (var db = new bancoviagemEntities())
             {
-                var y = db.Fornecedor.Find(id);
+                var y = db.fornecedor.Find(id);
                 y.Status = 1;
                 fornecedor = y;
             }
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
                 db.Entry(fornecedor).State = EntityState.Modified;
                 db.SaveChanges();
@@ -73,10 +73,10 @@ namespace ViagemSeg.Svc
             return id;
         }
 
-        public static Fornecedor BuscarFornecedores(int pIdFornecedor)
+        public static fornecedor BuscarFornecedores(int pIdFornecedor)
         {
-            BancoViagemEntities db = new BancoViagemEntities();
-            var fornecedor = db.Fornecedor.ToList().Find(a => a.Id == pIdFornecedor);
+            bancoviagemEntities db = new bancoviagemEntities();
+            var fornecedor = db.fornecedor.ToList().Find(a => a.Id == pIdFornecedor);
             return fornecedor;
         }
     }

@@ -11,26 +11,26 @@ namespace ViagemSeg.Svc
 {
     public static class SvcFretamento
     {
-        private static BancoViagemEntities db = new BancoViagemEntities();
+        private static bancoviagemEntities db = new bancoviagemEntities();
 
         public static List<DtoFretamento> ListarFretamento()
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var result = Mapeador.ListaFretamento(db.Fretamento.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaFretamento(db.fretamento.ToList().FindAll(a => a.Status == 0));
                 return result;
             }
         }
 
-        public static Fretamento AlteraSalvaFretamento(Fretamento fretamento)
+        public static fretamento AlteraSalvaFretamento(fretamento fretamento)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var existeFretamento = db.Fretamento.Find(fretamento.Id);
+                    var existeFretamento = db.fretamento.Find(fretamento.Id);
 
-                    using (var db = new BancoViagemEntities())
+                    using (var db = new bancoviagemEntities())
                     {
 
                         if (existeFretamento == null)
@@ -58,14 +58,14 @@ namespace ViagemSeg.Svc
 
         public static int Excluir(int id)
         {
-            Fretamento fretamento = new Fretamento();
-            using (var db = new BancoViagemEntities())
+            fretamento fretamento = new fretamento();
+            using (var db = new bancoviagemEntities())
             {
-                var y = db.Fretamento.Find(id);
+                var y = db.fretamento.Find(id);
                 y.Status = 1;
                 fretamento = y;
             }
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
                 db.Entry(fretamento).State = EntityState.Modified;
                 db.SaveChanges();
@@ -73,10 +73,10 @@ namespace ViagemSeg.Svc
             return id;
         }
 
-        public static Fretamento BuscarFretamento(int pIdFretamento)
+        public static fretamento BuscarFretamento(int pIdFretamento)
         {
-            BancoViagemEntities db = new BancoViagemEntities();
-            var fretamento = db.Fretamento.ToList().Find(a => a.Id == pIdFretamento);
+            bancoviagemEntities db = new bancoviagemEntities();
+            var fretamento = db.fretamento.ToList().Find(a => a.Id == pIdFretamento);
             return fretamento;
         }
     }

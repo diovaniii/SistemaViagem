@@ -13,29 +13,29 @@ namespace ViagemSeg.Svc
 {
     public static class SvcCliente
     {
-        private static BancoViagemEntities db = new BancoViagemEntities();
+        private static bancoviagemEntities db = new bancoviagemEntities();
 
         public static List<DtoCliente> ListarTodosClientes()
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var result = Mapeador.ListaDeCliente(db.Cliente.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaDeCliente(db.cliente.ToList().FindAll(a => a.Status == 0));
                 return result;
             }
         }
         
-        public static Cliente BuscarCliente(int pIdCliente)
+        public static cliente BuscarCliente(int pIdCliente)
         {
-            BancoViagemEntities db = new BancoViagemEntities();
-            var cliente = db.Cliente.ToList().Find(a => a.Id == pIdCliente);
+            bancoviagemEntities db = new bancoviagemEntities();
+            var cliente = db.cliente.ToList().Find(a => a.Id == pIdCliente);
             return cliente;
         }
 
-        public static List<DtoCliente> Pesquisa(Cliente cliente)
+        public static List<DtoCliente> Pesquisa(cliente cliente)
         {
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
-                var clientes = db.Cliente.Where(a => a.Status == 0)
+                var clientes = db.cliente.Where(a => a.Status == 0)
                                          .Where(a => cliente.Nome.Equals(string.Empty) ? true : a.Nome.ToUpper().Contains(cliente.Nome.ToUpper()))
                                          .Where(a => cliente.Cpf.Equals(string.Empty) ? true : a.Cpf.Contains(cliente.Cpf))
                                          .Where(a => cliente.Telefone.Equals(string.Empty) ? true : a.Telefone.Contains(cliente.Telefone))
@@ -48,14 +48,14 @@ namespace ViagemSeg.Svc
         //EXCLUI O CLIENTE FAZENDO APENAS A ALTERAÇÃO DO STATUS
         public static int Excluir(int id)
         {
-            Cliente cliente = new Cliente();
-            using (var db = new BancoViagemEntities())
+            cliente cliente = new cliente();
+            using (var db = new bancoviagemEntities())
             {
-                var y = db.Cliente.Find(id);
+                var y = db.cliente.Find(id);
                 y.Status = 1;
                 cliente = y;
             }
-            using (var db = new BancoViagemEntities())
+            using (var db = new bancoviagemEntities())
             {
                 db.Entry(cliente).State = EntityState.Modified;
                 db.SaveChanges();
@@ -63,24 +63,24 @@ namespace ViagemSeg.Svc
             return id;
         }
 
-        public static Cliente AlteraSalva(Cliente cliente, Endereco enderecoPessoal, Endereco enderecoComercial)
+        public static cliente AlteraSalva(cliente cliente, endereco enderecoPessoal, endereco enderecoComercial)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var existeCliente = db.Cliente.Find(cliente.Id);
+                    var existeCliente = db.cliente.Find(cliente.Id);
 
-                    if (cliente.Endereco.Count > 0)
+                    if (cliente.endereco.Count > 0)
                     {
-                        enderecoPessoal.Id = cliente.Endereco.Where(a => a.Origem == 0).FirstOrDefault().Id;
+                        enderecoPessoal.Id = cliente.endereco.Where(a => a.Origem == 0).FirstOrDefault().Id;
                     }
-                    if (cliente.Endereco.Count > 1)
+                    if (cliente.endereco.Count > 1)
                     {
-                        enderecoComercial.Id = cliente.Endereco.Where(a => a.Origem == 1).FirstOrDefault().Id;
+                        enderecoComercial.Id = cliente.endereco.Where(a => a.Origem == 1).FirstOrDefault().Id;
                     }
 
-                    using (var db = new BancoViagemEntities())
+                    using (var db = new bancoviagemEntities())
                     {
 
                         if (existeCliente == null)
@@ -97,7 +97,7 @@ namespace ViagemSeg.Svc
                     if (!enderecoPessoal.IsEmpty)
                     {
                         enderecoPessoal.ClienteIdEndereco = cliente.Id;
-                        using (var db = new BancoViagemEntities())
+                        using (var db = new bancoviagemEntities())
                         {
                             if (enderecoPessoal.Id == 0)
                             {
@@ -114,7 +114,7 @@ namespace ViagemSeg.Svc
                     if (!enderecoComercial.IsEmpty)
                     {
                         enderecoComercial.ClienteIdEndereco = cliente.Id;
-                        using (var db = new BancoViagemEntities())
+                        using (var db = new bancoviagemEntities())
                         {
                             if (enderecoComercial.Id == 0)
                             {

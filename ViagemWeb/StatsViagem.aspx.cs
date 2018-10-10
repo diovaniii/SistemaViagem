@@ -11,10 +11,10 @@ namespace ViagemWeb
 {
     public partial class StatsViagem : System.Web.UI.Page
     {
-        private Viagem _viagem
+        private viagem _viagem
         {
-            get { return (Viagem)ViewState[typeof(Viagem).FullName]; }
-            set { ViewState[typeof(Viagem).FullName] = value; }
+            get { return (viagem)ViewState[typeof(viagem).FullName]; }
+            set { ViewState[typeof(viagem).FullName] = value; }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace ViagemWeb
                 }
                 else
                 {
-                    _viagem = new Viagem();
+                    _viagem = new viagem();
                 }
             }
             else

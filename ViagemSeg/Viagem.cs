@@ -12,13 +12,13 @@ namespace ViagemSeg
     using System;
     using System.Collections.Generic;
     
-    public partial class Viagem
+    public partial class viagem
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Viagem()
+        public viagem()
         {
-            this.HotelViagem = new HashSet<HotelViagem>();
-            this.VendaCliente = new HashSet<VendaCliente>();
+            this.hotelviagem = new HashSet<hotelviagem>();
+            this.vendacliente = new HashSet<vendacliente>();
         }
     
         public int Id { get; set; }
@@ -33,8 +33,8 @@ namespace ViagemSeg
         public Nullable<int> Veiculo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HotelViagem> HotelViagem { get; set; }
+        public virtual ICollection<hotelviagem> hotelviagem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VendaCliente> VendaCliente { get; set; }
+        public virtual ICollection<vendacliente> vendacliente { get; set; }
     }
 }
