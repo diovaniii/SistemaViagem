@@ -3,7 +3,7 @@
 namespace ViagemSeg
 {
     [Serializable]
-    public partial class VendaCliente
+    public partial class vendacliente
     {
         public int Teste { get; set; }
     }

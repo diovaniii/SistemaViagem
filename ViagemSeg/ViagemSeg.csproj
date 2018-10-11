@@ -200,14 +200,14 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Mapping\Mapeador.cs" />
-    <Compile Include="Mdl\_Endereco.cs" />
-    <Compile Include="Mdl\_Cliente.cs" />
-    <Compile Include="Mdl\_Fornecedor.cs" />
-    <Compile Include="Mdl\_Fretamento.cs" />
-    <Compile Include="Mdl\_Servico.cs" />
-    <Compile Include="Mdl\_Veiculo.cs" />
-    <Compile Include="Mdl\_VendaCliente.cs" />
-    <Compile Include="Mdl\_Viagem.cs" />
+    <Compile Include="Mdl\_endereco.cs" />
+    <Compile Include="Mdl\_cliente.cs" />
+    <Compile Include="Mdl\_fornecedor.cs" />
+    <Compile Include="Mdl\_fretamento.cs" />
+    <Compile Include="Mdl\_servico.cs" />
+    <Compile Include="Mdl\_veiculo.cs" />
+    <Compile Include="Mdl\_vendacliente.cs" />
+    <Compile Include="Mdl\_viagem.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

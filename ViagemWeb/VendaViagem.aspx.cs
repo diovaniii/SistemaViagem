@@ -1,13 +1,12 @@
-﻿using System;
+﻿using PdfSharp.Pdf;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ViagemSeg;
 using ViagemSeg.Svc;
-using ViagemWeb.Form;
 
 namespace ViagemWeb
 {
@@ -261,7 +260,7 @@ namespace ViagemWeb
         {
             
 
-            var document = new PdfSharp.Pdf.PdfDocument();
+            var document = new PdfDocument();
             var page = document.AddPage();
             var graphics = PdfSharp.Drawing.XGraphics.FromPdfPage(page);
             var textFormatter = new PdfSharp.Drawing.Layout.XTextFormatter(graphics);

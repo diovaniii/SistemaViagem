@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ViagemSeg
 {
     [Serializable]
-    public partial class Fretamento
+    public partial class fretamento
     {
         public int Teste { get; set; }
     }
