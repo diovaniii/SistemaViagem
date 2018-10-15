@@ -17,6 +17,7 @@ namespace ViagemSeg
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public fornecedor()
         {
+            this.contas = new HashSet<contas>();
             this.pestacaoservico = new HashSet<pestacaoservico>();
         }
     
@@ -26,6 +27,8 @@ namespace ViagemSeg
         public string Telefone { get; set; }
         public int Status { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contas> contas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pestacaoservico> pestacaoservico { get; set; }
     }

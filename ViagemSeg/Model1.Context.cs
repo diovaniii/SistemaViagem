@@ -26,6 +26,7 @@ namespace ViagemSeg
         }
     
         public virtual DbSet<cliente> cliente { get; set; }
+        public virtual DbSet<contas> contas { get; set; }
         public virtual DbSet<endereco> endereco { get; set; }
         public virtual DbSet<fornecedor> fornecedor { get; set; }
         public virtual DbSet<fretamento> fretamento { get; set; }

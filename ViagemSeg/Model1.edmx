@@ -17,6 +17,21 @@
           <Property Name="DataNascimento" Type="date" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="contas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cliente" Type="int" />
+          <Property Name="Fornecedor" Type="int" />
+          <Property Name="Indentificador" Type="int" />
+          <Property Name="Viagem" Type="int" />
+          <Property Name="DataRecebimento" Type="date" />
+          <Property Name="DataVencimento" Type="date" />
+          <Property Name="Parcelas" Type="int" />
+          <Property Name="Valor" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
         <EntityType Name="endereco">
           <Key>
             <PropertyRef Name="Id" />
@@ -122,6 +137,18 @@
           <Property Name="Status" Type="int" />
           <Property Name="Veiculo" Type="int" />
         </EntityType>
+        <Association Name="Cliente1">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+          <End Role="contas" Type="Self.contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="contas">
+              <PropertyRef Name="Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_endereco_cliente">
           <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
           <End Role="endereco" Type="Self.endereco" Multiplicity="*" />
@@ -194,8 +221,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Fornecedor1">
+          <End Role="fornecedor" Type="Self.fornecedor" Multiplicity="0..1" />
+          <End Role="contas" Type="Self.contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="contas">
+              <PropertyRef Name="Fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Viagem1">
+          <End Role="viagem" Type="Self.viagem" Multiplicity="0..1" />
+          <End Role="contas" Type="Self.contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="viagem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="contas">
+              <PropertyRef Name="Viagem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="bancoviagemModelStoreContainer">
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="bancoviagem" store:Type="Tables" />
+          <EntitySet Name="contas" EntityType="Self.contas" Schema="bancoviagem" store:Type="Tables" />
           <EntitySet Name="endereco" EntityType="Self.endereco" Schema="bancoviagem" store:Type="Tables" />
           <EntitySet Name="fornecedor" EntityType="Self.fornecedor" Schema="bancoviagem" store:Type="Tables" />
           <EntitySet Name="fretamento" EntityType="Self.fretamento" Schema="bancoviagem" store:Type="Tables" />
@@ -205,6 +257,10 @@
           <EntitySet Name="veiculo" EntityType="Self.veiculo" Schema="bancoviagem" store:Type="Tables" />
           <EntitySet Name="vendacliente" EntityType="Self.vendacliente" Schema="bancoviagem" store:Type="Tables" />
           <EntitySet Name="viagem" EntityType="Self.viagem" Schema="bancoviagem" store:Type="Tables" />
+          <AssociationSet Name="Cliente1" Association="Self.Cliente1">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="contas" EntitySet="contas" />
+          </AssociationSet>
           <AssociationSet Name="fk_endereco_cliente" Association="Self.fk_endereco_cliente">
             <End Role="cliente" EntitySet="cliente" />
             <End Role="endereco" EntitySet="endereco" />
@@ -229,6 +285,14 @@
             <End Role="viagem" EntitySet="viagem" />
             <End Role="vendacliente" EntitySet="vendacliente" />
           </AssociationSet>
+          <AssociationSet Name="Fornecedor1" Association="Self.Fornecedor1">
+            <End Role="fornecedor" EntitySet="fornecedor" />
+            <End Role="contas" EntitySet="contas" />
+          </AssociationSet>
+          <AssociationSet Name="Viagem1" Association="Self.Viagem1">
+            <End Role="viagem" EntitySet="viagem" />
+            <End Role="contas" EntitySet="contas" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -246,8 +310,27 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DataNascimento" Type="DateTime" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="contas" Relationship="Self.Cliente1" FromRole="cliente" ToRole="contas" />
           <NavigationProperty Name="endereco" Relationship="Self.fk_endereco_cliente" FromRole="cliente" ToRole="endereco" />
           <NavigationProperty Name="vendacliente" Relationship="Self.fk_vendacliente_cliente1" FromRole="cliente" ToRole="vendacliente" />
+        </EntityType>
+        <EntityType Name="contas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cliente" Type="Int32" />
+          <Property Name="Fornecedor" Type="Int32" />
+          <Property Name="Indentificador" Type="Int32" />
+          <Property Name="Viagem" Type="Int32" />
+          <Property Name="DataRecebimento" Type="DateTime" />
+          <Property Name="DataVencimento" Type="DateTime" />
+          <Property Name="Parcelas" Type="Int32" />
+          <Property Name="Valor" Type="Decimal" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="cliente1" Relationship="Self.Cliente1" FromRole="contas" ToRole="cliente" />
+          <NavigationProperty Name="fornecedor1" Relationship="Self.Fornecedor1" FromRole="contas" ToRole="fornecedor" />
+          <NavigationProperty Name="viagem1" Relationship="Self.Viagem1" FromRole="contas" ToRole="viagem" />
         </EntityType>
         <EntityType Name="endereco">
           <Key>
@@ -272,6 +355,7 @@
           <Property Name="Servico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="contas" Relationship="Self.Fornecedor1" FromRole="fornecedor" ToRole="contas" />
           <NavigationProperty Name="pestacaoservico" Relationship="Self.fk_pestacaoservico_fornecedor1" FromRole="fornecedor" ToRole="pestacaoservico" />
         </EntityType>
         <EntityType Name="fretamento">
@@ -361,9 +445,22 @@
           <Property Name="Descricao" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Int32" />
           <Property Name="Veiculo" Type="Int32" />
+          <NavigationProperty Name="contas" Relationship="Self.Viagem1" FromRole="viagem" ToRole="contas" />
           <NavigationProperty Name="hotelviagem" Relationship="Self.fk_hotelviagem_viagem1" FromRole="viagem" ToRole="hotelviagem" />
           <NavigationProperty Name="vendacliente" Relationship="Self.fk_vendacliente_viagem1" FromRole="viagem" ToRole="vendacliente" />
         </EntityType>
+        <Association Name="Cliente1">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+          <End Role="contas" Type="Self.contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="contas">
+              <PropertyRef Name="Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_endereco_cliente">
           <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
           <End Role="endereco" Type="Self.endereco" Multiplicity="*" />
@@ -385,6 +482,30 @@
             </Principal>
             <Dependent Role="vendacliente">
               <PropertyRef Name="VendaIdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fornecedor1">
+          <End Role="fornecedor" Type="Self.fornecedor" Multiplicity="0..1" />
+          <End Role="contas" Type="Self.contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="contas">
+              <PropertyRef Name="Fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Viagem1">
+          <End Role="viagem" Type="Self.viagem" Multiplicity="0..1" />
+          <End Role="contas" Type="Self.contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="viagem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="contas">
+              <PropertyRef Name="Viagem" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -438,6 +559,7 @@
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="contas" EntityType="Self.contas" />
           <EntitySet Name="endereco" EntityType="Self.endereco" />
           <EntitySet Name="fornecedor" EntityType="Self.fornecedor" />
           <EntitySet Name="fretamento" EntityType="Self.fretamento" />
@@ -447,6 +569,10 @@
           <EntitySet Name="veiculo" EntityType="Self.veiculo" />
           <EntitySet Name="vendacliente" EntityType="Self.vendacliente" />
           <EntitySet Name="viagem" EntityType="Self.viagem" />
+          <AssociationSet Name="Cliente1" Association="Self.Cliente1">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="contas" EntitySet="contas" />
+          </AssociationSet>
           <AssociationSet Name="fk_endereco_cliente" Association="Self.fk_endereco_cliente">
             <End Role="cliente" EntitySet="cliente" />
             <End Role="endereco" EntitySet="endereco" />
@@ -454,6 +580,14 @@
           <AssociationSet Name="fk_vendacliente_cliente1" Association="Self.fk_vendacliente_cliente1">
             <End Role="cliente" EntitySet="cliente" />
             <End Role="vendacliente" EntitySet="vendacliente" />
+          </AssociationSet>
+          <AssociationSet Name="Fornecedor1" Association="Self.Fornecedor1">
+            <End Role="fornecedor" EntitySet="fornecedor" />
+            <End Role="contas" EntitySet="contas" />
+          </AssociationSet>
+          <AssociationSet Name="Viagem1" Association="Self.Viagem1">
+            <End Role="viagem" EntitySet="viagem" />
+            <End Role="contas" EntitySet="contas" />
           </AssociationSet>
           <AssociationSet Name="fk_pestacaoservico_fornecedor1" Association="Self.fk_pestacaoservico_fornecedor1">
             <End Role="fornecedor" EntitySet="fornecedor" />
@@ -487,6 +621,22 @@
                 <ScalarProperty Name="Cpf" ColumnName="Cpf" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contas">
+            <EntityTypeMapping TypeName="bancoviagemModel.contas">
+              <MappingFragment StoreEntitySet="contas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Fornecedor" ColumnName="Fornecedor" />
+                <ScalarProperty Name="Indentificador" ColumnName="Indentificador" />
+                <ScalarProperty Name="Viagem" ColumnName="Viagem" />
+                <ScalarProperty Name="DataRecebimento" ColumnName="DataRecebimento" />
+                <ScalarProperty Name="DataVencimento" ColumnName="DataVencimento" />
+                <ScalarProperty Name="Parcelas" ColumnName="Parcelas" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -194,6 +194,7 @@
     <Content Include="CadastroVeiculo.aspx" />
     <Content Include="CadastroViagem.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="ContaPagarReceber.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -404,6 +405,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContaPagarReceber.aspx.cs">
+      <DependentUpon>ContaPagarReceber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContaPagarReceber.aspx.designer.cs">
+      <DependentUpon>ContaPagarReceber.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

@@ -17,6 +17,7 @@ namespace ViagemSeg
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public viagem()
         {
+            this.contas = new HashSet<contas>();
             this.hotelviagem = new HashSet<hotelviagem>();
             this.vendacliente = new HashSet<vendacliente>();
         }
@@ -32,6 +33,8 @@ namespace ViagemSeg
         public Nullable<int> Status { get; set; }
         public Nullable<int> Veiculo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contas> contas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<hotelviagem> hotelviagem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

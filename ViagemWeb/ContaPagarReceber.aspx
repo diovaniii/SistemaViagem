@@ -1,0 +1,149 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ContaPagarReceber.aspx.cs" Inherits="ViagemWeb.ContaPagarReceber" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <br>
+            <div class="row">
+            <div class="col-md-4">
+                <label>
+                    Tipo:
+                        <br>
+                    <asp:DropDownList ID="ddlTípo" runat="server" DataTextField="TipoNome" DataValueField="TipoId" AutoPostBack="True" OnSelectedIndexChanged="ddlTípo_SelectedIndexChanged" Class="form-control" />
+                </label>
+            </div>
+            <div class="col-md-4">
+                <asp:Label runat="server" ID="lblCliente">Cliente:
+                        <br>
+                    <asp:DropDownList ID="ddlCliente" runat="server" DataTextField="ClienteNome" DataValueField="ClienteId" Class="form-control js-example-basic-single" />
+                </asp:Label>
+            </div>
+            <div class="col-md-4">
+                <asp:Label runat="server" ID="lblFornecedor">Fornecedor:
+                        <br>
+                    <asp:DropDownList ID="ddlFornecedor" runat="server" DataTextField="FornecedorNome" DataValueField="FornecedorId" Class="form-control js-example-basic-single" />
+                </asp:Label>
+            </div>
+                </div>
+            <br>
+            <div class="row">
+            <div class="col-md-4">
+                <label>
+                    Viagem:
+                        <br>
+                    <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" OnSelectedIndexChanged="ddlViagem_SelectedIndexChanged" Class="form-control js-example-basic-single" />
+                </label>
+            </div>
+            <div class="col-md-4">
+                <label>
+                    Data Vencimento:
+                                <br>
+                    <asp:TextBox ID="txtDataVencimento" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server"
+                        ValidationGroup="validador"
+                        ForeColor="Red"
+                        ControlToValidate="txtDataVencimento"
+                        ErrorMessage="Campo obrigatório" />
+                </label>
+            </div>
+
+            <div class="col-md-4">
+                <label>
+                    Data Recebido:
+                                <br>
+                    <asp:TextBox ID="txtDataRecebido" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server"
+                        ValidationGroup="validador"
+                        ForeColor="Red"
+                        ControlToValidate="txtDataRecebido"
+                        ErrorMessage="Campo obrigatório" />
+                </label>
+            </div>
+                </div>
+            <br>
+            <div class="row">
+            <div class="col-md-4">
+                <label>
+                    Parcelar:
+                        <br>
+                    <asp:TextBox ID="txtParcelar" runat="server" Class="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server"
+                        ValidationGroup="validador"
+                        ForeColor="Red"
+                        ControlToValidate="txtParcelar"
+                        ErrorMessage="Campo obrigatório" />
+                </label>
+            </div>
+            <div class="col-md-4">
+                <label>
+                    Valor Total:
+                        <br>
+                    <asp:TextBox ID="txtValorTotal" runat="server" Class="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server"
+                        ValidationGroup="validador"
+                        ForeColor="Red"
+                        ControlToValidate="txtValorTotal"
+                        ErrorMessage="Campo obrigatório" />
+                </label>
+            </div>
+                </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+     
+
+     <asp:TextBox ID="TextBox2" runat="server" Class="form-control"></asp:TextBox>
+    <asp:Button runat="server" Text="Ok" Class=" btn btn-cadastro" Font-Bold="true" OnClick="Ok_Click" ValidationGroup="validador" />
+    <asp:Button ID="limpar" runat="server" Text="Limpar" Class=" btn btn-cadastro" Font-Bold="true" OnClick="limpar_Click" />
+    <div>
+        <fieldset>
+            <asp:UpdatePanel runat="server" ID="uppGridView" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <asp:GridView
+                        ID="grpConta"
+                        runat="server"
+                        AutoGenerateColumns="False"
+                        
+                        CssClass="table table-hover"
+                        GridLines="None">
+                        <Columns>
+                            <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+                                    <%# Container.DataItemIndex + 1 %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField
+                                    DataField="Parcelas"
+                                    HeaderText="Parcelas"
+                                    SortExpression="Parcelas" />
+                            <asp:TemplateField HeaderText="Data Vencimento">
+                                    <ItemTemplate>
+                                        <asp:TextBox runat="server" ID="txtDataVencimento" TextMode="Date" class="form-control" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Valor">
+                                    <ItemTemplate>
+                                        <asp:TextBox runat="server" ID="Valor" type='text' class="form-control" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                             <asp:TemplateField>
+                                        <ItemStyle Width="45px" />
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="LinkExluir" runat="server" CssClass="btn btn-default btn-sm" CommandName="Editar" OnCommand="Editar" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" ToolTip="Editar">
+                                <i aria-hidden="true" class="glyphicon glyphicon-trash"></i>
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </fieldset>
+    </div>
+
+
+    <div>
+        <asp:TextBox ID="txtCodParcela" runat="server" Class="form-control"></asp:TextBox>
+     <asp:TextBox ID="txtDataParcela" runat="server" Class="form-control"></asp:TextBox>
+    <asp:Button ID="Salvar" runat="server" Text="Ok" Class=" btn btn-cadastro" Font-Bold="true" OnClick="Salvar_Click" />
+    </div>
+</asp:Content>

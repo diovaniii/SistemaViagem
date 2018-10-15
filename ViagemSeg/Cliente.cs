@@ -17,6 +17,7 @@ namespace ViagemSeg
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public cliente()
         {
+            this.contas = new HashSet<contas>();
             this.endereco = new HashSet<endereco>();
             this.vendacliente = new HashSet<vendacliente>();
         }
@@ -29,6 +30,8 @@ namespace ViagemSeg
         public System.DateTime DataNascimento { get; set; }
         public int Status { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contas> contas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<endereco> endereco { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
