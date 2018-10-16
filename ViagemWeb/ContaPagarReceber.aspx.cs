@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,8 +12,6 @@ namespace ViagemWeb
 {
     public partial class ContaPagarReceber : System.Web.UI.Page
     {
-
-
         public List<contas> contaList
         {
             get { return (List<contas>)ViewState[typeof(contas).FullName]; }
@@ -71,19 +70,19 @@ namespace ViagemWeb
             grpConta.DataBind();
             uppGridView.Update();
         }
-        protected void Editar(object sender, CommandEventArgs e)
-        {
-            int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = grpConta.Rows[index];
+        //protected void Editar(object sender, CommandEventArgs e)
+        //{
+        //    int index = Convert.ToInt32(e.CommandArgument);
+        //    GridViewRow row = grpConta.Rows[index];
 
 
-            if (e.CommandName.Equals("Editar"))
-            {
-                txtCodParcela.Text = row.Cells[1].Text;
-                txtDataParcela.Text = row.Cells[2].Text;
+        //    if (e.CommandName.Equals("Editar"))
+        //    {
+        //        txtCodParcela.Text = row.Cells[1].Text;
+        //        txtDataParcela.Text = row.Cells[2].Text;
 
-            }
-        }
+        //    }
+        //}
 
 
 
@@ -139,9 +138,26 @@ namespace ViagemWeb
 
         protected void Salvar_Click(object sender, EventArgs e)
         {
+            //grpConta.DataBind();
+            //uppGridView.Update();
+            foreach (var item in contaList)
+            {
+                foreach (GridViewRow item1 in grpConta.Rows)
+                {
+                    var numero = item1.Cells[1];
+
+                    if (item.Parcelas == Convert.ToInt32(numero.Text))
+                    {
+                        TextBox vencimento = (TextBox)item1.FindControl("txtDataVencimento");
+                        item.DataVencimento = Convert.ToDateTime( vencimento.Text);
+                        TextBox valor = (TextBox)item1.FindControl("txtValor");
+                        item.Valor = Convert.ToDecimal(valor.Text);
+                    }
+                }
+                SvcContaPagarReceber.AlteraSalva(item);
+            }
+
             
         }
-
-       
     }
 }

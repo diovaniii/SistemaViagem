@@ -34,7 +34,7 @@
                     <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" OnSelectedIndexChanged="ddlViagem_SelectedIndexChanged" Class="form-control js-example-basic-single" />
                 </label>
             </div>
-            <div class="col-md-4">
+            <%--<div class="col-md-4">
                 <label>
                     Data Vencimento:
                                 <br>
@@ -45,7 +45,7 @@
                         ControlToValidate="txtDataVencimento"
                         ErrorMessage="Campo obrigatório" />
                 </label>
-            </div>
+            </div>--%>
 
             <div class="col-md-4">
                 <label>
@@ -89,9 +89,6 @@
                 </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-     
-
-     <asp:TextBox ID="TextBox2" runat="server" Class="form-control"></asp:TextBox>
     <asp:Button runat="server" Text="Ok" Class=" btn btn-cadastro" Font-Bold="true" OnClick="Ok_Click" ValidationGroup="validador" />
     <asp:Button ID="limpar" runat="server" Text="Limpar" Class=" btn btn-cadastro" Font-Bold="true" OnClick="limpar_Click" />
     <div>
@@ -102,7 +99,6 @@
                         ID="grpConta"
                         runat="server"
                         AutoGenerateColumns="False"
-                        
                         CssClass="table table-hover"
                         GridLines="None">
                         <Columns>
@@ -122,28 +118,20 @@
                                 </asp:TemplateField>
                             <asp:TemplateField HeaderText="Valor">
                                     <ItemTemplate>
-                                        <asp:TextBox runat="server" ID="Valor" type='text' class="form-control" />
+                                        <asp:TextBox runat="server" ID="txtValor" type='text' class="form-control" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                             <asp:TemplateField>
-                                        <ItemStyle Width="45px" />
-                                        <ItemTemplate>
-                                            <asp:LinkButton ID="LinkExluir" runat="server" CssClass="btn btn-default btn-sm" CommandName="Editar" OnCommand="Editar" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" ToolTip="Editar">
-                                <i aria-hidden="true" class="glyphicon glyphicon-trash"></i>
-                                            </asp:LinkButton>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </fieldset>
     </div>
+<asp:Button runat="server" Text="Salvar" Class="btn btn-cadastro" OnClick="Salvar_Click" />
 
-
-    <div>
+    <%--<div>
         <asp:TextBox ID="txtCodParcela" runat="server" Class="form-control"></asp:TextBox>
      <asp:TextBox ID="txtDataParcela" runat="server" Class="form-control"></asp:TextBox>
     <asp:Button ID="Salvar" runat="server" Text="Ok" Class=" btn btn-cadastro" Font-Bold="true" OnClick="Salvar_Click" />
-    </div>
+    </div>--%>
 </asp:Content>

@@ -76,15 +76,6 @@ namespace ViagemWeb {
         protected global::System.Web.UI.WebControls.DropDownList ddlViagem;
         
         /// <summary>
-        /// txtDataVencimento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDataVencimento;
-        
-        /// <summary>
         /// txtDataRecebido control.
         /// </summary>
         /// <remarks>
@@ -112,15 +103,6 @@ namespace ViagemWeb {
         protected global::System.Web.UI.WebControls.TextBox txtValorTotal;
         
         /// <summary>
-        /// TextBox2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
-        
-        /// <summary>
         /// limpar control.
         /// </summary>
         /// <remarks>
@@ -146,32 +128,5 @@ namespace ViagemWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grpConta;
-        
-        /// <summary>
-        /// txtCodParcela control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodParcela;
-        
-        /// <summary>
-        /// txtDataParcela control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDataParcela;
-        
-        /// <summary>
-        /// Salvar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Salvar;
     }
 }
