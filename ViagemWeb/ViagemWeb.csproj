@@ -224,6 +224,7 @@
     <Content Include="CadastroCliente.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="ListaCliente.aspx" />
+    <Content Include="ListaContaPagarReceber.aspx" />
     <Content Include="ListaFornecedor.aspx" />
     <Content Include="ListaFretamento.aspx" />
     <Content Include="ListaServico.aspx" />
@@ -457,6 +458,13 @@
     </Compile>
     <Compile Include="ListaCliente.aspx.designer.cs">
       <DependentUpon>ListaCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaContaPagarReceber.aspx.cs">
+      <DependentUpon>ListaContaPagarReceber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaContaPagarReceber.aspx.designer.cs">
+      <DependentUpon>ListaContaPagarReceber.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListaFornecedor.aspx.cs">
       <DependentUpon>ListaFornecedor.aspx</DependentUpon>

@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViagemSeg.Dto;
+using ViagemSeg.Mapping;
 
 namespace ViagemSeg.Svc
 {
@@ -11,6 +13,14 @@ namespace ViagemSeg.Svc
     {
         private static bancoviagemEntities db = new bancoviagemEntities();
 
+        public static List<DtoConta> ListarContas()
+        {
+            using (var db = new bancoviagemEntities())
+            {
+                var result = Mapeador.ListaConta(db.contas.ToList().FindAll(a => a.Status == 0));
+                return result;
+            }
+        }
         public static contas AlteraSalva(contas conta)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())

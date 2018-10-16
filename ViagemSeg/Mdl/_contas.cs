@@ -10,5 +10,7 @@ namespace ViagemSeg
     public partial class contas
     {
         public int Teste { get; set; }
+        public int? Cliente { get; set; }
+        public int? Fornecedor { get; set; }
     }
 }

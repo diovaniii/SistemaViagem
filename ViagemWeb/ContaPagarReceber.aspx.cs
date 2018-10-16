@@ -17,33 +17,29 @@ namespace ViagemWeb
             get { return (List<contas>)ViewState[typeof(contas).FullName]; }
             set { ViewState[typeof(contas).FullName] = value; }
         }
-       
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             if (!IsPostBack)
             {
-
                 CarregarTipo();
                 HabilitarTipo();
                 carregaNome();
                 CarregaFornecedor();
                 CarregarViagem();
-                
-                    contaList = new List<contas>();
-                
+
+                contaList = new List<contas>();
+                btnSalvar.Visible = false;
             }
             HabilitarTipo();
         }
 
         protected void ddlViagem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void Ok_Click(object sender, EventArgs e)
         {
-            
             var parcelar = Convert.ToInt32(txtParcelar.Text);
             for (int i = 0; i < parcelar; i++)
             {
@@ -57,7 +53,7 @@ namespace ViagemWeb
                 }
                 else
                 {
-                    conta.Cliente = Convert.ToInt32(ddlFornecedor.SelectedValue);
+                    conta.Fornecedor = Convert.ToInt32(ddlFornecedor.SelectedValue);
                 }
                 conta.Viagem = Convert.ToInt32(ddlViagem.SelectedValue);
                 conta.Indentificador = Convert.ToInt32(ddlTípo.SelectedValue);
@@ -69,26 +65,13 @@ namespace ViagemWeb
             grpConta.DataSource = contaList;
             grpConta.DataBind();
             uppGridView.Update();
+            btnSalvar.Visible = true;
         }
-        //protected void Editar(object sender, CommandEventArgs e)
-        //{
-        //    int index = Convert.ToInt32(e.CommandArgument);
-        //    GridViewRow row = grpConta.Rows[index];
-
-
-        //    if (e.CommandName.Equals("Editar"))
-        //    {
-        //        txtCodParcela.Text = row.Cells[1].Text;
-        //        txtDataParcela.Text = row.Cells[2].Text;
-
-        //    }
-        //}
-
 
 
         protected void limpar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ContaPagarReceber.aspx");
         }
 
         protected void ddlTípo_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,7 +98,6 @@ namespace ViagemWeb
                 ddlFornecedor.Visible = false;
                 ddlCliente.Visible = true;
             }
-            
         }
         protected void carregaNome()
         {
@@ -138,8 +120,6 @@ namespace ViagemWeb
 
         protected void Salvar_Click(object sender, EventArgs e)
         {
-            //grpConta.DataBind();
-            //uppGridView.Update();
             foreach (var item in contaList)
             {
                 foreach (GridViewRow item1 in grpConta.Rows)
@@ -149,15 +129,27 @@ namespace ViagemWeb
                     if (item.Parcelas == Convert.ToInt32(numero.Text))
                     {
                         TextBox vencimento = (TextBox)item1.FindControl("txtDataVencimento");
-                        item.DataVencimento = Convert.ToDateTime( vencimento.Text);
+                        item.DataVencimento = Convert.ToDateTime(vencimento.Text);
                         TextBox valor = (TextBox)item1.FindControl("txtValor");
                         item.Valor = Convert.ToDecimal(valor.Text);
                     }
                 }
                 SvcContaPagarReceber.AlteraSalva(item);
             }
+            btnSalvar.Visible = false;
+        }
 
-            
+        protected void grpConta_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                foreach (var item in contaList)
+                {
+                    TextBox ddlgrid = (e.Row.FindControl("txtValor") as TextBox);
+                    ddlgrid.Text = item.Valor.ToString();
+                    ddlgrid.DataBind();
+                }
+            }
         }
     }
 }

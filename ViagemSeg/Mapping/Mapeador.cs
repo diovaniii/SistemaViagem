@@ -133,6 +133,26 @@ namespace ViagemSeg.Mapping
             }
             return Se.ToList();
         }
+        public static List<DtoConta> ListaConta(List<contas> lista)
+        {
+            var Co = new List<DtoConta>();
+            foreach (var item in lista.ToList())
+            {
+                var Conta = new DtoConta();
+                Conta.ContaId = item.Id;
+                Conta.ContaCliente = item.Cliente;
+                Conta.ContaFornecedor = item.Fornecedor;
+                Conta.ContaIndentificador = item.Indentificador;
+                Conta.ContaViagem = item.Viagem;
+                Conta.ContaDataRecebimento = item.DataRecebimento.ToShortDateString();
+                Conta.ContaDataVencimento = item.DataVencimento.ToShortDateString();
+                Conta.ContaParcela = item.Parcelas;
+                Conta.ContaValor = item.Valor;
+                Conta.ContaStatus = item.Status;
+                Co.Add(Conta);
+            }
+            return Co.ToList();
+        }
 
     }
 }

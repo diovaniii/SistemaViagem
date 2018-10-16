@@ -71,6 +71,7 @@
                                 <li><a runat="server" href="~/ListaFornecedor">Fornecedor</a></li>
                                 <li><a runat="server" href="~/ListaFretamento">Fretamento</a></li>
                                 <li><a runat="server" href="~/ListaServico">Serviço</a></li>
+                                <li><a runat="server" href="~/ListaContaPagarReceber">Lista Contas</a></li>
                                 <%--<li><a href="#">teste</a></li>
                                 <li><a href="#">teste</a></li>
                                 <li role="separator" class="divider"></li>
@@ -100,6 +101,7 @@
                             <ul class="dropdown-menu">
                                 <li><a runat="server" href="~/VendaViagem">Venda Viagem</a></li>
                                 <li><a runat="server" href="~/VendaFretamento">Fretamento</a></li>
+                                <li><a runat="server" href="~/ContaPagarReceber">Contas Pagar e Receber</a></li>
                                 <%--<li><a href="#">teste</a></li>
                                 <li><a href="#">teste</a></li>
                                 <li role="separator" class="divider"></li>

@@ -15,15 +15,13 @@ namespace ViagemSeg
     public partial class contas
     {
         public int Id { get; set; }
-        public Nullable<int> Cliente { get; set; }
-        public Nullable<int> Fornecedor { get; set; }
-        public Nullable<int> Indentificador { get; set; }
-        public Nullable<int> Viagem { get; set; }
-        public Nullable<System.DateTime> DataRecebimento { get; set; }
-        public Nullable<System.DateTime> DataVencimento { get; set; }
-        public Nullable<int> Parcelas { get; set; }
-        public Nullable<decimal> Valor { get; set; }
-        public Nullable<int> Status { get; set; }
+        public int Indentificador { get; set; }
+        public int Viagem { get; set; }
+        public System.DateTime DataRecebimento { get; set; }
+        public System.DateTime DataVencimento { get; set; }
+        public int Parcelas { get; set; }
+        public decimal Valor { get; set; }
+        public int Status { get; set; }
     
         public virtual cliente cliente1 { get; set; }
         public virtual fornecedor fornecedor1 { get; set; }
