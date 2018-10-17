@@ -53,5 +53,17 @@ namespace ViagemSeg.Svc
             }
             return conta;
         }
+
+        public static List<contas> PesquisaDespesaViagem(int pId)
+        {
+            using (var db = new bancoviagemEntities())
+            {
+                var contas = db.contas.Where(a => a.Status == 0)
+                                         .Where(a => a.Indentificador == 0)
+                                         .Where(a => a.Viagem == pId);
+
+                return contas.ToList();
+            }
+        }
     }
 }

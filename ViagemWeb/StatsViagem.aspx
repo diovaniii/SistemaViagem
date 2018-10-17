@@ -104,7 +104,7 @@
                                 <asp:TextBox ID="txtAssento" runat="server" Class="form-control"></asp:TextBox>
                             </label>
                         </div>
-                    
+
                         <div class="col-md-6">
                             <label>
                                 Descrição:
@@ -112,9 +112,40 @@
                                 <asp:TextBox ID="txtDescricao" runat="server" Class="form-control descricao " Rows="8" TextMode="MultiLine"></asp:TextBox>
                             </label>
                         </div>
-                       </div> 
-                    
-                    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>
+                                Valor Total:
+                        <br>
+                                <asp:TextBox ID="txbValorTotal" runat="server" Class="form-control"></asp:TextBox>
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label>
+                                Valor Pago:
+                        <br>
+                                <asp:TextBox ID="txbValorPago" runat="server" Class="form-control"></asp:TextBox>
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>
+                                Valor Despesa:
+                        <br>
+                                <asp:TextBox ID="txbValorDespesa" runat="server" Class="form-control"></asp:TextBox>
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label>
+                                Valor Lucro:
+                        <br>
+                                <asp:TextBox ID="txbValorLucro" runat="server" Class="form-control"></asp:TextBox>
+                            </label>
+                        </div>
+                    </div>
+
+
 
 
                 </fieldset>
@@ -129,11 +160,11 @@
                         <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
                     </div>
                 </fieldset>
-                </div>
+            </div>
         </div>
     </div>
-                
-            
+
+
 
 
 

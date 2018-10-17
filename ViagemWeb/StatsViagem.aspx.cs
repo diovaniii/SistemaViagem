@@ -27,6 +27,7 @@ namespace ViagemWeb
                 {
                     PorcentagemVenda(Convert.ToInt32(id));
                     MontarCadastroViagem(Convert.ToInt32(id));
+                    CarregaResultados(Convert.ToInt32(id));
                     modoVisualizacao();
                 }
                 else
@@ -101,6 +102,28 @@ namespace ViagemWeb
             txtAssento.ReadOnly = true;
         }
 
-
+        decimal total;
+        decimal totalDespesas;
+        protected void CarregaResultados(int id)
+        {
+            //var esperado = SvcVendaCliente.PesquisaViagem(id);
+            var esperado = SvcViagem.BuscarViagem(id);
+            var assento = SvcVeiculo.BuscarVeiculo( esperado.Veiculo.Value).Lugares;
+            var soma = esperado.Valor * assento;
+            txbValorTotal.Text = Convert.ToString(soma);
+            var vendas = SvcVendaCliente.PesquisaViagem(id);
+            foreach (var item in vendas)
+            {
+                total = total + item.VendaValorPago;
+            }
+            txbValorPago.Text = total.ToString();
+            var despesa = SvcContaPagarReceber.PesquisaDespesaViagem(id);
+            foreach (var item in despesa)
+            {
+                totalDespesas = totalDespesas + item.Valor;
+            }
+            txbValorDespesa.Text = totalDespesas.ToString();
+            txbValorLucro.Text = (total - totalDespesas).ToString();
+        }
     }
 }
