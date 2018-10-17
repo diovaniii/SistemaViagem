@@ -146,10 +146,17 @@
                     <div class="row">
                         <sis:Porcentagem runat="server" ID="Porcentagem" />
                     </div>
-                    <div class="row">
+                    <%--<div class="row">
                         <div id="chartContainer" style="height: 300px; width: 100%;"></div>
                         <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
                         <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+                    </div>--%>
+                    <div>
+                        <script src="https://code.highcharts.com/highcharts.js"></script>
+                        <script src="https://code.highcharts.com/modules/series-label.js"></script>
+                        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                        <div id="container"></div>
                     </div>
                 </fieldset>
             </div>
@@ -159,52 +166,106 @@
     <input type="hidden" id="ChartDespesa" runat="server" clientidmode="static" />
     <input type="hidden" id="ChartTotal" runat="server" clientidmode="static" />
 
-
-
-
     <script>
         window.onload = function () {
 
-            //Better to construct options first and then pass it as a parameter
-            var options = {
+            ////Better to construct options first and then pass it as a parameter
+            //var options = {
+            //    title: {
+            //        text: "Meta de vendas da viagem"
+            //    },
+            //    animationEnabled: true,
+            //    exportEnabled: true,
+            //    data: [
+            //        {
+            //            name: "Lucro",
+            //            type: "spline", //change it to line, area, column, pie, etc, spline
+            //            showInLegend: true,
+            //            dataPoints: [
+            //                { x: 0, y: 0 },
+            //                { x: 100, y: parseFloat(document.getElementById("ChartLucro").value) }
+            //            ]
+            //        },
+            //        {
+            //            name: "Total",
+            //            type: "spline", //change it to line, area, column, pie, etc, spline
+            //            showInLegend: true,
+            //            dataPoints: [
+            //                { x: 0, y: 0 },
+            //                { x: 100, y: parseFloat(document.getElementById("ChartTotal").value) }
+            //            ]
+            //        },
+            //        {
+            //            name: "Despesa",
+            //            type: "spline", //change it to line, area, column, pie, etc, spline
+            //            showInLegend: true,
+            //            dataPoints: [
+            //                { x: 0, y: 0 },
+            //                { x: 100, y: parseFloat(document.getElementById("ChartDespesa").value) }
+            //            ]
+            //        }
+            //    ]
+
+            //};
+            //$("#chartContainer").CanvasJSChart(options);
+
+            Highcharts.chart('container', {
+
                 title: {
-                    text: "Meta de vendas da viagem"
+                    text: 'Solar Employment Growth by Sector, 2010-2016'
                 },
-                animationEnabled: true,
-                exportEnabled: true,
-                data: [
-                    {
-                        name: "Lucro",
-                        type: "spline", //change it to line, area, column, pie, etc, spline
-                        showInLegend: true,
-                        dataPoints: [
-                            { x: 0, y: 0 },
-                            { x: 100, y: parseFloat(document.getElementById("ChartLucro").value) }
-                        ]
-                    },
-                    {
-                        name: "Total",
-                        type: "spline", //change it to line, area, column, pie, etc, spline
-                        showInLegend: true,
-                        dataPoints: [
-                            { x: 0, y: 0 },
-                            { x: 100, y: parseFloat(document.getElementById("ChartTotal").value) }
-                        ]
-                    },
-                    {
-                        name: "Despesa",
-                        type: "spline", //change it to line, area, column, pie, etc, spline
-                        showInLegend: true,
-                        dataPoints: [
-                            { x: 0, y: 0 },
-                            { x: 100, y: parseFloat(document.getElementById("ChartDespesa").value) }
-                        ]
+
+                subtitle: {
+                    text: 'Source: thesolarfoundation.com'
+                },
+
+                yAxis: {
+                    title: {
+                        text: 'Number of Employees'
                     }
-                ]
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
 
-            };
-            $("#chartContainer").CanvasJSChart(options);
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: 2010
+                    }
+                },
 
+                series: [{
+                    name: 'Lucro',
+                    data: [0, parseFloat(document.getElementById("ChartLucro").value)]
+                }, {
+                    name: 'Total',
+                    data: [parseFloat(document.getElementById("ChartTotal").value), parseFloat(document.getElementById("ChartTotal").value)]
+                }, {
+                    name: 'Despesa',
+                    data: [0, parseFloat(document.getElementById("ChartDespesa").value)]
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
         }
     </script>
 </asp:Content>
