@@ -143,8 +143,18 @@
                 </fieldset>
                 <fieldset style="float: right; height: 30%; width: 30%;">
                     <legend>Porcentagem</legend>
-                    <div class="row">
-                        <sis:Porcentagem runat="server" ID="Porcentagem" />
+                    <div>
+                        <%--<sis:Porcentagem runat="server" ID="Porcentagem" />--%>
+                        <div id="container-speed"  ></div>
+                    </div>
+                    
+
+                    <div class="outer">
+                        <script src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+                    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+                        <%--<div id="container-speed" class="container" ></div>--%>
+
                     </div>
                     <%--<div class="row">
                         <div id="chartContainer" style="height: 300px; width: 100%;"></div>
@@ -152,10 +162,6 @@
                         <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
                     </div>--%>
                     <div>
-                        <script src="https://code.highcharts.com/highcharts.js"></script>
-                        <script src="https://code.highcharts.com/modules/series-label.js"></script>
-                        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                        <script src="https://code.highcharts.com/modules/export-data.js"></script>
                         <div id="container"></div>
                     </div>
                 </fieldset>
@@ -165,49 +171,10 @@
     <input type="hidden" id="ChartLucro" runat="server" clientidmode="static" />
     <input type="hidden" id="ChartDespesa" runat="server" clientidmode="static" />
     <input type="hidden" id="ChartTotal" runat="server" clientidmode="static" />
+    <input type="hidden" id="Porcent" runat="server" clientidmode="static" />
 
     <script>
         window.onload = function () {
-
-            ////Better to construct options first and then pass it as a parameter
-            //var options = {
-            //    title: {
-            //        text: "Meta de vendas da viagem"
-            //    },
-            //    animationEnabled: true,
-            //    exportEnabled: true,
-            //    data: [
-            //        {
-            //            name: "Lucro",
-            //            type: "spline", //change it to line, area, column, pie, etc, spline
-            //            showInLegend: true,
-            //            dataPoints: [
-            //                { x: 0, y: 0 },
-            //                { x: 100, y: parseFloat(document.getElementById("ChartLucro").value) }
-            //            ]
-            //        },
-            //        {
-            //            name: "Total",
-            //            type: "spline", //change it to line, area, column, pie, etc, spline
-            //            showInLegend: true,
-            //            dataPoints: [
-            //                { x: 0, y: 0 },
-            //                { x: 100, y: parseFloat(document.getElementById("ChartTotal").value) }
-            //            ]
-            //        },
-            //        {
-            //            name: "Despesa",
-            //            type: "spline", //change it to line, area, column, pie, etc, spline
-            //            showInLegend: true,
-            //            dataPoints: [
-            //                { x: 0, y: 0 },
-            //                { x: 100, y: parseFloat(document.getElementById("ChartDespesa").value) }
-            //            ]
-            //        }
-            //    ]
-
-            //};
-            //$("#chartContainer").CanvasJSChart(options);
 
             Highcharts.chart('container', {
 
@@ -267,5 +234,112 @@
 
             });
         }
+
+
+        // PORCENTAGEM
+        var gaugeOptions = {
+
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '70%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#55BF3B'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#DF5353'] // red
+                ],
+                lineWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: '%'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: '%',
+                data: [parseFloat(document.getElementById("Porcent").value)],
+                dataLabels: {
+                    format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                        '<span style="font-size:12px;color:silver">km/h</span></div>'
+                },
+                tooltip: {
+                    valueSuffix: ' %'
+                }
+            }]
+
+        }));
+
+
+        // Bring life to the dials
+        //setInterval(function () {
+        //    // Speed
+        //    var point,
+        //        newVal,
+        //        inc;
+
+        //    if (chartSpeed) {
+        //        point = chartSpeed.series[0].points[0];
+        //        inc = Math.round((Math.random() - 0.5) * 100);
+        //        newVal = point.y + inc;
+
+        //        if (newVal < 0 || newVal > 200) {
+        //            newVal = point.y - inc;
+        //        }
+
+        //        point.update(parseFloat(document.getElementById("Porcent").value));
+        //    }
+
+        //}, 2000);
     </script>
 </asp:Content>

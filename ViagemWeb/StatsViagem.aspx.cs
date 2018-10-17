@@ -52,7 +52,7 @@ namespace ViagemWeb
             var r = assento.Lugares.Value;
             var y = passagemVendida.Count();
             var total = (100 / r) * y;
-            Porcentagem.CalculateActiveUsersAngle(total);
+            Porcent.Value = total.ToString();
 
             string assentos = Convert.ToString(assento.Lugares.Value);
             txtAssento.Text = assentos;
