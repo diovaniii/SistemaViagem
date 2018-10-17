@@ -23,8 +23,8 @@ namespace ViagemWeb
             {
                 CarregarTipo();
                 HabilitarTipo();
-                carregaNome();
-                CarregaFornecedor();
+                //carregaNome();
+                //CarregaFornecedor();
                 CarregarViagem();
 
                 contaList = new List<contas>();
@@ -47,14 +47,15 @@ namespace ViagemWeb
                 if (txtValorTotal.Text != "")
                     conta.Valor = Convert.ToInt32(txtValorTotal.Text) / parcelar;
 
-                if (ddlTípo.SelectedValue == "1")
-                {
-                    conta.Cliente = Convert.ToInt32(ddlCliente.SelectedValue);
-                }
-                else
-                {
-                    conta.Fornecedor = Convert.ToInt32(ddlFornecedor.SelectedValue);
-                }
+                conta.Cliente = Convert.ToInt32(ddlCliente.SelectedValue);
+                //if (ddlTípo.SelectedValue == "1")
+                //{
+                //    conta.Cliente = Convert.ToInt32(ddlCliente.SelectedValue);
+                //}
+                //else
+                //{
+                //    conta.Fornecedor = Convert.ToInt32(ddlFornecedor.SelectedValue);
+                //}
                 conta.Viagem = Convert.ToInt32(ddlViagem.SelectedValue);
                 conta.Indentificador = Convert.ToInt32(ddlTípo.SelectedValue);
                 conta.DataRecebimento = Convert.ToDateTime(txtDataRecebido.Text);
@@ -90,27 +91,38 @@ namespace ViagemWeb
         {
             if (ddlTípo.SelectedValue == "0")
             {
-                ddlCliente.Visible = false;
-                ddlFornecedor.Visible = true;
+                ddlCliente.Visible = true;
+                //ddlFornecedor.Visible = true;
+                //ddlFornecedor.Visible = false;
+                ddlCliente.DataSource = SvcFornecedor.ListarFornecedor();
+                ddlCliente.DataTextField = "FornecedorNome";
+                ddlCliente.DataValueField = "FornecedorId";
+                ddlCliente.DataBind();
+                UpdatePanel.Update();
             }
             else
             {
-                ddlFornecedor.Visible = false;
+                //ddlFornecedor.Visible = false;
                 ddlCliente.Visible = true;
+                ddlCliente.DataSource = SvcCliente.ListarTodosClientes();
+                ddlCliente.DataTextField = "ClienteNome";
+                ddlCliente.DataValueField = "ClienteId";
+                ddlCliente.DataBind();
+                UpdatePanel.Update();
             }
         }
-        protected void carregaNome()
-        {
-            ddlCliente.DataSource = SvcCliente.ListarTodosClientes();
-            ddlCliente.DataBind();
-            UpdatePanel.Update();
-        }
-        protected void CarregaFornecedor()
-        {
-            ddlFornecedor.DataSource = SvcFornecedor.ListarFornecedor();
-            ddlFornecedor.DataBind();
-            UpdatePanel.Update();
-        }
+        //protected void carregaNome()
+        //{
+        //    ddlCliente.DataSource = SvcCliente.ListarTodosClientes();
+        //    ddlCliente.DataBind();
+        //    UpdatePanel.Update();
+        //}
+        //protected void CarregaFornecedor()
+        //{
+        //    ddlFornecedor.DataSource = SvcFornecedor.ListarFornecedor();
+        //    ddlFornecedor.DataBind();
+        //    UpdatePanel.Update();
+        //}
         protected void CarregarViagem()
         {
             ddlViagem.DataSource = SvcViagem.ListarTodasViagens();

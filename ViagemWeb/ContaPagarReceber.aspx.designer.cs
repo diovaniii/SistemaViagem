@@ -49,24 +49,6 @@ namespace ViagemWeb {
         protected global::System.Web.UI.WebControls.DropDownList ddlCliente;
         
         /// <summary>
-        /// lblFornecedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFornecedor;
-        
-        /// <summary>
-        /// ddlFornecedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFornecedor;
-        
-        /// <summary>
         /// ddlViagem control.
         /// </summary>
         /// <remarks>

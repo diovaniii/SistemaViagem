@@ -40,9 +40,9 @@
                                     HeaderText="Cliente"
                                     SortExpression="ContaCliente" />
                                 <asp:BoundField
-                                    DataField="ContaFornecedor"
-                                    HeaderText="Fornecedor"
-                                    SortExpression="ContaFornecedor" />
+                                    DataField="ContaIndentificador"
+                                    HeaderText="Tipo"
+                                    SortExpression="ContaIndentificador" />
                                 <asp:BoundField
                                     DataField="ContaDataVencimento"
                                     HeaderText="Data Vencimento"

@@ -17,7 +17,7 @@ namespace ViagemWeb
 
         protected void btnCadastro_Click(object sender, EventArgs e)
         {
-            
+            Response.Redirect("ContaPagarReceber.aspx");
         }
 
         protected void grpListaContas_PageIndexChanging(object sender, GridViewPageEventArgs e)

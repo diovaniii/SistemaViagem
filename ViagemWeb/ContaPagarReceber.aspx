@@ -15,15 +15,15 @@
                 <div class="col-md-4">
                     <asp:Label runat="server" ID="lblCliente">Cliente:
                         <br>
-                        <asp:DropDownList ID="ddlCliente" runat="server" DataTextField="ClienteNome" DataValueField="ClienteId" Class="form-control js-example-basic-single" />
+                        <asp:DropDownList ID="ddlCliente" runat="server"  Class="form-control js-example-basic-single" />
                     </asp:Label>
                 </div>
-                <div class="col-md-4">
+                <%--<div class="col-md-4">
                     <asp:Label runat="server" ID="lblFornecedor">Fornecedor:
                         <br>
                         <asp:DropDownList ID="ddlFornecedor" runat="server" DataTextField="FornecedorNome" DataValueField="FornecedorId" Class="form-control js-example-basic-single" />
                     </asp:Label>
-                </div>
+                </div>--%>
             </div>
             <br>
             <div class="row">
@@ -34,18 +34,6 @@
                         <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" OnSelectedIndexChanged="ddlViagem_SelectedIndexChanged" Class="form-control js-example-basic-single" />
                     </label>
                 </div>
-                <%--<div class="col-md-4">
-                <label>
-                    Data Vencimento:
-                                <br>
-                    <asp:TextBox ID="txtDataVencimento" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server"
-                        ValidationGroup="validador"
-                        ForeColor="Red"
-                        ControlToValidate="txtDataVencimento"
-                        ErrorMessage="Campo obrigatório" />
-                </label>
-            </div>--%>
 
                 <div class="col-md-4">
                     <label>
