@@ -2,8 +2,6 @@
 
 <%@ Register Src="~/Form/Porcentagem.ascx" TagPrefix="sis" TagName="Porcentagem" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="panel panel-centralizar">
@@ -71,8 +69,6 @@
                                 <asp:TextBox ID="txtValor" runat="server" Class="form-control"></asp:TextBox>
                             </label>
                         </div>
-
-
                         <div class="col-md-4">
                             <label>
                                 Data Inicio:
@@ -144,10 +140,6 @@
                             </label>
                         </div>
                     </div>
-
-
-
-
                 </fieldset>
                 <fieldset style="float: right; height: 30%; width: 30%;">
                     <legend>Porcentagem</legend>
@@ -163,9 +155,9 @@
             </div>
         </div>
     </div>
-
-
-
+    <input type="hidden" id="ChartLucro" runat="server" clientidmode="static" />
+    <input type="hidden" id="ChartDespesa" runat="server" clientidmode="static" />
+    <input type="hidden" id="ChartTotal" runat="server" clientidmode="static" />
 
 
 
@@ -182,14 +174,34 @@
                 exportEnabled: true,
                 data: [
                     {
+                        name: "Lucro",
                         type: "spline", //change it to line, area, column, pie, etc, spline
+                        showInLegend: true,
                         dataPoints: [
-                            { x: new Date(2018, 6, 1), y: 0 },
-                            { x: new Date(2018, 7, 15), y: 7000 }
-
+                            { x: 0, y: 0 },
+                            { x: 100, y: parseFloat(document.getElementById("ChartLucro").value) }
+                        ]
+                    },
+                    {
+                        name: "Total",
+                        type: "spline", //change it to line, area, column, pie, etc, spline
+                        showInLegend: true,
+                        dataPoints: [
+                            { x: 0, y: 0 },
+                            { x: 100, y: parseFloat(document.getElementById("ChartTotal").value) }
+                        ]
+                    },
+                    {
+                        name: "Despesa",
+                        type: "spline", //change it to line, area, column, pie, etc, spline
+                        showInLegend: true,
+                        dataPoints: [
+                            { x: 0, y: 0 },
+                            { x: 100, y: parseFloat(document.getElementById("ChartDespesa").value) }
                         ]
                     }
                 ]
+
             };
             $("#chartContainer").CanvasJSChart(options);
 

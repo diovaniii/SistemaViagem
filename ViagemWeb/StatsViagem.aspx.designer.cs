@@ -137,5 +137,32 @@ namespace ViagemWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ViagemWeb.Form.Porcentagem Porcentagem;
+        
+        /// <summary>
+        /// ChartLucro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden ChartLucro;
+        
+        /// <summary>
+        /// ChartDespesa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden ChartDespesa;
+        
+        /// <summary>
+        /// ChartTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden ChartTotal;
     }
 }

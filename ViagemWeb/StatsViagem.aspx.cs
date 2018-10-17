@@ -56,14 +56,6 @@ namespace ViagemWeb
 
             string assentos = Convert.ToString(assento.Lugares.Value);
             txtAssento.Text = assentos;
-            //int quantidadePassagem;
-
-
-            //foreach (var item in passagemVendida)
-            //{
-            //    quantidadePassagem += item.Assento.
-            //}
-
         }
         protected void MontarCadastroViagem(int id)
         {
@@ -102,6 +94,7 @@ namespace ViagemWeb
             txtAssento.ReadOnly = true;
         }
 
+        
         decimal total;
         decimal totalDespesas;
         protected void CarregaResultados(int id)
@@ -124,6 +117,9 @@ namespace ViagemWeb
             }
             txbValorDespesa.Text = totalDespesas.ToString();
             txbValorLucro.Text = (total - totalDespesas).ToString();
+            ChartLucro.Value = (total - totalDespesas).ToString();
+            ChartDespesa.Value = totalDespesas.ToString();
+            ChartTotal.Value = soma.ToString();
         }
     }
 }
