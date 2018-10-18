@@ -8,7 +8,7 @@
             <asp:Panel runat="server">
                 <p />
                 <fieldset>
-                    <legend>Dados do Cliente</legend>
+                    <legend>Lista de clientes</legend>
                     <div class="row">
                         <div class="col-md-3">
                             <label>

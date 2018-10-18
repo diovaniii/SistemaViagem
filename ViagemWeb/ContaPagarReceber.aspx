@@ -1,84 +1,90 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ContaPagarReceber.aspx.cs" Inherits="ViagemWeb.ContaPagarReceber" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>
-                        Tipo:
+    <asp:Panel runat="server">
+        <p />
+        <fieldset>
+            <legend>Cadastro Fornecedor</legend>
+            <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>
+                                Tipo:
                         <br>
-                        <asp:DropDownList ID="ddlTípo" runat="server" DataTextField="TipoNome" DataValueField="TipoId" AutoPostBack="True" OnSelectedIndexChanged="ddlTípo_SelectedIndexChanged" Class="form-control" />
-                    </label>
-                </div>
-                <div class="col-md-4">
-                    <asp:Label runat="server" ID="lblCliente">Cliente:
+                                <asp:DropDownList ID="ddlTípo" runat="server" DataTextField="TipoNome" DataValueField="TipoId" AutoPostBack="True" OnSelectedIndexChanged="ddlTípo_SelectedIndexChanged" Class="form-control" />
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:Label runat="server" ID="lblCliente">Cliente:
                         <br>
-                        <asp:DropDownList ID="ddlCliente" runat="server"  Class="form-control js-example-basic-single" />
-                    </asp:Label>
-                </div>
-                <%--<div class="col-md-4">
+                                <asp:DropDownList ID="ddlCliente" runat="server" Class="form-control js-example-basic-single" />
+                            </asp:Label>
+                        </div>
+                        <%--<div class="col-md-4">
                     <asp:Label runat="server" ID="lblFornecedor">Fornecedor:
                         <br>
                         <asp:DropDownList ID="ddlFornecedor" runat="server" DataTextField="FornecedorNome" DataValueField="FornecedorId" Class="form-control js-example-basic-single" />
                     </asp:Label>
                 </div>--%>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>
-                        Viagem:
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>
+                                Viagem:
                         <br>
-                        <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" OnSelectedIndexChanged="ddlViagem_SelectedIndexChanged" Class="form-control js-example-basic-single" />
-                    </label>
-                </div>
+                                <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" OnSelectedIndexChanged="ddlViagem_SelectedIndexChanged" Class="form-control js-example-basic-single" />
+                            </label>
+                        </div>
 
-                <div class="col-md-4">
-                    <label>
-                        Data Recebido:
+                        <div class="col-md-4">
+                            <label>
+                                Data Recebido:
                                 <br>
-                        <asp:TextBox ID="txtDataRecebido" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server"
-                            ValidationGroup="validador"
-                            ForeColor="Red"
-                            ControlToValidate="txtDataRecebido"
-                            ErrorMessage="Campo obrigatório" />
-                    </label>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>
-                        Parcelar:
+                                <asp:TextBox ID="txtDataRecebido" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator runat="server"
+                                    ValidationGroup="validador"
+                                    ForeColor="Red"
+                                    ControlToValidate="txtDataRecebido"
+                                    ErrorMessage="Campo obrigatório" />
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>
+                                Parcelar:
                         <br>
-                        <asp:TextBox ID="txtParcelar" runat="server" Class="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server"
-                            ValidationGroup="validador"
-                            ForeColor="Red"
-                            ControlToValidate="txtParcelar"
-                            ErrorMessage="Campo obrigatório" />
-                    </label>
-                </div>
-                <div class="col-md-4">
-                    <label>
-                        Valor Total:
+                                <asp:TextBox ID="txtParcelar" runat="server" Class="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator runat="server"
+                                    ValidationGroup="validador"
+                                    ForeColor="Red"
+                                    ControlToValidate="txtParcelar"
+                                    ErrorMessage="Campo obrigatório" />
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label>
+                                Valor Total:
                         <br>
-                        <asp:TextBox ID="txtValorTotal" runat="server" Class="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server"
-                            ValidationGroup="validador"
-                            ForeColor="Red"
-                            ControlToValidate="txtValorTotal"
-                            ErrorMessage="Campo obrigatório" />
-                    </label>
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <asp:Button id="btnOk" runat="server" Text="Ok" Class=" btn btn-cadastro" Font-Bold="true" OnClick="Ok_Click" ValidationGroup="validador" />
-    <asp:Button ID="limpar" runat="server" Text="Limpar" Class=" btn btn-cadastro" Font-Bold="true" OnClick="limpar_Click" />
+                                <asp:TextBox ID="txtValorTotal" runat="server" Class="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator runat="server"
+                                    ValidationGroup="validador"
+                                    ForeColor="Red"
+                                    ControlToValidate="txtValorTotal"
+                                    ErrorMessage="Campo obrigatório" />
+                            </label>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <asp:Button ID="btnOk" runat="server" Text="Ok" Class=" btn btn-cadastro" Font-Bold="true" OnClick="Ok_Click" ValidationGroup="validador" />
+            <asp:Button ID="limpar" runat="server" Text="Limpar" Class=" btn btn-cadastro" Font-Bold="true" OnClick="limpar_Click" />
+        </fieldset>
+    </asp:Panel>
     <div>
         <fieldset>
             <asp:UpdatePanel runat="server" ID="uppGridView" UpdateMode="Conditional">
@@ -126,7 +132,7 @@
             </asp:UpdatePanel>
         </fieldset>
     </div>
-    <asp:Button id="btnSalvar" runat="server" Text="Salvar" Class="btn" OnClick="Salvar_Click" ValidationGroup="validador1" />
+    <asp:Button ID="btnSalvar" runat="server" Text="Salvar" Class="btn" OnClick="Salvar_Click" ValidationGroup="validador1" />
 
     <%--<div>
         <asp:TextBox ID="txtCodParcela" runat="server" Class="form-control"></asp:TextBox>

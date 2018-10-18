@@ -1,14 +1,12 @@
 ﻿<%@ Page Title="Cadastro de Viagem" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CadastroViagem.aspx.cs" Inherits="ViagemWeb.CadastroViagem" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
     <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-
             <asp:Panel runat="server">
                 <p />
                 <fieldset>
-                    <legend>Dados do Cliente</legend>
+                    <legend>Cadastro de Viagem</legend>
                     <div class="row">
                         <div class="col-md-3">
                             <label>

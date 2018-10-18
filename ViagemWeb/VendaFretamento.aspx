@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VendaFretamento.aspx.cs" Inherits="ViagemWeb.VendaFretamento" %>
+﻿<%@ Page Title="Fretamento" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VendaFretamento.aspx.cs" Inherits="ViagemWeb.VendaFretamento" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <asp:Panel runat="server">
         <p />
         <fieldset>
-            <legend>Fornecedor</legend>
+            <legend>Fretamento</legend>
             <div class="row">
                 <div class="col-md-3">
                     <label>

@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CadastroCliente.aspx.cs" Inherits="ViagemWeb.CadastroCliente" %>
+﻿<%@ Page Title="Cadastro de Cliente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CadastroCliente.aspx.cs" Inherits="ViagemWeb.CadastroCliente" %>
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel runat="server">
         <p />
         <fieldset>
-            <legend>Dados da Viagem</legend>
+            <legend>Cadastro de Cliente</legend>
             <div class="row">
                 <div class="col-md-3">
                     <label>

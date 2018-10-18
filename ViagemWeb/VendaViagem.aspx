@@ -9,7 +9,7 @@
                     <panel runat="server">
                 <p />
                 
-                    <legend>Dados do Cliente</legend>
+                    <legend>Venda de Viagem</legend>
                     
                         <div class="col-md-3">
                             <label>

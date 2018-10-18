@@ -8,7 +8,7 @@
             <asp:Panel runat="server">
                 <p />
                 <fieldset>
-                    <legend>Pesquisar Vendas</legend>
+                    <legend>Lista de Venda de Viagem</legend>
                     <div class="row">
                         <div class="col-md-3">
                             <label>
@@ -43,17 +43,17 @@
                 <p />
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="panel panel-centralizar">
-                            <div>
-                                <asp:LinkButton runat="server" ID="btnVender"
-                                    CssClass="btn-cadastro-lista btn btn-default"
-                                    OnClick="btnVender_Click">
+
+                        <div>
+                            <asp:LinkButton runat="server" ID="btnVender"
+                                CssClass="btn-cadastro-lista btn btn-default"
+                                OnClick="btnVender_Click" Style="margin-bottom: 10px">
                                 <i class="glyphicon glyphicon-plus sat-icon-with-text" style="margin-right: 3px;"></i>
                                 Vender
-                                </asp:LinkButton>
-                                <h3>Lista de vendas</h3>
-                            </div>
+                            </asp:LinkButton>
+
                         </div>
+
                         <asp:GridView
                             ID="grpListaDeVenda"
                             runat="server"
@@ -107,22 +107,22 @@
                     </div>
                 </div>
             </div>
-            <asp:TextBox id="valorTotal" runat="server" class="form-control"  />
+            <asp:TextBox ID="valorTotal" runat="server" class="form-control" />
             <div class="col-md-3">
-                            <asp:LinkButton runat="server" ID="GerarPDF"
-                                CssClass="btn-buscar btn btn-default"
-                                OnClick="GerarPDF_Click">
+                <asp:LinkButton runat="server" ID="GerarPDF"
+                    CssClass="btn-buscar btn btn-default"
+                    OnClick="GerarPDF_Click">
                                 <i class="glyphicon glyphicon-print sat-icon-with-text" style="margin-right: 3px;"></i>
                                 Gerar PDF
-                            </asp:LinkButton>
-                        </div>
+                </asp:LinkButton>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    
+
 
     <script type="text/javascript">
 
 
-    </script>
+</script>
 
 </asp:Content>

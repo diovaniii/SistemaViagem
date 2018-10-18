@@ -1,13 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaContaPagarReceber.aspx.cs" Inherits="ViagemWeb.ListaContaPagarReceber" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
     <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <asp:Panel runat="server">
                 <p />
                 <fieldset>
-                    <legend>Dados do Cliente</legend>
+                    <legend>Lista de Contas a Pagar e Receber</legend>
                     <div class="row">
                         <div class="col-md-4">
                             <label>

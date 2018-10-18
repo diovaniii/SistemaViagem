@@ -92,6 +92,12 @@ namespace ViagemWeb
             txtDescricao.ReadOnly = true;
             ddlVeiculo.Enabled = false;
             txtAssento.ReadOnly = true;
+            txbValorDespesa.ReadOnly = true;
+            txbValorLucro.ReadOnly = true;
+            txbValorPago.ReadOnly = true;
+            txbValorTotal.ReadOnly = true;
+
+               
         }
 
 
