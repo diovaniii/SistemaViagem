@@ -410,3 +410,19 @@ panel {
         margin-bottom: 20px;
     }
 }
+
+
+/*BARRA PRINCIPAL TELA MASTER*/
+.navbar-inverse .navbar-nav > li > a {
+    color: aliceblue;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: aqua;
+}
+
+.navbar-inverse .navbar-brand{
+    color: aliceblue;
+}
+.navbar-inverse .navbar-brand:hover {
+    color: aqua;
+}

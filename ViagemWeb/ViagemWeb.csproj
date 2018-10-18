@@ -203,7 +203,6 @@
     <Content Include="Content\css\select2.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
-    <Content Include="DeletaCliente.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Form\Porcentagem.ascx" />
@@ -650,13 +649,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DeletaCliente.aspx.cs">
-      <DependentUpon>DeletaCliente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DeletaCliente.aspx.designer.cs">
-      <DependentUpon>DeletaCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Form\Porcentagem.ascx.cs">
       <DependentUpon>Porcentagem.ascx</DependentUpon>

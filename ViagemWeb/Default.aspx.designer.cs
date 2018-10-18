@@ -13,21 +13,93 @@ namespace ViagemWeb {
     public partial class _Default {
         
         /// <summary>
-        /// Porcentagem control.
+        /// uppGridViewViagem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ViagemWeb.Form.Porcentagem Porcentagem;
+        protected global::System.Web.UI.UpdatePanel uppGridViewViagem;
         
         /// <summary>
-        /// grpListaDeClientes control.
+        /// grpListaDeViagem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grpListaDeClientes;
+        protected global::System.Web.UI.WebControls.GridView grpListaDeViagem;
+        
+        /// <summary>
+        /// txbValorTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbValorTotal;
+        
+        /// <summary>
+        /// txbValorPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbValorPago;
+        
+        /// <summary>
+        /// txbValorDespesa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbValorDespesa;
+        
+        /// <summary>
+        /// txbValorLucro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbValorLucro;
+        
+        /// <summary>
+        /// ChartLucro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden ChartLucro;
+        
+        /// <summary>
+        /// ChartDespesa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden ChartDespesa;
+        
+        /// <summary>
+        /// ChartTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden ChartTotal;
+        
+        /// <summary>
+        /// Porcent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden Porcent;
     }
 }
