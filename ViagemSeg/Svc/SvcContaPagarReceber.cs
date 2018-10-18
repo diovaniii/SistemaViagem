@@ -65,5 +65,18 @@ namespace ViagemSeg.Svc
                 return contas.ToList();
             }
         }
+
+        public static List<DtoConta> Pesquisa(contas conta)
+        {
+            using (var db = new bancoviagemEntities())
+            {
+                var contas1 = db.contas.Where(a => a.Status == 0)
+                                         .Where(a => conta.Indentificador.Equals(a.Indentificador))
+                                         .Where(a => conta.Cliente.Value.Equals(0) ? true : a.Cliente.Value.Equals(conta.Cliente.Value));
+                                         
+
+                return Mapeador.ListaConta(contas1.ToList());
+            }
+        }
     }
 }

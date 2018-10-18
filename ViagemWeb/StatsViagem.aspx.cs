@@ -71,14 +71,14 @@ namespace ViagemWeb
             txtEstado.Value = _viagem.Estado;
             txtDescricao.Text = _viagem.Descricao;
             ddlVeiculo.SelectedValue = Convert.ToString(_viagem.Veiculo);
-            
+
         }
 
         protected void carregaVeiculo()
         {
             ddlVeiculo.DataSource = SvcVeiculo.ListarTodosVeiculos();
             ddlVeiculo.DataBind();
-            
+
         }
 
         protected void modoVisualizacao()
@@ -94,14 +94,14 @@ namespace ViagemWeb
             txtAssento.ReadOnly = true;
         }
 
-        
+
         decimal total;
         decimal totalDespesas;
         protected void CarregaResultados(int id)
         {
             //var esperado = SvcVendaCliente.PesquisaViagem(id);
             var esperado = SvcViagem.BuscarViagem(id);
-            var assento = SvcVeiculo.BuscarVeiculo( esperado.Veiculo.Value).Lugares;
+            var assento = SvcVeiculo.BuscarVeiculo(esperado.Veiculo.Value).Lugares;
             var soma = esperado.Valor * assento;
             txbValorTotal.Text = Convert.ToString(soma);
             var vendas = SvcVendaCliente.PesquisaViagem(id);

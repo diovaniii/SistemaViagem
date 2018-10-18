@@ -144,23 +144,8 @@
                 <fieldset style="float: right; height: 30%; width: 30%;">
                     <legend>Porcentagem</legend>
                     <div>
-                        <%--<sis:Porcentagem runat="server" ID="Porcentagem" />--%>
-                        <div id="container-speed"  ></div>
+                        <div id="container-speed"></div>
                     </div>
-                    
-
-                    <div class="outer">
-                        <script src="https://code.highcharts.com/highcharts.js"></script>
-                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-                    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-                        <%--<div id="container-speed" class="container" ></div>--%>
-
-                    </div>
-                    <%--<div class="row">
-                        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-                        <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-                        <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-                    </div>--%>
                     <div>
                         <div id="container"></div>
                     </div>
