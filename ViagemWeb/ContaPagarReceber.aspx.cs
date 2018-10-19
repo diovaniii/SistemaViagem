@@ -29,8 +29,9 @@ namespace ViagemWeb
 
                 contaList = new List<contas>();
                 btnSalvar.Visible = false;
+                HabilitarTipo();
             }
-            HabilitarTipo();
+            
         }
 
         protected void ddlViagem_SelectedIndexChanged(object sender, EventArgs e)

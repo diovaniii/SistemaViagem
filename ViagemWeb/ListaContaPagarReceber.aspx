@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaContaPagarReceber.aspx.cs" Inherits="ViagemWeb.ListaContaPagarReceber" %>
+﻿<%@ Page Title="Lista de Contas a Pagar e Receber" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaContaPagarReceber.aspx.cs" Inherits="ViagemWeb.ListaContaPagarReceber" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
